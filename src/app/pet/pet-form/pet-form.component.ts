@@ -10,13 +10,14 @@ export class PetFormComponent {
 
   @Output()
   addPetEvent = new EventEmitter<Pet>();
+
   @Input() 
   selectedPet!: Pet | null;
 
   sendPet!: Pet;
 
   formPet: Pet = {
-    id: 1,
+    id: 0,
     nombre: "",
     raza: "",
     edad: 0,
@@ -53,9 +54,14 @@ export class PetFormComponent {
   addPetForm() {
     console.log(this.formPet);
     this.sendPet = Object.assign({}, this.formPet);
-    this.addPetEvent.emit(this.formPet);
+    this.addPetEvent.emit(this.sendPet);
     this.resetForm(); 
     window.scrollTo(0, 0);
   }
   
+  addPet(form:any){
+    console.log(this.formPet);
+    this.sendPet = Object.assign({}, this.formPet);
+    this.addPetEvent.emit(this.sendPet);
+  }
 }

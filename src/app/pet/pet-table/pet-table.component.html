@@ -21,7 +21,8 @@
                     <td>{{pet.enfermedad}}</td>
                     <td><img [src]="pet.urlImage" alt="{{pet.nombre}}" class="pet-image"></td>
                     <td>
-                        <button class="btn btn-info" (click)="showPet(pet)">Ver</button> <!--  <a [routerLink]="['/pets', pet.id]" class="btn btn-info">Ver</a> -->
+                        <!--  <button class="btn btn-info" (click)="showPet(pet)">Ver</button>  -->
+                        <a [routerLink]="['/pets', pet.id]" class="btn btn-info">Ver</a>
                         <button class="btn btn-edit" (click)="editPet(pet)">Editar</button>
                         <button class="btn btn-danger" (click)="deletePet(pet)">Borrar</button>
                     </td>
@@ -29,8 +30,9 @@
             </tbody>
         </table>
 
-         <!-- Mostrar detalles de la mascota seleccionada -->
-    <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail>
+         <!-- Mostrar detalles de la mascota seleccionada
+    <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail> -->
+    
     <app-pet-form (addPetEvent)="addPet($event)"></app-pet-form>
     </div>
 </main>

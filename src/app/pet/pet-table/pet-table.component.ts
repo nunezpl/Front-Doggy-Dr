@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
 
@@ -22,7 +22,8 @@ export class PetTableComponent {
 
   //Inyectar dependencias
   constructor(
-    private petService: PetService
+    private petService: PetService,
+    private cdr: ChangeDetectorRef
   ){
     
   }
@@ -39,7 +40,7 @@ export class PetTableComponent {
   editPet(pet: Pet) {
     //this.petList.push(pet);
     console.log('Edit pet', pet);
-    this.selectedPet = pet;
+    this.selectedPet = { ...pet };
   }
 
   deletePet(pet: Pet) {
@@ -51,14 +52,33 @@ export class PetTableComponent {
   }
 
   addPet(pet: Pet) {
-    if (pet.id) { // Verifica si hay un ID, lo que significa que es una edición
-      const index = this.petList.findIndex(p => p.id === pet.id);
-      if (index !== -1) {
-        this.petList[index] = pet; // Actualiza la mascota existente
-      }
+    // Si es una edición (el ID ya existe), actualiza el registro existente
+    const index = this.petList.findIndex(p => p.id === pet.id);
+    if (index !== -1) {
+      this.petList[index] = pet; // Actualiza la mascota existente
+      console.log('Updated pet:', pet);
     } else {
-      pet.id = this.petList.length + 1; // Asigna un nuevo ID para nuevas mascotas
-      this.petList.push(pet);
+      // Si es una nueva mascota, asigna un nuevo ID
+      pet.id = this.petList.length > 0 ? Math.max(...this.petList.map(p => p.id)) + 1 : 1;
+      this.petList.push(pet); // Agrega la nueva mascota
+      console.log('Added new pet:', pet);
     }
-  }  
+
+    this.cdr.detectChanges(); // Forzar detección de cambios
+
+    // Reinicia la mascota seleccionada después de agregar o editar
+    this.resetSelectedPet();
+  }
+  
+  resetSelectedPet() {
+    this.selectedPet = {
+      id: 0,
+      nombre: '',
+      raza: '',
+      edad: 0,
+      enfermedad: '',
+      peso: 0,
+      urlImage: ''
+    };
+  }
 }
