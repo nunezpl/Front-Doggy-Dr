@@ -38,4 +38,13 @@ export class PetService {
     const pet:Pet = this.petList.find(o => o.id === id)!;
     return pet;
   }
+  updatePet(pet:Pet){
+    const index = this.petList.findIndex(o => o.id === pet.id);
+    this.petList[index] = pet;
+  }
+
+  addPet(pet:Pet){
+    this.petList.push(pet);
+  }
+
 }

@@ -23,13 +23,14 @@
                     <td>
                         <!--  <button class="btn btn-info" (click)="showPet(pet)">Ver</button>  -->
                         <a [routerLink]="['/pets', pet.id]" class="btn btn-info">Ver</a>
-                        <button class="btn btn-edit" (click)="editPet(pet)">Editar</button>
+                        <a [routerLink]="['/pets/update', pet.id]" class="btn btn-info">Editar</a>
                         <button class="btn btn-danger" (click)="deletePet(pet)">Borrar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-
+    
+        <a [routerLink]="['/pets/adds']" class="btn btn-info">Agregar</a>
          <!-- Mostrar detalles de la mascota seleccionada
     <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail> -->
     

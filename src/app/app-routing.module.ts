@@ -7,6 +7,8 @@ import { SedesComponent } from './menu/sedes/sedes.component';
 import { ServicesComponent } from './menu/services/services.component';
 import { ContactComponent } from './menu/contact/contact.component';
 import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
+import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
+import { PetFormComponent } from './pet/pet-form/pet-form.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminPageComponent },
@@ -16,8 +18,8 @@ const routes: Routes = [
     { path: 'sedes', component: SedesComponent},
     { path: 'contact', component: ContactComponent},
     { path: 'pets/:id', component: PetDetailComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', redirectTo: '/home' },
+    { path: 'pets/update/:id', component: PetUpdateComponent},
+    { path: 'pets/adds', component: PetUpdateComponent}
 
 ];
 
