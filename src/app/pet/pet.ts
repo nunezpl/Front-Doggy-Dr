@@ -1,3 +1,5 @@
+import { Owner } from "../owner/owner";
+
 export interface Pet{
     id:number;
     nombre: string ;
@@ -6,4 +8,5 @@ export interface Pet{
     enfermedad: string ;
     peso: number;
     urlImage: string ;
+    //owner: Owner;
 }
