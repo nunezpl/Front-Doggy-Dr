@@ -9,7 +9,13 @@
 }
 
 /* Estilos para los encabezados dentro del formulario */
-.form-container h2,
+.form-container h2{
+    margin-bottom: 20px;
+    color: #7044bf;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .form-container h3 {
     margin-bottom: 20px;
     color: #7044bf;

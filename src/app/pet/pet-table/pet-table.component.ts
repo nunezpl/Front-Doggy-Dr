@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Pet } from '../pet';
+import { PetService } from 'src/app/service/pet.service';
 
 @Component({
   selector: 'app-pet-table',
@@ -7,47 +8,57 @@ import { Pet } from '../pet';
   styleUrls: ['./pet-table.component.css']
 })
 export class PetTableComponent {
+  selectedPet: Pet = {
+    id: 0,
+    nombre: '',
+    raza: '',
+    edad: 0,
+    enfermedad: '',
+    peso: 0,
+    urlImage: ''
+  };
+    //Bd falsa
+  petList!: Pet[];
 
-  selectedPet!: Pet;
+  //Inyectar dependencias
+  constructor(
+    private petService: PetService
+  ){
+    
+  }
 
-  petList: Pet[] = [
-    {
-      id: 1,
-      nombre: "Perry", 
-      raza: "French Poodle", 
-      edad: 2, 
-      enfermedad: "Otitis", 
-      peso: 3.4, 
-      urlImage: "https://wowmascota.com/wp-content/uploads/2019/05/pets-753464_640.jpg"
-    },
-    {
-      id: 2,
-      nombre: "Lucas", 
-      raza: "Labrador", 
-      edad: 2,
-      enfermedad: "Gastroenteritis",
-      peso: 6.1,
-      urlImage: "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/ThinkstockPhotos-590080440.jpg?w=1024"
-    }
-  ];
+  //realizo llamados cuando ya está cargada la interfaz
+  ngOnInit(): void {
+    this.petList = this.petService.findAll();
+  }
 
   showPet(pet: Pet){
     this.selectedPet = pet;
   }
 
   editPet(pet: Pet) {
-    // Implement your edit functionality here
+    //this.petList.push(pet);
     console.log('Edit pet', pet);
-    
+    this.selectedPet = pet;
   }
 
   deletePet(pet: Pet) {
     console.log('Delete pet', pet);
-    const index = this.petList.indexOf(pet);
+    var index = this.petList.indexOf(pet);
     if (index !== -1) {
       this.petList.splice(index, 1);  // Elimina el elemento de la lista
     }
   }
-  
 
+  addPet(pet: Pet) {
+    if (pet.id) { // Verifica si hay un ID, lo que significa que es una edición
+      const index = this.petList.findIndex(p => p.id === pet.id);
+      if (index !== -1) {
+        this.petList[index] = pet; // Actualiza la mascota existente
+      }
+    } else {
+      pet.id = this.petList.length + 1; // Asigna un nuevo ID para nuevas mascotas
+      this.petList.push(pet);
+    }
+  }  
 }

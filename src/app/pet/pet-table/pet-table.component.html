@@ -22,7 +22,7 @@
                     <td><img [src]="pet.urlImage" alt="{{pet.nombre}}" class="pet-image"></td>
                     <td>
                         <button class="btn btn-info" (click)="showPet(pet)">Ver</button> <!--  <a [routerLink]="['/pets', pet.id]" class="btn btn-info">Ver</a> -->
-                        <a class="btn btn-info">Editar</a>
+                        <button class="btn btn-edit" (click)="editPet(pet)">Editar</button>
                         <button class="btn btn-danger" (click)="deletePet(pet)">Borrar</button>
                     </td>
                 </tr>
@@ -31,6 +31,6 @@
 
          <!-- Mostrar detalles de la mascota seleccionada -->
     <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail>
-    <!-- <app-pet-form (addPetEvent)="addPet($pet)"></app-pet-form> -->
+    <app-pet-form (addPetEvent)="addPet($event)"></app-pet-form>
     </div>
 </main>
