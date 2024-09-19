@@ -94,6 +94,14 @@
     background-color: #62B2D7;
 }
 
+.main .btn-edit {
+    background-color: #62B2D7;
+    color: white;
+}
+
+.main .btn-edit:hover {
+    background-color: #62B2D7;
+}
 .main .btn-danger {
     background-color: #ef594e;
     color: white;
@@ -104,7 +112,7 @@
 }
 
 .main .btn-primary {
-    background-color: #7044bf;
+    background-color: #6544bf;
     color: white;
 }
 
