@@ -1,0 +1,36 @@
+<main class="main">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Enfermedad</th>
+                    <th>Foto</th>
+                    <th>Acciones</th> <!-- Columna para las acciones CRUD -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pet of petList">
+                    <td>{{pet.id}}</td>
+                    <td>{{pet.nombre}}</td>
+                    <td>{{pet.raza}}</td>
+                    <td>{{pet.edad}}</td>
+                    <td>{{pet.enfermedad}}</td>
+                    <td><img [src]="pet.urlImage" alt="{{pet.nombre}}" class="pet-image"></td>
+                    <td>
+                        <button class="btn btn-info" (click)="showPet(pet)">Ver</button> <!--  <a [routerLink]="['/pets', pet.id]" class="btn btn-info">Ver</a> -->
+                        <a class="btn btn-info">Editar</a>
+                        <button class="btn btn-danger" (click)="deletePet(pet)">Borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+         <!-- Mostrar detalles de la mascota seleccionada -->
+    <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail>
+    <!-- <app-pet-form (addPetEvent)="addPet($pet)"></app-pet-form> -->
+    </div>
+</main>
