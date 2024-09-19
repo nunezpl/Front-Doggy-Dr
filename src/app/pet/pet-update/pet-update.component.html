@@ -1,6 +1,7 @@
+<main class="main">
     <section id="booking-section">
       <div class="form-container container">   
-        <h2>Agregar Mascota</h2>     
+        <h2>Actualizar Mascota</h2>     
         <!-- Formulario Angular #petForm="ngForm"-->
         <form >
 
@@ -74,8 +75,10 @@
           -->
   
           <div class="form-group" id="button">
-            <button type="submit" (click)="addPetForm()" class="btn btn-primary" >Agregar mascota</button>
+            <a [routerLink]="['/admin']" type="submit" (click)="addPetForm()" class="btn btn-primary" >Agregar mascota></a>
           </div>
         </form>
       </div>
     </section>
+  </main>
+  

@@ -16,6 +16,7 @@ import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetFormComponent } from './pet/pet-form/pet-form.component';
 import { FormsModule } from '@angular/forms';
+import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     PetTableComponent,
     AdminPageComponent,
     PetDetailComponent,
-    PetFormComponent
+    PetFormComponent,
+    PetUpdateComponent
   ],
   imports: [
     BrowserModule,

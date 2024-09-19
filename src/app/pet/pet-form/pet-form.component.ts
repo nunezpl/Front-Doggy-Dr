@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pet } from '../pet';
+import { PetService } from 'src/app/service/pet.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -8,11 +9,16 @@ import { Pet } from '../pet';
 })
 export class PetFormComponent {
 
-  @Output()
-  addPetEvent = new EventEmitter<Pet>();
+  constructor(
+    private petService: PetService
+  ) {
+    
+  }
 
   @Input() 
   selectedPet!: Pet | null;
+
+  @Output() addPetEvent = new EventEmitter<Pet>();
 
   sendPet!: Pet;
 
@@ -54,7 +60,7 @@ export class PetFormComponent {
   addPetForm() {
     console.log(this.formPet);
     this.sendPet = Object.assign({}, this.formPet);
-    this.addPetEvent.emit(this.sendPet);
+    this.petService.addPet(this.sendPet);
     this.resetForm(); 
     window.scrollTo(0, 0);
   }
