@@ -17,6 +17,7 @@ import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetFormComponent } from './pet/pet-form/pet-form.component';
 import { FormsModule } from '@angular/forms';
 import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

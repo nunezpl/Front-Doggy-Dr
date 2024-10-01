@@ -30,7 +30,10 @@ export class PetTableComponent {
 
   //realizo llamados cuando ya está cargada la interfaz
   ngOnInit(): void {
-    this.petList = this.petService.findAll();
+    //this.petList = this.petService.findAll();
+    this.petService.findAll().subscribe(
+      (pets) => this.petList = pets
+    )
   }
 
   showPet(pet: Pet){
@@ -48,6 +51,7 @@ export class PetTableComponent {
     var index = this.petList.indexOf(pet);
     if (index !== -1) {
       this.petList.splice(index, 1);  // Elimina el elemento de la lista
+      this.petService.deleteById(pet.id);
     }
   }
 
@@ -61,6 +65,7 @@ export class PetTableComponent {
       // Si es una nueva mascota, asigna un nuevo ID
       pet.id = this.petList.length > 0 ? Math.max(...this.petList.map(p => p.id)) + 1 : 1;
       this.petList.push(pet); // Agrega la nueva mascota
+      this.petService.addPet(pet);
       console.log('Added new pet:', pet);
     }
 

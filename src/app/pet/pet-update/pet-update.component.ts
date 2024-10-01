@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pet-update',
@@ -26,10 +27,12 @@ export class PetUpdateComponent {
 
   ngOnInit(): void {
     console.log("ngOnInit de update");
-
+    //Llamar un API
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      this.petSelected = this.petService.findById(id);
+      this.petService.findById(id).subscribe();
+      //this.petSelected = this.petService.findById(id);
+
       
       if (this.petSelected) {
         // Inicializa formPet solo después de obtener petSelected
