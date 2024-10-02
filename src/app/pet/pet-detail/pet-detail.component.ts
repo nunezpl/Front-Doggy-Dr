@@ -11,8 +11,7 @@ import { mergeMap } from 'rxjs';
 })
 export class PetDetailComponent {
 
-  @Input()
-  pet!: Pet;
+  pet: Pet | undefined;
 
   constructor(
     private petService: PetService,
@@ -33,7 +32,9 @@ export class PetDetailComponent {
     //Llamar un API
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      this.petService.findById(id).subscribe();
+      this.petService.findById(id).subscribe(
+        datosPerro => this.pet = datosPerro  
+      );
     })
   }
 

@@ -8,7 +8,8 @@ import { ServicesComponent } from './menu/services/services.component';
 import { ContactComponent } from './menu/contact/contact.component';
 import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
-import { PetFormComponent } from './pet/pet-form/pet-form.component';
+import { PetTableComponent } from './pet/pet-table/pet-table.component';
+import { OwnerTableComponent } from './owner/owner-table/owner-table.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminPageComponent },
@@ -17,9 +18,16 @@ const routes: Routes = [
     { path: 'blogs', component: BlogsComponent},
     { path: 'sedes', component: SedesComponent},
     { path: 'contact', component: ContactComponent},
-    { path: 'pets/:id', component: PetDetailComponent },
-    { path: 'pets/update/:id', component: PetUpdateComponent},
-    { path: 'pets/adds', component: PetUpdateComponent}
+
+    // Pet routes
+    { path: 'pet/find/:id', component: PetDetailComponent },
+    { path: 'pet/update/:id', component: PetUpdateComponent},
+    { path: 'pet/adds', component: PetUpdateComponent},
+    { path: 'pet/all', component: PetTableComponent},
+
+    // Client routes
+    { path: 'owner/all', component: OwnerTableComponent},
+    { path: 'owner/:id/pets', component: PetTableComponent}
 
 ];
 

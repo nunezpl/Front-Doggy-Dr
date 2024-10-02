@@ -1,0 +1,45 @@
+<main class="main">
+    <div class="outer-container">
+        <div class="title-button-container">
+            <h1>Clientes</h1>
+    
+            <div class="button-container">
+                <a type="button" class="btn" th:href="@{/client/register}">+</a>
+            </div>    
+        </div>
+    </div>   
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Documento</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th># Mascotas</th>
+                    <th>Acciones</th> <!-- Columna para las acciones CRUD -->
+                </tr>
+            </thead>
+            <tbody> 
+                <tr *ngFor="let owner of ownersList">
+                    <td>
+                        <a [routerLink]="['/owner/',owner.id,'/pets']"> {{owner.name}} </a>
+                    </td>
+                    <td>{{owner.username}}</td>
+                    <td>{{owner.document}}</td>
+                    <td>{{owner.mail}}</td>
+                    <td>{{owner.phone}}</td>
+                    <td>{{ owner.pets?.length || 0 }}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="editOwner(owner)">Editar</button>
+                      
+                        <button class="btn btn-danger" (click)="deleteOwner(owner)">Borrar</button>
+                    </td>                      
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</main>

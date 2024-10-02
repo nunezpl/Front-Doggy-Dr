@@ -17,7 +17,9 @@ import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetFormComponent } from './pet/pet-form/pet-form.component';
 import { FormsModule } from '@angular/forms';
 import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
+import { OwnerTableComponent } from './owner/owner-table/owner-table.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { HttpClientModule } from '@angular/common/http'
     AdminPageComponent,
     PetDetailComponent,
     PetFormComponent,
-    PetUpdateComponent
+    PetUpdateComponent,
+    OwnerDetailComponent,
+    OwnerTableComponent
   ],
   imports: [
     BrowserModule,
