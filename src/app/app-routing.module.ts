@@ -10,6 +10,7 @@ import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
 import { PetTableComponent } from './pet/pet-table/pet-table.component';
 import { OwnerTableComponent } from './owner/owner-table/owner-table.component';
+import { VetTableComponent } from './vet/vet-table/vet-table.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminPageComponent },
@@ -27,7 +28,10 @@ const routes: Routes = [
 
     // Client routes
     { path: 'owner/all', component: OwnerTableComponent},
-    { path: 'owner/:id/pets', component: PetTableComponent}
+    { path: 'owner/:id/pets', component: PetTableComponent},
+
+    // Vet routes/
+    { path: 'vet/all', component: VetTableComponent},
 
 ];
 

@@ -1,0 +1,124 @@
+/* Contenedor principal */
+.main {
+    padding: 20px;
+    margin-top: 100px; /* Espacio para el header */
+}
+
+.outer-container {
+    display: flex;
+    justify-content: center; /* Centra el contenedor horizontalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.title-button-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el botón con el título */
+    gap: 15px; /* Espacio horizontal entre el título y el botón */
+}
+
+/* Título principal */
+.main h1 {
+    color: #7044bf; 
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Contenedor de la tabla */
+.main table {
+    width: 70%; /* Ampliar el ancho de la tabla para acomodar la columna de acciones */
+    margin: 0 auto; /* Centra la tabla */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden; /* Para asegurar que las esquinas estén redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de las celdas de la tabla */
+.main th, .main td {
+    padding: 12px; /* Aumentar el padding para mejorar la legibilidad */
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 1em; /* Ajustar el tamaño de la fuente */
+}
+
+/* Estilo de las celdas de encabezado */
+.main th {
+    background-color: #7044bf;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Estilo de las filas en hover */
+.main tr:hover {
+    background-color: #f0f8ff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Estilo para los enlaces en las celdas */
+.main td a {
+    color: #7044bf;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    font-size: 1em; /* Ajustar el tamaño de la fuente */
+}
+
+.main td a:hover {
+    color: #8948eb;
+}
+
+/* Estilo para los botones CRUD */
+.main .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #7044bf;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em; /* Reducir ligeramente el tamaño de la fuente */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.main .btn-info {
+    background-color: #62B2D7; /* Color para el botón de edición */
+}
+
+.main .btn-danger {
+    background-color: #ef594e; /* Color para el botón de eliminación */
+}
+
+.main .btn:hover {
+    background-color: white;
+}
+
+.main .btn-info:hover {
+    background-color: #62B2D7;
+}
+
+.main .btn-danger:hover {
+    background-color: #ef594e;
+}
+
+/* Contenedor del botón de agregar cliente */
+.button-container {
+    text-align: center;
+}
+
+.button-container .btn {
+    background-color: #7044bf;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container .btn:hover {
+    background-color: #7044bf;
+}

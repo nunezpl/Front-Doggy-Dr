@@ -1,0 +1,49 @@
+<main class="main">
+    <div class="outer-container">
+        <div class="title-button-container">
+            <h1>Veterinarios</h1>
+    
+            <div class="button-container">
+                <a type="button" class="btn" th:href="@{/vet/register}">+</a>
+            </div>    
+        </div>
+    </div>   
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Especialidad</th>
+                    <th>URL imagen</th>
+                    <th>Usuario</th>
+                    <th>Documento</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th># Tratamientos</th>
+                    <th>Acciones</th> <!-- Columna para las acciones CRUD -->
+                </tr>
+            </thead>
+            <tbody> 
+                <tr *ngFor="let vet of vetsList">
+                    <td>
+                        <a [routerLink]="['/vet/',vet.id,'/treatments']"> {{vet.name}} </a>
+                    </td>
+                    <td>{{vet.specialty}}</td>
+                    <td>{{vet.urlImage}}</td>
+                    <td>{{vet.userName}}</td>
+                    <td>{{vet.document}}</td>
+                    <td>{{vet.phone}}</td>
+                    <td>{{vet.mail}}</td>
+                    <td>{{ vet.treatments?.length || 0 }}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="editVet(vet)">Editar</button>
+                      
+                        <button class="btn btn-danger" (click)="deleteVet(vet)">Borrar</button>
+                    </td>                      
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</main>
