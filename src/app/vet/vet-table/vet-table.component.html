@@ -30,12 +30,12 @@
                         <a [routerLink]="['/vet/',vet.id,'/treatments']"> {{vet.name}} </a>
                     </td>
                     <td>{{vet.specialty}}</td>
-                    <td>{{vet.urlImage}}</td>
+                    <td><img [src]="vet.urlImage" alt="{{vet.name}}" class="vet-image"></td>
                     <td>{{vet.userName}}</td>
                     <td>{{vet.document}}</td>
                     <td>{{vet.phone}}</td>
                     <td>{{vet.mail}}</td>
-                    <td>{{ vet.treatments?.length || 0 }}</td>
+                    <td>{{ vet.treatments?.length || 0 }}</td> 
                     <td>
                         <button class="btn btn-info" (click)="editVet(vet)">Editar</button>
                       

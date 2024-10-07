@@ -122,3 +122,12 @@
 .button-container .btn:hover {
     background-color: #7044bf;
 }
+
+/* Estilo de la imagen */
+.vet-image {
+    height: 100px;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    border-radius: 20%; /* Hace la imagen circular */
+    border: 1px solid #7044bf; /* Borde alrededor de la imagen */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
