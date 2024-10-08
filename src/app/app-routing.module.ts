@@ -11,6 +11,7 @@ import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
 import { PetTableComponent } from './pet/pet-table/pet-table.component';
 import { OwnerTableComponent } from './owner/owner-table/owner-table.component';
 import { VetTableComponent } from './vet/vet-table/vet-table.component';
+import { PetFormComponent } from './pet/pet-form/pet-form.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminPageComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
     // Pet routes
     { path: 'pet/find/:id', component: PetDetailComponent },
     { path: 'pet/update/:id', component: PetUpdateComponent},
-    { path: 'pet/adds', component: PetUpdateComponent},
+    { path: 'pet/adds', component: PetFormComponent},
     { path: 'pet/all', component: PetTableComponent},
 
     // Client routes

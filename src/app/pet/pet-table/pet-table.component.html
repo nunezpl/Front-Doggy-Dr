@@ -1,5 +1,16 @@
 <main class="main">
     <div>
+        
+        <div class="outer-container">
+            <div class="title-button-container">
+                <h1>Mascotas</h1>
+        
+                <div class="button-container">
+                    <a [routerLink]="['/pet/adds']" class="btn btn-info">Agregar</a>
+                </div>    
+            </div>
+        </div>   
+
         <table>
             <thead>
                 <tr>
@@ -30,10 +41,9 @@
             </tbody>
         </table>
     
-        <a [routerLink]="['/pet/adds']" class="btn btn-info">Agregar</a>
          <!-- Mostrar detalles de la mascota seleccionada
-    <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail> -->
-    
-    <app-pet-form (addPetEvent)="addPet($event)"></app-pet-form>
+    <app-pet-detail *ngIf="selectedPet" [pet]="selectedPet"></app-pet-detail>
+    <app-pet-form (addPetEvent)="addPet($event)"></app-pet-form> -->
+
     </div>
 </main>

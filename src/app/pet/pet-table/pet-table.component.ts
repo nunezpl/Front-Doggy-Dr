@@ -15,7 +15,8 @@ export class PetTableComponent {
     edad: 0,
     enfermedad: '',
     peso: 0,
-    urlImage: ''
+    urlImage: '',
+    owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
   };
     //Bd falsa
   petList!: Pet[];
@@ -83,7 +84,8 @@ export class PetTableComponent {
       edad: 0,
       enfermedad: '',
       peso: 0,
-      urlImage: ''
+      urlImage: '',
+      owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
     };
   }
 }

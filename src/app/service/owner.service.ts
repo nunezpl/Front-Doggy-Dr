@@ -34,6 +34,6 @@ export class OwnerService {
 
   addOwner(owner:Owner){
     //this.petList.push(pet);
-    return this.http.post('http://localhost:8090/owner/add', owner).subscribe();
+    this.http.post('http://localhost:8090/owner/add', owner).subscribe();
   }
 }

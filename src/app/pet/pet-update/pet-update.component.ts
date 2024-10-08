@@ -17,7 +17,16 @@ export class PetUpdateComponent {
   
   sendPet!: Pet;
 
-  formPet!: Pet;
+  formPet: Pet = {
+    id: 0,
+    nombre: '',
+    raza: '',
+    edad: 0,
+    enfermedad: '',
+    peso: 0,
+    urlImage: '',
+    owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
+  };
 
   constructor(
     private petService: PetService,
@@ -26,29 +35,24 @@ export class PetUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log("ngOnInit de update");
-    //Llamar un API
+    // Obtener el parámetro 'id' de la URL
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      this.petService.findById(id).subscribe();
-      //this.petSelected = this.petService.findById(id);
-
       
-      if (this.petSelected) {
-        // Inicializa formPet solo después de obtener petSelected
-        this.formPet = { 
-          id: this.petSelected.id,
-          nombre: this.petSelected.nombre,
-          raza: this.petSelected.raza,
-          edad: this.petSelected.edad,
-          enfermedad: this.petSelected.enfermedad,
-          peso: this.petSelected.peso,
-          urlImage: this.petSelected.urlImage
-        };
-      }
+      // Llamar al servicio para obtener la mascota por su id
+      this.petService.findById(id).subscribe(
+        (pet: Pet) => {
+          // Asignar la mascota obtenida a formPet para mostrarla en el formulario
+          this.formPet = { ...pet };
+          this.sendPet = pet;
+        },
+        error => {
+          console.error('Error al obtener la mascota: ', error);
+        }
+      );
     });
   }
-
+/*
   resetForm() {
     this.formPet = {
       id: 0,
@@ -81,5 +85,26 @@ export class PetUpdateComponent {
     console.log(this.formPet);
     this.sendPet = Object.assign({}, this.formPet);
     this.addPetEvent.emit(this.sendPet);
+  }
+*/
+  // Método para actualizar la mascota
+  updatePet(): void {
+    console.log('Mascota a actualizar:', this.sendPet); // Agregar esto para verificar el valor de sendPet
+    if (!this.sendPet) {
+      console.error("La mascota a actualizar no está definida.");
+      return;
+    }
+  
+    // Imprimir el objeto antes de hacer la solicitud
+  console.log('Objeto `Pet` antes de actualizar:', this.formPet);
+
+    this.petService.updatePet(this.formPet).subscribe(
+      (response) => {
+        console.log('Mascota actualizada: ', response);
+      },
+      (error) => {
+        console.error('Error al actualizar la mascota: ', error);
+      }
+    );
   }
 }

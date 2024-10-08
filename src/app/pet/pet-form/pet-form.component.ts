@@ -29,9 +29,8 @@ export class PetFormComponent {
     edad: 0,
     enfermedad: "",
     peso: 0,
-    urlImage: ""
-    //,
-    //owner: { id: 1, name: 'John Doe' }
+    urlImage: "",
+    owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
   };
 
   /*clients: Client[] = [
@@ -54,7 +53,8 @@ export class PetFormComponent {
       edad: 0,
       enfermedad: "",
       peso: 0,
-      urlImage: ""
+      urlImage: "",
+      owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
     };
   }
   addPetForm() {
@@ -65,9 +65,13 @@ export class PetFormComponent {
     window.scrollTo(0, 0);
   }
   
-  addPet(form:any){
-    console.log(this.formPet);
-    this.sendPet = Object.assign({}, this.formPet);
-    this.addPetEvent.emit(this.sendPet);
+  onSubmit() {
+    console.log('Formulario enviado con los siguientes datos:', this.formPet);
+    this.petService.addPet(this.formPet).subscribe(response => {
+      console.log('Respuesta del servidor:', response);
+      // Puedes agregar lógica adicional si es necesario
+    });
+    this.resetForm();  // Opcional: Restablece el formulario
   }
+  
 }

@@ -7,5 +7,5 @@ export interface Owner{
     document: number ;
     phone?: number ;
     mail: string ;
-    pets: Pet[] ;
+    pets?: Pet[] ;
 }
