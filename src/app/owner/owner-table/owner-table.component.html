@@ -4,7 +4,7 @@
             <h1>Clientes</h1>
     
             <div class="button-container">
-                <a type="button" class="btn" th:href="@{/client/register}">+</a>
+                <a [routerLink]="['/owner/adds']" class="btn btn-info">Agregar</a>
             </div>    
         </div>
     </div>   
@@ -33,8 +33,7 @@
                     <td>{{owner.phone}}</td>
                     <td>{{ owner.pets?.length || 0 }}</td>
                     <td>
-                        <button class="btn btn-info" (click)="editOwner(owner)">Editar</button>
-                      
+                        <a [routerLink]="['/owner/update', owner.id]" class="btn btn-info">Editar</a>
                         <button class="btn btn-danger" (click)="deleteOwner(owner)">Borrar</button>
                     </td>                      
                 </tr>

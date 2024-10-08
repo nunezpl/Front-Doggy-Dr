@@ -26,14 +26,20 @@ export class VetService {
     console.log(id);
     return this.http.delete('http://localhost:8090/vet/delete/'+id).subscribe();
   }
-  updateVet(vet:Vet){
+  updateVet(vet:Vet): Observable<Vet>{
     /*const index = this.petList.findIndex(o => o.id === pet.id);
     this.petList[index] = pet;*/
-    return this.http.put('http://localhost:8090/vet/add', vet).subscribe();
+    if (!vet || !vet.id) { // Verificar que pet y su ID estén definidos
+      console.error("No se puede actualizar el veterinario porque no se ha proporcionado un ID válido.");
+      throw new Error("El objeto `vet` o su ID no está definido.");
+    }
+    console.log(" UpdateVet: ", vet);
+    
+    return this.http.put<Vet>('http://localhost:8090/vet/update/'+ vet.id, vet);
   }
 
-  addVet(vet:Vet){
-    //this.petList.push(pet);
-    return this.http.post('http://localhost:8090/vet/add', vet).subscribe();
+  addVet(pet: Vet): Observable<Vet> {
+    console.log('Veterinario a agregar:', pet); 
+    return this.http.post<Vet>('http://localhost:8090/vet/add', pet);
   }
 }

@@ -4,7 +4,7 @@
             <h1>Veterinarios</h1>
     
             <div class="button-container">
-                <a type="button" class="btn" th:href="@{/vet/register}">+</a>
+                <a [routerLink]="['/vet/adds']" class="btn btn-info">Agregar</a>
             </div>    
         </div>
     </div>   
@@ -37,8 +37,7 @@
                     <td>{{vet.mail}}</td>
                     <td>{{ vet.treatments?.length || 0 }}</td> 
                     <td>
-                        <button class="btn btn-info" (click)="editVet(vet)">Editar</button>
-                      
+                        <a [routerLink]="['/vet/update', vet.id]" class="btn btn-info">Editar</a>
                         <button class="btn btn-danger" (click)="deleteVet(vet)">Borrar</button>
                     </td>                      
                 </tr>

@@ -21,6 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
 import { OwnerTableComponent } from './owner/owner-table/owner-table.component';
 import { VetTableComponent } from './vet/vet-table/vet-table.component';
+import { OwnerFormComponent } from './owner/owner-form/owner-form.component';
+import { OwnerUpdateComponent } from './owner/owner-update/owner-update.component';
+import { VetUpdateComponent } from './vet/vet-update/vet-update.component';
+import { VetDetailComponent } from './vet/vet-detail/vet-detail.component';
+import { VetFormComponent } from './vet/vet-form/vet-form.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,12 @@ import { VetTableComponent } from './vet/vet-table/vet-table.component';
     PetUpdateComponent,
     OwnerDetailComponent,
     OwnerTableComponent,
-    VetTableComponent
+    VetTableComponent,
+    OwnerFormComponent,
+    OwnerUpdateComponent,
+    VetUpdateComponent,
+    VetDetailComponent,
+    VetFormComponent
   ],
   imports: [
     BrowserModule,
