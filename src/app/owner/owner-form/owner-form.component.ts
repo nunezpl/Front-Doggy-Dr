@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Owner } from '../owner';
 import { OwnerService } from 'src/app/service/owner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-owner-form',
@@ -10,7 +11,8 @@ import { OwnerService } from 'src/app/service/owner.service';
 export class OwnerFormComponent {
 
   constructor(
-    private ownerService: OwnerService
+    private ownerService: OwnerService,
+    private router: Router
   ) {
     
   }
@@ -62,7 +64,7 @@ export class OwnerFormComponent {
     console.log('Formulario enviado con los siguientes datos:', this.formOwner);
     this.ownerService.addOwner(this.formOwner).subscribe(response => {
       console.log('Respuesta del servidor:', response);
-      // Puedes agregar lógica adicional si es necesario
+      this.router.navigate(['/owner/all']);
     });
     this.resetForm();  // Opcional: Restablece el formulario
   }

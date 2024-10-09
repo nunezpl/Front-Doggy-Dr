@@ -16,6 +16,8 @@ import { VetTableComponent } from './vet/vet-table/vet-table.component';
 import { VetUpdateComponent } from './vet/vet-update/vet-update.component';
 import { VetFormComponent } from './vet/vet-form/vet-form.component';
 import { PetFormComponent } from './pet/pet-form/pet-form.component';
+import { LoginComponent } from './login/login.component';
+import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
 
 const routes: Routes = [
 
@@ -35,7 +37,7 @@ const routes: Routes = [
 
     // Client routes
     { path: 'owner/all', component: OwnerTableComponent},
-    { path: 'owner/:id/pets', component: PetTableComponent},
+    { path: 'owner/:id/pets', component: OwnerDetailComponent},
     { path: 'owner/update/:id', component: OwnerUpdateComponent},
     { path: 'owner/adds', component: OwnerFormComponent},
 
@@ -43,6 +45,10 @@ const routes: Routes = [
     { path: 'vet/all', component: VetTableComponent},
     { path: 'vet/update/:id', component: VetUpdateComponent},
     { path: 'vet/adds', component: VetFormComponent},
+
+    // LogIn
+    { path: 'login', component: LoginComponent },
+    { path: '', redirectTo: '/login', pathMatch: 'full' }
 
 ];
 

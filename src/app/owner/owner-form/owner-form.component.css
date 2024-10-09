@@ -1,3 +1,9 @@
+.main{
+    margin-top: 140px;
+    margin-bottom: 60px;
+    display: block;
+  }
+  
 /* Estilos para el contenedor del formulario */
 .form-container {
     background-color: #fff;

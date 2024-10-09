@@ -2,7 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { mergeMap, Observable } from 'rxjs';
+import { OwnerService } from 'src/app/service/owner.service';
 
 @Component({
   selector: 'app-pet-update',
@@ -30,6 +31,7 @@ export class PetUpdateComponent {
 
   constructor(
     private petService: PetService,
+    private ownerService: OwnerService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -40,16 +42,21 @@ export class PetUpdateComponent {
       const id = Number(params.get('id'));
       
       // Llamar al servicio para obtener la mascota por su id
-      this.petService.findById(id).subscribe(
-        (pet: Pet) => {
-          // Asignar la mascota obtenida a formPet para mostrarla en el formulario
-          this.formPet = { ...pet };
-          this.sendPet = pet;
-        },
-        error => {
-          console.error('Error al obtener la mascota: ', error);
+      this.petService.findById(id).pipe(
+        mergeMap(
+          (petInfo) => {
+            this.formPet = petInfo;
+            this.sendPet = petInfo;
+            return this.petService.findOwnerPet(id);
+          }
+        )
+      ).subscribe(
+        (owner) => {
+          console.log(" Owner: ", owner);
+          this.formPet.owner = owner;
         }
-      );
+      )
+    
     });
   }
 /*

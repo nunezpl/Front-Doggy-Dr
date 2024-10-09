@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Pet } from '../pet/pet';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Owner } from '../owner/owner';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,8 @@ export class PetService {
       return this.http.post<Pet>('http://localhost:8090/pet/add', pet);
     }
 
+    findOwnerPet(id:number):Observable<Owner>{
+      return this.http.get<Owner>('http://localhost:8090/pet/'+ id +'/owner');
+    }
 
 }

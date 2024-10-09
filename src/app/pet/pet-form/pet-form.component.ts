@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pet-form',
@@ -10,7 +11,8 @@ import { PetService } from 'src/app/service/pet.service';
 export class PetFormComponent {
 
   constructor(
-    private petService: PetService
+    private petService: PetService,
+    private router: Router
   ) {
     
   }
@@ -23,7 +25,7 @@ export class PetFormComponent {
   sendPet!: Pet;
 
   formPet: Pet = {
-    id: 0,
+    id: 2000,
     nombre: "",
     raza: "",
     edad: 0,
@@ -69,7 +71,7 @@ export class PetFormComponent {
     console.log('Formulario enviado con los siguientes datos:', this.formPet);
     this.petService.addPet(this.formPet).subscribe(response => {
       console.log('Respuesta del servidor:', response);
-      // Puedes agregar lógica adicional si es necesario
+      this.router.navigate(['/pet/all']);
     });
     this.resetForm();  // Opcional: Restablece el formulario
   }

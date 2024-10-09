@@ -26,6 +26,7 @@ import { OwnerUpdateComponent } from './owner/owner-update/owner-update.componen
 import { VetUpdateComponent } from './vet/vet-update/vet-update.component';
 import { VetDetailComponent } from './vet/vet-detail/vet-detail.component';
 import { VetFormComponent } from './vet/vet-form/vet-form.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { VetFormComponent } from './vet/vet-form/vet-form.component';
     OwnerUpdateComponent,
     VetUpdateComponent,
     VetDetailComponent,
-    VetFormComponent
+    VetFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Owner } from '../owner';
 import { OwnerService } from 'src/app/service/owner.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { mergeMap } from 'rxjs';
+import { PetService } from 'src/app/service/pet.service';
 
 @Component({
   selector: 'app-owner-update',
@@ -23,11 +25,12 @@ export class OwnerUpdateComponent {
     document: 0 ,
     phone: 0 ,
     mail: '' ,
-    pets: [] ,
+    pets: [] 
   };
 
   constructor(
     private ownerService: OwnerService,
+    private petService: PetService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -38,16 +41,20 @@ export class OwnerUpdateComponent {
       const id = Number(params.get('id'));
       
       // Llamar al servicio para obtener el propietario por su id
-      this.ownerService.findById(id).subscribe(
-        (owner: Owner) => {
-          // Asignar el propietario obtenido a formOwner para mostrarlo en el formulario
-          this.formOwner = { ...owner };
-          this.sendOwner = owner;
-        },
-        error => {
-          console.error('Error al obtener el cliente: ', error);
+      this.ownerService.findById(id).pipe(
+        mergeMap(
+          (petInfo) => {
+            this.formOwner = petInfo;
+            this.sendOwner = petInfo;
+            return this.ownerService.findOwnerPets(id);
+          }
+        )
+      ).subscribe(
+        (pets) => {
+          console.log(" pets:", pets.length);
+          this.sendOwner.pets = pets;
         }
-      );
+      )
     });
   }
 
