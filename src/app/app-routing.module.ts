@@ -18,6 +18,7 @@ import { VetFormComponent } from './vet/vet-form/vet-form.component';
 import { PetFormComponent } from './pet/pet-form/pet-form.component';
 import { LoginComponent } from './login/login.component';
 import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
+import { VetDetailComponent } from './vet/vet-detail/vet-detail.component';
 
 const routes: Routes = [
 
@@ -42,6 +43,7 @@ const routes: Routes = [
     { path: 'owner/adds', component: OwnerFormComponent},
 
     // Vet routes/
+    { path: 'vet/find/:id', component: VetDetailComponent },
     { path: 'vet/all', component: VetTableComponent},
     { path: 'vet/update/:id', component: VetUpdateComponent},
     { path: 'vet/adds', component: VetFormComponent},

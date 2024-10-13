@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vet } from '../vet';
 import { VetService } from 'src/app/service/vet.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-vet-update',
@@ -40,10 +40,10 @@ export class VetUpdateComponent {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
       
-      // Llamar al servicio para obtener la mascota por su id
+      // Llamar al servicio para obtener el veterinario por su id
       this.vetService.findById(id).subscribe(
         (vet: Vet) => {
-          // Asignar la mascota obtenida a formPet para mostrarla en el formulario
+          // Asignar el veterinario obtenido a formVet para mostrarlo en el formulario
           this.formVet = { ...vet };
           this.sendVet = vet;
         },
@@ -51,12 +51,31 @@ export class VetUpdateComponent {
           console.error('Error al obtener el veterinario: ', error);
         }
       );
+      /* Llamar al servicio para obtener la mascota por su id
+      this.vetService.findById(id).pipe(
+        mergeMap(
+          (vetInfo) => {
+            this.formVet = vetInfo;
+            this.sendVet = vetInfo;
+            return this.vetService.findById(id);
+          }
+        )
+      ).subscribe(
+        (vet: Vet) => {
+          // Asignar el veterinario obtenido a formVet para mostrarlo en el formulario
+          this.formVet = { ...vet };
+          this.sendVet = vet;
+        },
+        error => {
+          console.error('Error al obtener el veterinario: ', error);
+        }
+      )*/
     });
   }
 
-  // Método para actualizar la mascota
+  // Método para actualizar el veterinario
   updateVet(): void {
-    console.log('Veteriario a actualizar:', this.sendVet); // Agregar esto para verificar el valor de sendPet
+    console.log('Veteriario a actualizar:', this.sendVet); // Agregar esto para verificar el valor de sendVet
     if (!this.sendVet) {
       console.error("El veterinario a actualizar no está definido.");
       return;
@@ -67,10 +86,10 @@ export class VetUpdateComponent {
 
     this.vetService.updateVet(this.formVet).subscribe(
       (response) => {
-        console.log('Mascota actualizada: ', response);
+        console.log('Veterinario actualizado: ', response);
       },
       (error) => {
-        console.error('Error al actualizar la mascota: ', error);
+        console.error('Error al actualizar el veterinario: ', error);
       }
     );
   }

@@ -39,8 +39,8 @@ export class VetTableComponent {
     )
   }
 
-  showVet(vets: Vet){
-    this.selectedVet = vets;
+  showVet(vet: Vet){
+    this.selectedVet = vet;
   }
 
   editVet(vet: Vet) {
@@ -62,12 +62,12 @@ export class VetTableComponent {
     // Si es una edición (el ID ya existe), actualiza el registro existente
     const index = this.vetsList.findIndex(p => p.id === vet.id);
     if (index !== -1) {
-      this.vetsList[index] = vet; // Actualiza la mascota existente
-      console.log('Updated owner:', vet);
+      this.vetsList[index] = vet; // Actualiza el veterinario existente
+      console.log('Updated vet:', vet);
     } else {
-      // Si es una nueva mascota, asigna un nuevo ID
+      // Si es un nuevo veterinario, asigna un nuevo ID
       vet.id = this.vetsList.length > 0 ? Math.max(...this.vetsList.map(p => p.id)) + 1 : 1;
-      this.vetsList.push(vet); // Agrega la nueva mascota
+      this.vetsList.push(vet); // Agrega el nuevo veterinario
       this.vetService.addVet(vet);
       console.log('Added new vet:', vet);
     }
@@ -75,10 +75,10 @@ export class VetTableComponent {
     this.cdr.detectChanges(); // Forzar detección de cambios
 
     // Reinicia la mascota seleccionada después de agregar o editar
-    this.resetSelectedPet();
+    this.resetSelectedVet();
   }
   
-  resetSelectedPet() {
+  resetSelectedVet() {
     this.selectedVet = {
       id: 0,
       name: '',

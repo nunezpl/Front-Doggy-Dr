@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Vet } from '../vet';
 import { VetService } from 'src/app/service/vet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vet-form',
@@ -10,7 +11,8 @@ import { VetService } from 'src/app/service/vet.service';
 export class VetFormComponent {
 
   constructor(
-    private vetService: VetService
+    private vetService: VetService, 
+    private router: Router
   ) {
     
   }
@@ -34,11 +36,9 @@ export class VetFormComponent {
     treatments: []
   };
 
-
-
   ngOnChanges() {
     if (this.selectedVet) {
-      this.formVet = { ...this.selectedVet }; // Llena el formulario con los datos de la mascota
+      this.formVet = { ...this.selectedVet }; // Llena el formulario con los datos del veterinario
     } else {
       this.resetForm(); // Resetea el formulario si no hay mascota seleccionada
     }
@@ -68,7 +68,7 @@ export class VetFormComponent {
     console.log('Formulario enviado con los siguientes datos:', this.formVet);
     this.vetService.addVet(this.formVet).subscribe(response => {
       console.log('Respuesta del servidor:', response);
-      // Puedes agregar lógica adicional si es necesario
+      this.router.navigate(['/vet/all']);
     });
     this.resetForm();  // Opcional: Restablece el formulario
   }

@@ -1,1 +1,20 @@
-<p>vet-detail works!</p>
+<main class="main">
+
+    <div class="container">
+        <ng-container *ngIf="vet">
+            <h1><strong><span id="title1">{{vet.name}}</span></strong></h1>
+            <div class="vet-image">
+                <img [src]="vet.urlImage" alt="Imagen del veterinario">
+            </div>
+            <div class="vet-info">
+                <p><strong>Nombre:</strong> {{vet.name}}</p>
+                <p><strong>ID:</strong> {{vet.id}}</p>
+                <p><strong>Documento:</strong> {{vet.document}}</p>
+                <p><strong>Correo:</strong> {{vet.mail}}</p>
+                <p><strong>Celular:</strong> {{vet.phone}}</p>
+                <p><strong>Especialidad:</strong> {{vet.specialty}}</p>
+            </div>
+        </ng-container>
+    </div>  
+    
+</main>

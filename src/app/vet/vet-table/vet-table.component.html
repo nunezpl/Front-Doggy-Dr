@@ -1,4 +1,5 @@
 <main class="main">
+    <div>
     <div class="outer-container">
         <div class="title-button-container">
             <h1>Veterinarios</h1>
@@ -37,6 +38,7 @@
                     <td>{{vet.mail}}</td>
                     <td>{{ vet.treatments?.length || 0 }}</td> 
                     <td>
+                        <a [routerLink]="['/vet/find', vet.id]" class="btn btn-info">Ver</a>
                         <a [routerLink]="['/vet/update', vet.id]" class="btn btn-info">Editar</a>
                         <button class="btn btn-danger" (click)="deleteVet(vet)">Borrar</button>
                     </td>                      
@@ -44,5 +46,5 @@
             </tbody>
         </table>
     </div>
-    
+</div>
 </main>
