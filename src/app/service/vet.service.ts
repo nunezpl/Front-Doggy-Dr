@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Vet } from '../vet/vet';
+import { Treatment } from '../treatment/treatment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -41,5 +42,9 @@ export class VetService {
   addVet(pet: Vet): Observable<Vet> {
     console.log('Veterinario a agregar:', pet); 
     return this.http.post<Vet>('http://localhost:8090/vet/add', pet);
+  }
+
+  findVetTreatments(id:number):Observable<Treatment[]>{
+    return this.http.get<Treatment[]>('http://localhost:8090/vet/'+id+ '/treatments');
   }
 }
