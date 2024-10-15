@@ -1,0 +1,83 @@
+
+* {
+    font-family: 'Lexend', sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Ocupa toda la altura de la ventana */
+}
+
+.login-container,
+.register-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fondo blanco con 50% de transparencia */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra para dar profundidad */
+}
+
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form h2,
+.register-form h2 {
+    margin-top: 0;
+    color: #7044bf;
+}
+
+.login-form label,
+.register-form label {
+    margin-bottom: 5px;
+    color: #7044bf;
+    font-weight: bold;
+}
+
+.login-form input,
+.register-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-form button,
+.register-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7044bf;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-form button:hover,
+.register-form button:hover {
+    background-color: #7044bf;
+}
+
+/* Estilos para el botón */
+.button {
+    background-color: #7044bf; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Padding interno */
+    cursor: pointer; /* Cursor de mano */
+    transition: 0.3s; /* Transición suave para transformaciones */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  /* Estilo hover para el botón */
+  .button:hover {
+    color: white; /* Color del texto en hover */
+    transform: translateY(-5px); /* Desplaza hacia arriba en hover */
+  }

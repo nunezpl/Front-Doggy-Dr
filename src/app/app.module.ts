@@ -27,6 +27,8 @@ import { VetUpdateComponent } from './vet/vet-update/vet-update.component';
 import { VetDetailComponent } from './vet/vet-detail/vet-detail.component';
 import { VetFormComponent } from './vet/vet-form/vet-form.component';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { LoginComponent } from './login/login.component';
     VetUpdateComponent,
     VetDetailComponent,
     VetFormComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
