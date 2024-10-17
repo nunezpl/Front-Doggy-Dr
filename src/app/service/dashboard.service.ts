@@ -9,7 +9,7 @@ import { Observable, map } from 'rxjs';
     constructor(private http: HttpClient) {}
   
     getTreatmentsLastMonth(): Observable<number> {
-      return this.http.get<number>('/api/admin/treatments/last-month');
+      return this.http.get<number>('http://localhost:8090/admin/treatments/last-month');
     }
   
     getTreatmentsByMedicine(): Observable<any[]> {
@@ -17,17 +17,15 @@ import { Observable, map } from 'rxjs';
     }
   
     getActiveVeterinarians(): Observable<number> {
-      return this.http.get<number>('/api/admin/veterinarians/active');
+      return this.http.get<number>('http://localhost:8090/vet/active');
     }
   
     getInactiveVeterinarians(): Observable<number> {
-      return this.http.get<number>('/api/admin/veterinarians/inactive');
+      return this.http.get<number>('http://localhost:8090/vet/inactive');
     }
   
     getTotalPets(): Observable<number> {
-        return this.http.get<any[]>('/api/pets/all').pipe(
-          map(pets => pets.length) // Contar el número de mascotas en la lista
-        );
+        return this.http.get<number>('http://localhost:8090/pet/total');
     }      
   
     getActivePets(): Observable<number> {

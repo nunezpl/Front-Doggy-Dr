@@ -10,5 +10,6 @@ export interface Vet {
     document: number;
     phone: number;
     mail: string;
+    status: Boolean;
     treatments: Treatment[];
 }

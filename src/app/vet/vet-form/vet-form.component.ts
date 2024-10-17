@@ -30,10 +30,11 @@ export class VetFormComponent {
     specialty: '',
     urlImage: '',
     userName: '',
-    password: '',
+    password: '', 
     document: 0,
     phone: 0,
     mail: '',
+    status: false,
     treatments: []
   };
 
@@ -55,6 +56,7 @@ export class VetFormComponent {
       document: 0,
       phone: 0,
       mail: '',
+      status: false,
       treatments: []
     };
   }

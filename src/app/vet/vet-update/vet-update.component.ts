@@ -28,6 +28,7 @@ export class VetUpdateComponent {
     document: 0,
     phone: 0,
     mail: '',
+    status: false,
     treatments: []
   };
 

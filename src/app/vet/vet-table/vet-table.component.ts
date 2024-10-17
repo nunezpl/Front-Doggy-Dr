@@ -18,6 +18,7 @@ export class VetTableComponent {
     document: 0,
     phone: 0,
     mail: '',
+    status: false,
     treatments: []
   };
     //Bd falsa
@@ -100,6 +101,7 @@ export class VetTableComponent {
       document: 0,
       phone: 0,
       mail: '',
+      status: false,
       treatments: []
     };
   }

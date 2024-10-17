@@ -66,7 +66,19 @@
               El correo electrónico es requerido.
             </div>
           </div>
-  
+
+          <div class="form-group">
+            <label for="status">Estado:</label>
+            <select id="status" class="form-control" required [(ngModel)]="formVet.status" name="status" #status="ngModel">
+              <option [ngValue]="true">Activo</option>
+              <option [ngValue]="false">Inactivo</option>
+            </select>
+            <div *ngIf="status.invalid && status.touched" class="text-danger">
+              El estado es requerido.
+            </div>
+          </div>
+          
+            
           <div class="form-group">
             <label for="urlImage">Foto URL del Veterinario:</label>
             <input type="text" id="urlImage" class="form-control" required [(ngModel)]="formVet.urlImage" name="urlImage" #urlImage="ngModel">
