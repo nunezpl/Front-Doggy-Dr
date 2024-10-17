@@ -29,6 +29,9 @@ import { VetFormComponent } from './vet/vet-form/vet-form.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { VetPageComponent } from './vet/vet-page/vet-page.component';
+import { TreatmentAllComponent } from './treatment/treatment-all/treatment-all.component';
+import { TreatmentFormComponent } from './treatment/treatment-form/treatment-form.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     VetFormComponent,
     LoginComponent,
     DashboardComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    VetPageComponent,
+    TreatmentAllComponent,
+    TreatmentFormComponent
   ],
   imports: [
     BrowserModule,

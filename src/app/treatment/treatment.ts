@@ -8,5 +8,5 @@ export interface Treatment {
     medicines: Medicine[];
     description: string;
     vet: Vet;
-    pet: Pet;
+    pets: Pet[];
 }

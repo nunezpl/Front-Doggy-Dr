@@ -1,0 +1,113 @@
+.main {
+    margin-top: 140px;
+    margin-bottom: 60px;
+    display: block;
+}
+
+/* Estilo de la carta */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px; /* Ancho fijo de las cartas */
+    margin: 20px auto; /* Centrar las cartas horizontalmente */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Animación para hover */
+    overflow: hidden; /* Oculta cualquier desbordamiento del contenido */
+    text-align: center;
+}
+
+/* Efecto hover para las cartas */
+.card:hover {
+    transform: translateY(-10px); /* Eleva ligeramente la carta */
+}
+
+/* Contenedor de la imagen dentro de la carta */
+.card-image {
+    height: 200px; /* Altura fija de la imagen */
+    width: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-bottom: 2px solid #7044bf; /* Borde inferior para la imagen */
+}
+
+/* Título de la carta */
+.card-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #7044bf;
+    padding: 15px 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Texto dentro de la carta */
+.card-text {
+    font-size: 1.2em;
+    color: #333;
+    padding: 10px 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Botones dentro de las cartas */
+.card .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Botón de acción (usar los mismos colores que antes) */
+.card .btn-primary {
+    background-color: #6544bf;
+    color: white;
+}
+
+.card .btn-primary:hover {
+    background-color: white;
+    color: #6544bf;
+}
+
+.card .btn-info {
+    background-color: #62B2D7;
+    color: white;
+}
+
+.card .btn-info:hover {
+    background-color: #4ba0c2;
+}
+
+.card .btn-danger {
+    background-color: #ef594e;
+    color: white;
+}
+
+.card .btn-danger:hover {
+    background-color: #d7463d;
+}
+
+/* Estilo de las imágenes de las cartas (similar a la tabla) */
+.card-image {
+    height: 150px; /* Ajusta la altura de la imagen en la carta */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    border-radius: 10%; /* Hace las esquinas de la imagen redondeadas */
+    border: 1px solid #7044bf; /* Borde alrededor de la imagen */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+/* Contenedor de botones de acción dentro de la carta */
+.button-container {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Efecto hover para los botones */
+.button-container .btn:hover {
+    background-color: #8948eb;
+    color: white;
+}

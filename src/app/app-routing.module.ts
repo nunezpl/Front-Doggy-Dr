@@ -20,6 +20,9 @@ import { LoginComponent } from './login/login.component';
 import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
 import { VetDetailComponent } from './vet/vet-detail/vet-detail.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { VetPageComponent } from './vet/vet-page/vet-page.component';
+import { TreatmentAllComponent } from './treatment/treatment-all/treatment-all.component';
+import { TreatmentFormComponent } from './treatment/treatment-form/treatment-form.component';
 
 const routes: Routes = [
 
@@ -48,6 +51,11 @@ const routes: Routes = [
     { path: 'vet/all', component: VetTableComponent},
     { path: 'vet/update/:id', component: VetUpdateComponent},
     { path: 'vet/adds', component: VetFormComponent},
+    { path: 'vet/:id', component: VetPageComponent},
+
+    // Treatment routes
+    { path: 'treatment/all', component: TreatmentAllComponent},
+    { path: 'treatment/adds', component: TreatmentFormComponent},
 
     // LogIn
     { path: 'login', component: LoginComponent },
