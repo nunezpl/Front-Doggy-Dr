@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
 import { VetDetailComponent } from './vet/vet-detail/vet-detail.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -52,6 +53,7 @@ const routes: Routes = [
     // LogIn
     { path: 'login', component: LoginComponent },
     { path: 'loginAdmin', component: LoginAdminComponent },
+    { path: 'admin/dashboard', component: DashboardComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 
 ];

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pet } from '../pet/pet';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Owner } from '../owner/owner';
 
@@ -22,6 +22,7 @@ export class PetService {
     return pet;*/
     return this.http.get<Pet>('http://localhost:8090/pet/find/'+id);
   }
+  
 
   deleteById(id:Number){
     console.log(id);
@@ -59,5 +60,11 @@ export class PetService {
   findOwnerPet(id:number):Observable<Owner>{
     return this.http.get<Owner>('http://localhost:8090/pet/'+ id +'/owner');
   }
+
+  getTotalPets(): Observable<number> {
+    return this.http.get<any[]>('/api/pets/all').pipe(
+      map(pets => pets.length)
+    );
+}
 
 }
