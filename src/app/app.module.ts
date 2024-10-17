@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { VetPageComponent } from './vet/vet-page/vet-page.component';
 import { TreatmentAllComponent } from './treatment/treatment-all/treatment-all.component';
 import { TreatmentFormComponent } from './treatment/treatment-form/treatment-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginVetComponent } from './login-vet/login-vet.component';
 
 @NgModule({
   declarations: [
@@ -65,14 +68,17 @@ import { TreatmentFormComponent } from './treatment/treatment-form/treatment-for
     LoginAdminComponent,
     VetPageComponent,
     TreatmentAllComponent,
-    TreatmentFormComponent
+    TreatmentFormComponent,
+    LoginVetComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

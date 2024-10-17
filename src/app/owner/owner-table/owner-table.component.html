@@ -9,6 +9,11 @@
         </div>
     </div>   
 
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Buscar cliente por nombre..." class="search-input">
+    </div>
+
     <div>
         <table>
             <thead>
@@ -23,7 +28,8 @@
                 </tr>
             </thead>
             <tbody> 
-                <tr *ngFor="let owner of ownersList">
+                <!-- Filtra la lista de clientes según el término de búsqueda -->
+                <tr *ngFor="let owner of filteredOwners()">
                     <td>
                         <a [routerLink]="['/owner/',owner.id,'/pets']"> {{owner.name}} </a>
                     </td>
@@ -40,5 +46,4 @@
             </tbody>
         </table>
     </div>
-    
 </main>

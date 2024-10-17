@@ -23,6 +23,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { VetPageComponent } from './vet/vet-page/vet-page.component';
 import { TreatmentAllComponent } from './treatment/treatment-all/treatment-all.component';
 import { TreatmentFormComponent } from './treatment/treatment-form/treatment-form.component';
+import { LoginVetComponent } from './login-vet/login-vet.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -60,6 +62,8 @@ const routes: Routes = [
     // LogIn
     { path: 'login', component: LoginComponent },
     { path: 'loginAdmin', component: LoginAdminComponent },
+    { path: 'loginVet', component: LoginVetComponent },
+    { path: 'admin/dashboard', component: DashboardComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 
 ];

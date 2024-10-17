@@ -20,6 +20,7 @@ export class PetTableComponent {
   };
     //Bd falsa
   petList!: Pet[];
+  searchQuery: string = ''; 
 
   //Inyectar dependencias
   constructor(
@@ -36,6 +37,16 @@ export class PetTableComponent {
       (pets) => this.petList = pets
     )
   }
+
+    // Método para filtrar veterinarios según el término de búsqueda
+    filteredPets() {
+      if (!this.searchQuery) {
+        return this.petList;
+      }
+      return this.petList.filter(pet =>
+        pet.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
 
   showPet(pet: Pet){
     this.selectedPet = pet;

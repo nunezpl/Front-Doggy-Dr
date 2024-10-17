@@ -34,3 +34,6 @@ body, html {
   color: white; /* Color del texto en hover */
   transform: translateY(-5px); /* Desplaza hacia arriba en hover */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

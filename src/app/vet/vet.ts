@@ -6,6 +6,7 @@ export interface Vet {
     specialty: string;
     urlImage: string;
     userName: string;
+    password: string;
     document: number;
     phone: number;
     mail: string;
