@@ -21,6 +21,7 @@ export class VetTableComponent {
   };
     //Bd falsa
   vetsList!: Vet[];
+  searchQuery: string = ''; 
 
   //Inyectar dependencias
   constructor(
@@ -39,6 +40,15 @@ export class VetTableComponent {
     )
   }
 
+  // Método para filtrar veterinarios según el término de búsqueda
+  filteredVets() {
+    if (!this.searchQuery) {
+      return this.vetsList;
+    }
+    return this.vetsList.filter(vet =>
+      vet.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
   showVet(vet: Vet){
     this.selectedVet = vet;
   }

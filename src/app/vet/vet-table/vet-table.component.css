@@ -146,3 +146,24 @@
     border: 1px solid #7044bf; /* Borde alrededor de la imagen */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.search-container {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+  
+.search-input {
+    padding: 8px 100px;
+    width: 600px;
+    border: 1px solid #189ae0;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;  
+    color: #189ae0;
+}
+
+.search-input::placeholder {
+    color: #189ae0; /* Cambia el color del texto del placeholder (morado) */
+    opacity: 1; /* Asegura que el placeholder sea completamente opaco (sin transparencia) */
+  }
+  
