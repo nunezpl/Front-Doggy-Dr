@@ -1,6 +1,6 @@
 <main class="main">
     <div id="welcome">
-        <h1>¡Bienvenido Veterinario!</h1>
+        <h1>¡Bienvenido {{vet.name}}!</h1>
     </div>
     <div id="background-section">
         <!-- Imagen de fondo mediante CSS -->
@@ -24,7 +24,7 @@
 
         <div class="option-container">
             <div class="option1">
-                <a [routerLink]="['/treatment/all']">
+                <a [routerLink]="['/vet', vet.id, 'treatments']">
                     <h3>Administrar Tratamientos</h3>
                 </a>
             </div>

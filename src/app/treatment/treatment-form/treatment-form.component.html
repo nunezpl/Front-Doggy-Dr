@@ -1,50 +1,59 @@
-<section id="treatment-section">
+<main class="main">
+  <section id="treatment-section">
     <div class="form-container container">
       <h2>Agregar Tratamiento</h2>
-      
+
       <!-- Formulario Angular #treatmentForm="ngForm" -->
       <form (ngSubmit)="onSubmit()" #treatmentForm="ngForm">
-        
+
         <h3>Información del Tratamiento</h3>
-  
+
         <!-- Nombre del Tratamiento -->
         <div class="form-group">
           <label for="name">Nombre del Tratamiento:</label>
           <input type="text" id="name" class="form-control" required [(ngModel)]="formTreatment.name" name="name">
         </div>
-  
+
         <!-- Descripción del Tratamiento -->
         <div class="form-group">
           <label for="description">Descripción:</label>
-          <textarea id="description" class="form-control" required [(ngModel)]="formTreatment.description" name="description"></textarea>
+          <textarea id="description" class="form-control" required [(ngModel)]="formTreatment.description"
+            name="description"></textarea>
         </div>
-  
+
         <!-- Selección de Mascotas -->
         <div class="form-group">
           <label for="pets">Mascotas:</label>
-          <select id="pets" class="form-control" multiple required [(ngModel)]="formTreatment.pets" name="pets" #pets="ngModel">
+          <select id="pets" class="form-control" multiple required [(ngModel)]="formTreatment.pets" name="pets"
+            #pets="ngModel">
             <option *ngFor="let pet of petsList" [ngValue]="pet">{{ pet.nombre }}</option>
           </select>
           <div *ngIf="pets.invalid && pets.touched" class="text-danger">
             Seleccionar al menos una mascota es requerido.
           </div>
         </div>
-  
+
         <!-- Selección de Medicamentos -->
         <div class="form-group">
-          <label for="medicines">Medicamentos:</label>
-          <select id="medicines" class="form-control" multiple required [(ngModel)]="formTreatment.medicines" name="medicines" #medicines="ngModel">
-            <option *ngFor="let medicine of medicinesList" [ngValue]="medicine">{{ medicine.name }}</option>
-          </select>
-          <div *ngIf="medicines.invalid && medicines.touched" class="text-danger">
+          <label>Medicamentos:</label>
+          <div class="medicines-scroll-container">
+            <div class="medicines-container">
+              <div class="medicine-item" *ngFor="let med of medicinesList">
+                <input type="checkbox" [checked]="isMedicineSelected(med)" (change)="onMedicineChange(med)" />
+                {{ med.name }}
+              </div>
+            </div>
+          </div>
+          <div *ngIf="formTreatment.medicines.length === 0" class="text-danger">
             Seleccionar al menos un medicamento es requerido.
           </div>
         </div>
-  
+
+
         <div class="form-group" id="button">
           <button type="submit" class="btn btn-primary">Agregar Tratamiento</button>
         </div>
       </form>
     </div>
   </section>
-  
+</main>

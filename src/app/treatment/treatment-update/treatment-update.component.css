@@ -83,6 +83,7 @@
     transform: translateY(-5px);
 }
 
+
 .medicines-scroll-container {
     overflow-x: auto; /* Habilitar desplazamiento horizontal */
     white-space: nowrap; /* Evitar que los elementos se rompan en la línea */

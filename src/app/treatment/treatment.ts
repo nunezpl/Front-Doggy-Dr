@@ -9,4 +9,6 @@ export interface Treatment {
     description: string;
     vet: Vet;
     pets: Pet[];
+    startDate: Date;
+    endDate: Date;
 }

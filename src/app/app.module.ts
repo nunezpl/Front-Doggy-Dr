@@ -35,6 +35,7 @@ import { TreatmentFormComponent } from './treatment/treatment-form/treatment-for
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginVetComponent } from './login-vet/login-vet.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment-update.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     VetPageComponent,
     TreatmentAllComponent,
     TreatmentFormComponent,
-    LoginVetComponent
+    LoginVetComponent,
+    TreatmentUpdateComponent
   ],
   imports: [
     BrowserModule,

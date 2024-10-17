@@ -9,7 +9,7 @@
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: 300px; /* Ancho fijo de las cartas */
+    width: 400px; /* Ancho fijo de las cartas */
     margin: 20px auto; /* Centrar las cartas horizontalmente */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease-in-out; /* Animación para hover */
@@ -110,4 +110,55 @@
 .button-container .btn:hover {
     background-color: #8948eb;
     color: white;
+}
+
+
+.search-container {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+  
+.search-input {
+    padding: 8px 100px;
+    width: 600px;
+    border: 1px solid #189ae0;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;  
+    color: #189ae0;
+}
+
+.search-input::placeholder {
+    color: #189ae0; /* Cambia el color del texto del placeholder (morado) */
+    opacity: 1; /* Asegura que el placeholder sea completamente opaco (sin transparencia) */
+  }
+  
+
+/* Contenedor del botón de agregar */
+.button-container {
+    text-align: center;
+}
+
+.button-container .btn {
+    background-color: #7044bf;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container .btn:hover {
+    background-color: #7044bf;
+}
+
+/* Título principal */
+h1 {
+    color: #7044bf; 
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

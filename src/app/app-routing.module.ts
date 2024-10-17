@@ -25,6 +25,7 @@ import { TreatmentAllComponent } from './treatment/treatment-all/treatment-all.c
 import { TreatmentFormComponent } from './treatment/treatment-form/treatment-form.component';
 import { LoginVetComponent } from './login-vet/login-vet.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment-update.component';
 
 const routes: Routes = [
 
@@ -54,10 +55,12 @@ const routes: Routes = [
     { path: 'vet/update/:id', component: VetUpdateComponent},
     { path: 'vet/adds', component: VetFormComponent},
     { path: 'vet/:id', component: VetPageComponent},
+    { path: 'vet/:id/treatments', component: TreatmentAllComponent},
 
     // Treatment routes
     { path: 'treatment/all', component: TreatmentAllComponent},
     { path: 'treatment/adds', component: TreatmentFormComponent},
+    { path: 'treatment/update/:id', component: TreatmentUpdateComponent},
 
     // LogIn
     { path: 'login', component: LoginComponent },

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Treatment } from '../treatment';
 import { TreatmentService } from 'src/app/service/treatment.service';
 import { forkJoin, map, mergeMap } from 'rxjs';
+import { VetService } from 'src/app/service/vet.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-treatment-all',
@@ -11,22 +13,31 @@ import { forkJoin, map, mergeMap } from 'rxjs';
 export class TreatmentAllComponent {
   treatments: Treatment[] = []; // Array para almacenar los tratamientos
 
+  searchQuery: string = ''; 
+
+  selectedTreatment!: Treatment;
+  
+
   constructor(
-    private treatmentService: TreatmentService
+    private treatmentService: TreatmentService,
+    private vetService: VetService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loadTreatments(); // Llama al método para cargar los tratamientos
+    this.route.paramMap.subscribe(params => {
+      const vetId = Number(params.get('id'));
+      this.loadVetTreatments(vetId);
+    });
   }
 
-  loadTreatments() {
 
-    this.treatmentService.getTreatments().pipe(
+  loadVetTreatments(vetId: number) {
+    this.vetService.findVetTreatments(vetId).pipe(
       mergeMap((treatments) => {
         this.treatments = treatments;
-        console.log('Treatments List:', this.treatments);
-    
-        // Aquí devuelve un observable que emite un array de observables
+        console.log('Treatments List for Vet:', this.treatments);
+
         return forkJoin(
           treatments.map(treatment => 
             forkJoin({
@@ -41,6 +52,12 @@ export class TreatmentAllComponent {
                   treatment.medicines = medicines; // Asigna los medicamentos al tratamiento
                   return medicines;
                 })
+              ),
+              vet: this.treatmentService.findTreatmentVet(treatment.id).pipe(
+                map(vet => {
+                  treatment.vet = vet;
+                  return vet;
+                })
               )
             })
           )
@@ -48,13 +65,39 @@ export class TreatmentAllComponent {
       })
     ).subscribe(
       (results) => {
-        // Aquí tienes los resultados de cada llamada al servicio para cada owner
-        console.log('Results for each owner:', results);
-        // Puedes almacenar estos resultados en un array o procesarlos como necesites
+        console.log('Results for each treatment:', results);
       },
       (error) => {
-        console.error('Error fetching owners or their data:', error);
+        console.error('Error fetching treatments:', error);
       }
     );
+  }
+
+  // Método para filtrar veterinarios según el término de búsqueda
+  filteredTreatments() {
+    if (!this.searchQuery) {
+      return this.treatments;
+    }
+    return this.treatments.filter(treatment =>
+      treatment.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+  showVet(treatment: Treatment){
+    this.selectedTreatment = treatment;
+  }
+
+  editTreatment(treatment: Treatment) {
+    //this.petList.push(pet);
+    console.log('Edit treatments', treatment );
+    this.selectedTreatment = { ...treatment };
+  }
+
+  deleteTreatment(treatment: Treatment) {
+    console.log('Delete treatments', treatment);
+    var index = this.treatments.indexOf(treatment);
+    if (index !== -1) {
+      this.treatments.splice(index, 1);  // Elimina el elemento de la lista
+      this.treatmentService.deleteById(treatment.id);
+    }
   }
 }
