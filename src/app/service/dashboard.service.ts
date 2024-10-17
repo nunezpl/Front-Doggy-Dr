@@ -9,11 +9,11 @@ import { Observable, map } from 'rxjs';
     constructor(private http: HttpClient) {}
   
     getTreatmentsLastMonth(): Observable<number> {
-      return this.http.get<number>('http://localhost:8090/admin/treatments/last-month');
+      return this.http.get<number>('http://localhost:8090/treatment/total');
     }
   
     getTreatmentsByMedicine(): Observable<any[]> {
-      return this.http.get<any[]>('/api/admin/treatments/medicines');
+      return this.http.get<any[]>('http://localhost:8090/treatment/Medicines');
     }
   
     getActiveVeterinarians(): Observable<number> {
@@ -41,7 +41,7 @@ import { Observable, map } from 'rxjs';
     }
   
     getTop3Treatments(): Observable<any[]> {
-      return this.http.get<any[]>('/api/admin/treatments/top-3');
+      return this.http.get<any[]>('http://localhost:8090/treatment/top3');
     }
   }
   

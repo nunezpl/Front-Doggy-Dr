@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.dashboardService.getTreatmentsByMedicine().subscribe(data => {
+      console.log(data); // Verifica la estructura de los datos aquí
       this.treatmentsByMedicine = data;
     });
 
@@ -57,7 +58,10 @@ export class DashboardComponent implements OnInit {
     });
 
     this.dashboardService.getTop3Treatments().subscribe(data => {
+      console.log(data); // Verifica la estructura de los datos aquí
       this.top3Treatments = data;
+      console.log(this.top3Treatments);
     });
+    
   }
 }
