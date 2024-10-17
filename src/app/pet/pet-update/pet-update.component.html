@@ -9,7 +9,7 @@
   
           <div class="form-group">
             <label for="ide">Id:</label>
-            <input type="number" id="ide" class="form-control" required [(ngModel)]="formPet.id" name="ide" #edad="ngModel">
+            <input type="number" id="ide" class="form-control" required [(ngModel)]="formPet.id" name="ide" #id="ngModel" readonly>
             
           </div>
 
@@ -61,18 +61,15 @@
             </div>
           </div>
   
-          <!--
           <div class="form-group">
             <label for="owner">Dueño:</label>
-            <select id="owner" class="form-control" required [(ngModel)]="pet.owner.id" name="owner" #owner="ngModel">
-              <option *ngFor="let client of clients" [ngValue]="client.id">{{ client.name }}</option>
+            <select id="owner" class="form-control" required [(ngModel)]="formPet.owner" name="owner" #owner="ngModel">
+              <option *ngFor="let owner of owners" [ngValue]="owner">{{ owner.name }}</option>
             </select>
             <div *ngIf="owner.invalid && owner.touched" class="text-danger">
               Seleccionar un dueño es requerido.
             </div>
           </div>
-          [disabled]="petForm.invalid"
-          -->
   
           <div class="form-group" id="button">
             <button type="button" (click)="updatePet()" class="btn btn-primary">Actualizar mascota</button>

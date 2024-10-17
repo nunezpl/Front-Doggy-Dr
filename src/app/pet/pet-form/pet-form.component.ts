@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
 import { Router } from '@angular/router';
+import { Owner } from 'src/app/owner/owner';
+import { OwnerService } from 'src/app/service/owner.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -12,6 +14,7 @@ export class PetFormComponent {
 
   constructor(
     private petService: PetService,
+    private ownerService: OwnerService,
     private router: Router
   ) {
     
@@ -35,10 +38,17 @@ export class PetFormComponent {
     owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
   };
 
-  /*clients: Client[] = [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' }
-  ];*/
+  owners: Owner[] = [];  // Lista para almacenar los dueños
+
+  ngOnInit(): void {
+    this.loadOwners();  // Cargar los dueños al iniciar
+  }
+
+  loadOwners(): void {
+    this.ownerService.findAll().subscribe(owners => {
+      this.owners = owners;
+    });
+  }
 
   ngOnChanges() {
     if (this.selectedPet) {
@@ -47,9 +57,10 @@ export class PetFormComponent {
       this.resetForm(); // Resetea el formulario si no hay mascota seleccionada
     }
   }
+
   resetForm() {
     this.formPet = {
-      id: 0,
+      id: 10000,
       nombre: "",
       raza: "",
       edad: 0,
@@ -59,6 +70,7 @@ export class PetFormComponent {
       owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
     };
   }
+
   addPetForm() {
     console.log(this.formPet);
     this.sendPet = Object.assign({}, this.formPet);

@@ -4,6 +4,7 @@ import { PetService } from 'src/app/service/pet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, Observable } from 'rxjs';
 import { OwnerService } from 'src/app/service/owner.service';
+import { Owner } from 'src/app/owner/owner';
 
 @Component({
   selector: 'app-pet-update',
@@ -29,6 +30,8 @@ export class PetUpdateComponent {
     owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
   };
 
+  owners: Owner[] = [];  // Lista para almacenar los dueño
+
   constructor(
     private petService: PetService,
     private ownerService: OwnerService,
@@ -37,6 +40,8 @@ export class PetUpdateComponent {
   ) {}
 
   ngOnInit(): void {
+    this.loadOwners();  // Cargar los dueños al iniciar
+
     // Obtener el parámetro 'id' de la URL
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
@@ -52,11 +57,19 @@ export class PetUpdateComponent {
         )
       ).subscribe(
         (owner) => {
-          console.log(" Owner: ", owner);
-          this.formPet.owner = owner;
+          console.log("Owner: ", owner);
+          const foundOwner = this.owners.find(o => o.id === owner.id);
+          this.formPet.owner = foundOwner ? foundOwner : { id: 0, name: '', document: 0, mail: '', username: '', phone: 0 }; // Valor por defecto si no se encuentra
+          console.log("Dueño asociado en formPet: ", this.formPet.owner);
         }
       )
     
+    });
+  }
+
+  loadOwners(): void {
+    this.ownerService.findAll().subscribe(owners => {
+      this.owners = owners;
     });
   }
 /*
@@ -108,6 +121,7 @@ export class PetUpdateComponent {
     this.petService.updatePet(this.formPet).subscribe(
       (response) => {
         console.log('Mascota actualizada: ', response);
+        this.router.navigate(['/pet/all']);
       },
       (error) => {
         console.error('Error al actualizar la mascota: ', error);

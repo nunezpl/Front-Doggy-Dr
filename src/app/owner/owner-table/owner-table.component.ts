@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Owner } from '../owner';
 import { OwnerService } from 'src/app/service/owner.service';
+import { forkJoin, map, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-owner-table',
@@ -30,13 +31,37 @@ export class OwnerTableComponent {
 
   //realizo llamados cuando ya está cargada la interfaz
   ngOnInit(): void {
-    //this.petList = this.petService.findAll();
-    this.ownerService.findAll().subscribe(
-      (owners) => {this.ownersList = owners;
-      console.log('Owners List:', this.ownersList);}
-    )
+    this.ownerService.findAll().pipe(
+      mergeMap((owners) => {
+        this.ownersList = owners;
+        console.log('Owners List:', this.ownersList);
+    
+        // Aquí devuelve un observable que emite un array de observables
+        return forkJoin(
+          owners.map(owner => 
+            this.ownerService.findOwnerPets(owner.id).pipe(
+              map(pets => {
+                // Asigna las mascotas al owner correspondiente
+                owner.pets = pets;
+                return pets;
+              })
+            )
+          )
+        );
+      })
+    ).subscribe(
+      (results) => {
+        // Aquí tienes los resultados de cada llamada al servicio para cada owner
+        console.log('Results for each owner:', results);
+        // Puedes almacenar estos resultados en un array o procesarlos como necesites
+      },
+      (error) => {
+        console.error('Error fetching owners or their data:', error);
+      }
+    );
   }
-
+  
+  
   showOwnert(owner: Owner){
     this.selectedOwner = owner;
   }
