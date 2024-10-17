@@ -1,14 +1,18 @@
 <main class="main">
-    <div>
     <div class="outer-container">
         <div class="title-button-container">
             <h1>Veterinarios</h1>
-    
+
             <div class="button-container">
                 <a [routerLink]="['/vet/adds']" class="btn btn-info">Agregar</a>
             </div>    
         </div>
     </div>   
+
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Buscar veterinario por nombre..." class="search-input">
+    </div>
 
     <div>
         <table>
@@ -26,16 +30,17 @@
                 </tr>
             </thead>
             <tbody> 
-                <tr *ngFor="let vet of vetsList">
+                <!-- Filtro en el *ngFor para mostrar solo los que coincidan con la búsqueda -->
+                <tr *ngFor="let vet of filteredVets()">
                     <td>
-                        <a [routerLink]="['/vet/',vet.id,'/treatments']"> {{vet.name}} </a>
+                        <a [routerLink]="['/vet/', vet.id, '/treatments']">{{ vet.name }}</a>
                     </td>
-                    <td>{{vet.specialty}}</td>
-                    <td><img [src]="vet.urlImage" alt="{{vet.name}}" class="vet-image"></td>
-                    <td>{{vet.userName}}</td>
-                    <td>{{vet.document}}</td>
-                    <td>{{vet.phone}}</td>
-                    <td>{{vet.mail}}</td>
+                    <td>{{ vet.specialty }}</td>
+                    <td><img [src]="vet.urlImage" alt="{{ vet.name }}" class="vet-image"></td>
+                    <td>{{ vet.userName }}</td>
+                    <td>{{ vet.document }}</td>
+                    <td>{{ vet.phone }}</td>
+                    <td>{{ vet.mail }}</td>
                     <td>{{ vet.treatments?.length || 0 }}</td> 
                     <td>
                         <a [routerLink]="['/vet/find', vet.id]" class="btn btn-info">Ver</a>
@@ -46,5 +51,4 @@
             </tbody>
         </table>
     </div>
-</div>
 </main>

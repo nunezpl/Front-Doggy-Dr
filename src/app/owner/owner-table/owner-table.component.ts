@@ -20,6 +20,7 @@ export class OwnerTableComponent {
   };
     //Bd falsa
   ownersList!: Owner[];
+  searchQuery: string = ''; // Término de búsqueda
 
   //Inyectar dependencias
   constructor(
@@ -61,6 +62,15 @@ export class OwnerTableComponent {
     );
   }
   
+  // Método para filtrar clientes según el término de búsqueda
+  filteredOwners() {
+    if (!this.searchQuery) {
+      return this.ownersList;
+    }
+    return this.ownersList.filter(owner =>
+      owner.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
   
   showOwnert(owner: Owner){
     this.selectedOwner = owner;

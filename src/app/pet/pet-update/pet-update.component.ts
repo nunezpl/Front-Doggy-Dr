@@ -3,8 +3,8 @@ import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, Observable } from 'rxjs';
-import { OwnerService } from 'src/app/service/owner.service';
 import { Owner } from 'src/app/owner/owner';
+import { OwnerService } from 'src/app/service/owner.service';
 
 @Component({
   selector: 'app-pet-update',
