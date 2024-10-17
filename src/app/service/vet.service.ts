@@ -3,6 +3,7 @@ import { Vet } from '../vet/vet';
 import { Treatment } from '../treatment/treatment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pet } from '../pet/pet';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,9 @@ export class VetService {
 
   findVetTreatments(id:number):Observable<Treatment[]>{
     return this.http.get<Treatment[]>('http://localhost:8090/vet/'+id+ '/treatments');
+  }
+
+  findVetPets(id:number):Observable<Pet[]>{
+    return this.http.get<Pet[]>('http://localhost:8090/vet/'+id+ '/pets');
   }
 }

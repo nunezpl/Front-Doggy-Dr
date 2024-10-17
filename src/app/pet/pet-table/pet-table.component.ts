@@ -1,6 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
+import { VetService } from 'src/app/service/vet.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pet-table',
@@ -16,7 +18,8 @@ export class PetTableComponent {
     enfermedad: '',
     peso: 0,
     urlImage: '',
-    owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
+    owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
+    treatments: []
   };
     //Bd falsa
   petList!: Pet[];
@@ -25,17 +28,31 @@ export class PetTableComponent {
   //Inyectar dependencias
   constructor(
     private petService: PetService,
+    private route: ActivatedRoute,
+    private vetService: VetService,
     private cdr: ChangeDetectorRef
   ){
     
   }
 
-  //realizo llamados cuando ya está cargada la interfaz
   ngOnInit(): void {
-    //this.petList = this.petService.findAll();
-    this.petService.findAll().subscribe(
-      (pets) => this.petList = pets
-    )
+    this.route.paramMap.subscribe(params => {
+      const vetId = Number(params.get('id'));
+      if(vetId){
+        this.vetService.findVetPets(vetId).subscribe(
+          (pets) => {
+            this.petList = pets;
+          },
+          (error) => {
+            console.error('Error fetching pets for vet:', error);
+          }
+        );
+      }else{
+        this.petService.findAll().subscribe(
+          (pets) => this.petList = pets
+        )
+      }
+    });
   }
 
     // Método para filtrar veterinarios según el término de búsqueda
@@ -96,7 +113,8 @@ export class PetTableComponent {
       enfermedad: '',
       peso: 0,
       urlImage: '',
-      owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 }
+      owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
+      treatments: []
     };
   }
 }

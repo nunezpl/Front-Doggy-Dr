@@ -20,18 +20,66 @@ export class TreatmentAllComponent {
 
   constructor(
     private treatmentService: TreatmentService,
-    private vetService: VetService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private vetService: VetService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const vetId = Number(params.get('id'));
-      this.loadVetTreatments(vetId);
+      if(vetId){
+        this.loadVetTreatments(vetId);
+      }else{
+        this.loadTreatments();
+      }
     });
   }
 
+  loadTreatments() {
+    this.treatmentService.getTreatments().pipe(
+      mergeMap((treatments) => {
+        this.treatments = treatments;
+        console.log('Treatments List:', this.treatments);
+    
+        // Aquí devuelve un observable que emite un array de observables
+        return forkJoin(
+          treatments.map(treatment => 
+            forkJoin({
+              pets: this.treatmentService.findTreatmentPets(treatment.id).pipe(
+                map(pets => {
+                  treatment.pets = pets; // Asigna las mascotas al tratamiento
+                  return pets;
+                })
+              ),
+              medicines: this.treatmentService.findTreatmentMedicines(treatment.id).pipe(
+                map(medicines => {
+                  treatment.medicines = medicines; // Asigna los medicamentos al tratamiento
+                  return medicines;
+                })
+              ),
+              vet: this.treatmentService.findTreatmentVet(treatment.id).pipe(
+                map(vet => {
+                  treatment.vet = vet;
+                  return vet;
+                })
+              )
+            })
+          )
+        );
+      })
+    ).subscribe(
+      (results) => {
+        // Aquí tienes los resultados de cada llamada al servicio para cada owner
+        console.log('Results for each owner:', results);
+        // Puedes almacenar estos resultados en un array o procesarlos como necesites
+      },
+      (error) => {
+        console.error('Error fetching owners or their data:', error);
+      }
+    );
+  }
 
+  
   loadVetTreatments(vetId: number) {
     this.vetService.findVetTreatments(vetId).pipe(
       mergeMap((treatments) => {

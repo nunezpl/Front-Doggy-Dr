@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Treatment } from '../treatment/treatment';
 import { Pet } from '../pet/pet';
 import { Medicine } from '../medicine/medicine';
@@ -36,9 +36,20 @@ export class TreatmentService {
   }
 
   addTreatment(treatment: Treatment): Observable<Treatment> {
-    console.log('Treatmnt a agregar:', treatment); 
-    return this.http.post<Treatment>('http://localhost:8090/treatment/add', treatment);
+    console.log('Tratamiento a agregar:', treatment); 
+    return this.http.post<Treatment>('http://localhost:8090/treatment/add', treatment).pipe(
+      switchMap((createdTreatment) => {
+
+        console.log('Tratamiento creado:', createdTreatment);
+
+        console.log('Tratamiento id:', createdTreatment.id); 
+        console.log('Veterinario id asociado:', treatment.vet.id); 
+        // Una vez que el tratamiento ha sido creado, asocia el tratamiento con el veterinario
+        return this.http.put<Treatment>(`http://localhost:8090/treatment/${createdTreatment.id}/associate/${treatment.vet.id}`, {});
+      })
+    );
   }
+  
 
   deleteById(id:Number){
     console.log(id);

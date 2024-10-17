@@ -1,4 +1,5 @@
 import { Owner } from "../owner/owner";
+import { Treatment } from "../treatment/treatment";
 
 export interface Pet{
     id:number;
@@ -9,6 +10,6 @@ export interface Pet{
     peso: number;
     urlImage: string ;
     owner: Owner;
-    //treatments; Treatment[];
+    treatments: Treatment[];
     //appointments: Appointment[];
 }

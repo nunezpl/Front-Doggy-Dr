@@ -15,8 +15,18 @@
                 <p><strong>Enfermedad:</strong> {{pet.enfermedad}}</p>
                 <p><strong>Medicinas Suministradas:</strong> Desparasitante Canino</p>
                 <p><strong>Costo Total:</strong> $99,000</p>
+
+                <div *ngIf="pet.treatments?.length">
+                    <p><strong>Tratamientos:</strong></p>
+                    <ul>
+                        <li *ngFor="let treatment of pet.treatments">
+                            {{ treatment.name }} - {{ treatment.description }}
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </ng-container>
-    </div>  
-    
+    </div>
+
 </main>

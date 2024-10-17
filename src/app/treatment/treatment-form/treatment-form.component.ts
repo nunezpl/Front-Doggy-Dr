@@ -5,6 +5,8 @@ import { Medicine } from 'src/app/medicine/medicine';
 import { TreatmentService } from 'src/app/service/treatment.service';
 import { PetService } from 'src/app/service/pet.service';
 import { MedicineService } from 'src/app/service/medicine.service';
+import { Vet } from 'src/app/vet/vet';
+import { VetService } from 'src/app/service/vet.service';
 
 @Component({
   selector: 'app-treatment-form',
@@ -14,7 +16,7 @@ import { MedicineService } from 'src/app/service/medicine.service';
 export class TreatmentFormComponent {
   
   formTreatment: Treatment = {
-    id: 0,
+    id: 2000,
     name: '',
     description: '',
     medicines: [],
@@ -26,10 +28,12 @@ export class TreatmentFormComponent {
 
   petsList: Pet[] = [];
   medicinesList: Medicine[] = [];
+  vetsList: Vet[] = [];
 
   constructor(
     private treatmentService: TreatmentService,
     private petService: PetService,
+    private vetService: VetService,
     private medicineService: MedicineService
   ) {}
 
@@ -42,6 +46,10 @@ export class TreatmentFormComponent {
     // Cargar los medicamentos disponibles
     this.medicineService.getMedicines().subscribe(medicines => {
       this.medicinesList = medicines;
+    });
+
+    this.vetService.findAll().subscribe(vets => {
+      this.vetsList = vets
     });
   }
 

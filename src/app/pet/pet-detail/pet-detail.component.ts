@@ -11,7 +11,17 @@ import { mergeMap } from 'rxjs';
 })
 export class PetDetailComponent {
 
-  pet: Pet | undefined;
+  pet: Pet = {
+    id: 0,
+    nombre: '',
+    raza: '',
+    edad: 0,
+    enfermedad: '',
+    peso: 0,
+    urlImage: '',
+    owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
+    treatments: []
+  };
 
   constructor(
     private petService: PetService,
@@ -33,23 +43,32 @@ export class PetDetailComponent {
           this.pet = pet; // Asignamos los datos de la mascota
           console.log("Pet loaded:", this.pet);
   
-          // Luego, una vez cargada la mascota, buscamos su dueño
+          // Carga el dueño de la mascota
           return this.petService.findOwnerPet(pet.id);
-        })
-      ).subscribe(
-        owner => {
-          // Asignamos el dueño a la mascota
+        }),
+        mergeMap(owner => {
           if (this.pet) {
             this.pet.owner = owner;
           }
           console.log("Owner loaded:", this.pet?.owner);
+  
+          // Luego, carga los tratamientos asociados
+          return this.petService.findPetTreatments(this.pet.id);
+        })
+      ).subscribe(
+        treatments => {
+          if (this.pet) {
+            this.pet.treatments = treatments;
+          }
+          console.log("Treatments loaded:", this.pet?.treatments);
         },
         error => {
-          console.error("Error loading pet or owner:", error);
+          console.error("Error loading pet, owner, or treatments:", error);
         }
       );
     });
   }
+  
   
 
   ngOnChange(): void {

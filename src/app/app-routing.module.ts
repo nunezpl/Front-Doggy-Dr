@@ -26,6 +26,8 @@ import { TreatmentFormComponent } from './treatment/treatment-form/treatment-for
 import { LoginVetComponent } from './login-vet/login-vet.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment-update.component';
+import { MedicineUpdateComponent } from './medicine/medicine-update/medicine-update.component';
+import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.component';
 
 const routes: Routes = [
 
@@ -56,6 +58,7 @@ const routes: Routes = [
     { path: 'vet/adds', component: VetFormComponent},
     { path: 'vet/:id', component: VetPageComponent},
     { path: 'vet/:id/treatments', component: TreatmentAllComponent},
+    { path: 'vet/:id/pets', component: PetTableComponent},
 
     // Treatment routes
     { path: 'treatment/all', component: TreatmentAllComponent},
@@ -67,7 +70,11 @@ const routes: Routes = [
     { path: 'loginAdmin', component: LoginAdminComponent },
     { path: 'loginVet', component: LoginVetComponent },
     { path: 'admin/dashboard', component: DashboardComponent },
-    { path: '', redirectTo: '/login', pathMatch: 'full' }
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+
+    // Medicine
+    { path: 'medicine/all', component: MedicineAllComponent},
+    { path: 'medicine/update/:id', component: MedicineUpdateComponent}
 
 ];
 

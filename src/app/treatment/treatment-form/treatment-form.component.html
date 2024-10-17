@@ -49,6 +49,16 @@
           </div>
         </div>
 
+        <!-- Selección de Veterinario -->
+        <div class="form-group">
+          <label for="vet">Veterinario:</label>
+          <select id="vet" class="form-control" required [(ngModel)]="formTreatment.vet" name="vet" #vet="ngModel">
+            <option *ngFor="let vet of vetsList" [ngValue]="vet">{{ vet.name }}</option>
+          </select>
+          <div *ngIf="vet.invalid && vet.touched" class="text-danger">
+            Seleccionar un veterinario es requerido.
+          </div>
+        </div>  
 
         <div class="form-group" id="button">
           <button type="submit" class="btn btn-primary">Agregar Tratamiento</button>
