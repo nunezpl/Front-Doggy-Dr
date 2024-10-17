@@ -24,6 +24,7 @@ export class VetUpdateComponent {
     specialty: '',
     urlImage: '',
     userName: '',
+    password: '',
     document: 0,
     phone: 0,
     mail: '',

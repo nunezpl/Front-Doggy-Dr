@@ -5,12 +5,12 @@ import { LoginService } from '../service/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Importar MatSnackBar
 
 @Component({
-  selector: 'app-login-admin',
-  templateUrl: './login-admin.component.html',
-  styleUrls: ['./login-admin.component.css']
+  selector: 'app-login-vet',
+  templateUrl: './login-vet.component.html',
+  styleUrls: ['./login-vet.component.css']
 })
-export class LoginAdminComponent {
-  constructor(private loginService: LoginService, private router: Router, private snackBar: MatSnackBar) {} // Inyectar MatSnackBar
+export class LoginVetComponent {
+  constructor(private loginService: LoginService, private router: Router, private snackBar: MatSnackBar) {}
 
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
@@ -19,11 +19,11 @@ export class LoginAdminComponent {
   
       console.log("Login: " + username + " - " + password);
   
-      this.loginService.Adminlogin(username, password).subscribe({
+      this.loginService.Vetlogin(username, password).subscribe({
         next: (response) => {
           console.log('Inicio de sesión exitoso', response);
           // Redirigir a la página de perfil del propietario (owner) después de un inicio de sesión exitoso
-          const urlProfile = `/admin`;
+          const urlProfile = `/vet`;
           this.router.navigate([urlProfile]);  // Redirigir a la URL construida
           
           // Mostrar un toast de éxito

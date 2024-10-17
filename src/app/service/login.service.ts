@@ -19,4 +19,9 @@ export class LoginService {
     return this.http.post('http://localhost:8090/login/admin', body);
 }
 
+Vetlogin(username: String, password: String): Observable<any> {
+  const body = { username: username, password: password };
+  return this.http.post('http://localhost:8090/login/vet', body);
+}
+
 }
