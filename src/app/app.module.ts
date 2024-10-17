@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +34,7 @@ import { TreatmentAllComponent } from './treatment/treatment-all/treatment-all.c
 import { TreatmentFormComponent } from './treatment/treatment-form/treatment-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginVetComponent } from './login-vet/login-vet.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [

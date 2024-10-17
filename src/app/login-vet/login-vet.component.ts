@@ -10,7 +10,14 @@ import { MatSnackBar } from '@angular/material/snack-bar'; // Importar MatSnackB
   styleUrls: ['./login-vet.component.css']
 })
 export class LoginVetComponent {
-  constructor(private loginService: LoginService, private router: Router, private snackBar: MatSnackBar) {}
+  // Define vetId que se obtiene de alguna parte (puedes reemplazarlo como sea necesario)
+  vetId: string = '';
+
+  constructor(
+    private loginService: LoginService, 
+    private router: Router, 
+    private snackBar: MatSnackBar
+  ) {}
 
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
@@ -22,16 +29,20 @@ export class LoginVetComponent {
       this.loginService.Vetlogin(username, password).subscribe({
         next: (response) => {
           console.log('Inicio de sesión exitoso', response);
-          // Redirigir a la página de perfil del propietario (owner) después de un inicio de sesión exitoso
-          const urlProfile = `/vet`;
+          
+          // Obtener vetId de la respuesta si existe (ajusta según tu backend)
+          this.vetId = response.id || ''; // O ajusta según tu estructura de respuesta
+          
+          // Redirigir a la página de perfil del veterinario después de un inicio de sesión exitoso
+          const urlProfile = `/vet/${this.vetId}`;
           this.router.navigate([urlProfile]);  // Redirigir a la URL construida
           
-          // Mostrar un toast de éxito
+          // Mostrar un snack-bar de éxito
           this.openSnackBar('Inicio de sesión exitoso!', 'Cerrar');
         },
         error: (error) => {
           console.error('Error al iniciar sesión', error);
-          // Mostrar un toast de error si las credenciales son incorrectas
+          // Mostrar un snack-bar de error si las credenciales son incorrectas
           this.openSnackBar('Credenciales incorrectas. Intenta nuevamente.', 'Cerrar');
         }
       });
