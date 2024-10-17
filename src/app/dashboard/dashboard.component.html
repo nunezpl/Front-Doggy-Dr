@@ -48,31 +48,29 @@
           </thead>
           <tbody>
             <tr *ngFor="let treatment of top3Treatments">
-              <td>{{ treatment.name }}</td>
-              <td>{{ treatment.unitsSold }}</td>
+              <td>{{ treatment.treatmentId }}</td> <!-- ID del tratamiento -->
+              <td>{{ treatment.numUses }}</td>     <!-- Unidades vendidas -->
             </tr>
           </tbody>
         </table>
       </div>
-  
+           
       <div class="kpi">
-        <h3>Tratamientos por Tipo de Medicamento</h3>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Medicamento</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of treatmentsByMedicine">
-                <td>{{ item.medicineName }}</td>
-                <td>{{ item.count }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h3>Tratamientos por tipo de medicamento</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Tratamiento</th>
+              <th>Unidades Vendidas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let treatment of treatmentsByMedicine">
+              <td>{{ treatment.treatmentId }}</td> <!-- ID del tratamiento -->
+              <td>{{ treatment.numUses }}</td>     <!-- Unidades vendidas -->
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
