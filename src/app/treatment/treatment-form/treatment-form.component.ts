@@ -7,6 +7,7 @@ import { PetService } from 'src/app/service/pet.service';
 import { MedicineService } from 'src/app/service/medicine.service';
 import { Vet } from 'src/app/vet/vet';
 import { VetService } from 'src/app/service/vet.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-treatment-form',
@@ -34,7 +35,10 @@ export class TreatmentFormComponent {
     private treatmentService: TreatmentService,
     private petService: PetService,
     private vetService: VetService,
-    private medicineService: MedicineService
+    private medicineService: MedicineService,
+    private router: Router
+    //private route: ActivatedRoute,  // ActivatedRoute para acceder a la ruta actual
+    //private location: Location      // Location para obtener la URL anterior
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +61,9 @@ export class TreatmentFormComponent {
     // Lógica para guardar el tratamiento
     this.treatmentService.addTreatment(this.formTreatment).subscribe(response => {
       console.log('Tratamiento agregado:', response);
+      // Redirigir a la URL anterior
+      // const previousUrl = this.location.back(); // Esto navega a la página anterior en el historial
+      this.router.navigate(['/treatment/all']);
     });
   }
 

@@ -38,4 +38,20 @@ export class MedicineService {
     return this.http.get<Treatment[]>('http://localhost:8090/medicine/' + id/ + '/treatments');
   }
 
+  /*updateMedicine(medicine: Medicine): Observable<Medicine> {
+    /*const index = this.petList.findIndex(o => o.id === pet.id);
+    this.petList[index] = pet;
+    if (!pet || !pet.id) { // Verificar que pet y su ID estén definidos
+      console.error("No se puede actualizar la mascota porque no se ha proporcionado un ID válido.");
+      throw new Error("El objeto `pet` o su ID no está definido.");
+    }
+    console.log(" UpdatePet: ", pet);
+
+    return this.http.put<Pet>('http://localhost:8090/pet/update/' + pet.id, pet).pipe(
+      switchMap((updatedPet) => {
+        // Una vez que la mascota ha sido actualizada, asóciala con el dueño
+        return this.http.put<Pet>(`http://localhost:8090/pet/${updatedPet.id}/associate/${pet.owner.id}`, {});
+      })
+    );
+  }*/
 }
