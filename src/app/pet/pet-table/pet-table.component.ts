@@ -19,7 +19,8 @@ export class PetTableComponent {
     peso: 0,
     urlImage: '',
     owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
-    treatments: []
+    treatments: [],
+    status: true
   };
     //Bd falsa
   petList!: Pet[];
@@ -114,7 +115,8 @@ export class PetTableComponent {
       peso: 0,
       urlImage: '',
       owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
-      treatments: []
+      treatments: [],
+      status: true
     };
   }
 }

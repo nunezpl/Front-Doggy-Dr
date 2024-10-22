@@ -18,6 +18,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Estado</th>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Raza</th>
@@ -30,6 +31,7 @@
             <tbody>
                 <!-- Filtra la lista de mascotas según el término de búsqueda -->
                 <tr *ngFor="let pet of filteredPets()">
+                    <td>{{pet.status}}</td>
                     <td>{{pet.id}}</td>
                     <td>{{pet.nombre}}</td>
                     <td>{{pet.raza}}</td>

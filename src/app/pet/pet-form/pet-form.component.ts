@@ -36,7 +36,8 @@ export class PetFormComponent {
     peso: 0,
     urlImage: "",
     owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
-    treatments: []
+    treatments: [],
+    status: true
   };
 
   owners: Owner[] = [];  // Lista para almacenar los dueños
@@ -69,7 +70,8 @@ export class PetFormComponent {
       peso: 0,
       urlImage: "",
       owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
-      treatments: []
+      treatments: [],
+      status: true
     };
   }
 

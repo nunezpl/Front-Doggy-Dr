@@ -60,6 +60,18 @@
               La URL de la imagen es requerida.
             </div>
           </div>
+
+          
+          <div class="form-group">
+            <label for="status">Estado:</label>
+            <select id="status" class="form-control" required [(ngModel)]="formPet.status" name="status" #status="ngModel">
+              <option [ngValue]="true">Activo</option>
+              <option [ngValue]="false">Inactivo</option>
+            </select>
+            <div *ngIf="status.invalid && status.touched" class="text-danger">
+              El estado es requerido.
+            </div>
+          </div>
   
           <div class="form-group">
             <label for="owner">Dueño:</label>

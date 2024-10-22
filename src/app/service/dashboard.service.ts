@@ -29,7 +29,7 @@ import { Observable, map } from 'rxjs';
     }      
   
     getActivePets(): Observable<number> {
-      return this.http.get<number>('/api/admin/pets/active');
+      return this.http.get<number>('http://localhost:8090/pet/active');
     }
   
     getTotalSales(): Observable<number> {

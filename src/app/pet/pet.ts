@@ -11,5 +11,6 @@ export interface Pet{
     urlImage: string ;
     owner: Owner;
     treatments: Treatment[];
+    status: Boolean;
     //appointments: Appointment[];
 }
