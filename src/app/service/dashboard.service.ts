@@ -33,11 +33,11 @@ import { Observable, map } from 'rxjs';
     }
   
     getTotalSales(): Observable<number> {
-      return this.http.get<number>('/api/admin/sales/total');
+      return this.http.get<number>('http://localhost:8090/treatment/totalSales');
     }
   
     getTotalEarnings(): Observable<number> {
-      return this.http.get<number>('/api/admin/earnings/total');
+      return this.http.get<number>('http://localhost:8090/treatment/totalGains');
     }
   
     getTop3Treatments(): Observable<any[]> {
