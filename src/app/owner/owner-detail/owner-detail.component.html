@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody> 
-                <tr *ngFor="let pet of owner.pets">
+                <tr *ngFor="let pet of owner.pets" class="clientPetName">
                     <td>
                         <a [routerLink]="['/pet/find', pet.id]">{{ pet.nombre }}</a>
                     </td>

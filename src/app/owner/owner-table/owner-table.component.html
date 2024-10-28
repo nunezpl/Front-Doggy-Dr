@@ -4,7 +4,7 @@
             <h1>Clientes</h1>
     
             <div class="button-container">
-                <a [routerLink]="['/owner/adds']" class="btn btn-info">Agregar</a>
+                <a [routerLink]="['/owner/adds']" class="btn btn-info" id ="btnAgregar">Agregar</a>
             </div>    
         </div>
     </div>   
@@ -17,7 +17,7 @@
     <div>
         <table>
             <thead>
-                <tr>
+                <tr class="liOwnerName">
                     <th>Nombre</th>
                     <th>Usuario</th>
                     <th>Documento</th>
@@ -29,7 +29,7 @@
             </thead>
             <tbody> 
                 <!-- Filtra la lista de clientes según el término de búsqueda -->
-                <tr *ngFor="let owner of filteredOwners()">
+                <tr *ngFor="let owner of filteredOwners()" class="liOwnerName">
                     <td>
                         <a [routerLink]="['/owner/',owner.id,'/pets']"> {{owner.name}} </a>
                     </td>

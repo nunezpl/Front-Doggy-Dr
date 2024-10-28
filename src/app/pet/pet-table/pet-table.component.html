@@ -5,7 +5,7 @@
                 <h1>Mascotas</h1>
 
                 <div class="button-container">
-                    <a [routerLink]="['/pet/adds']" class="btn btn-info">Agregar</a>
+                    <a [routerLink]="['/pet/adds']" class="btn btn-info" id="btnAgregarMascota">Agregar</a>
                 </div>    
             </div>
         </div>   
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <!-- Filtra la lista de mascotas según el término de búsqueda -->
-                <tr *ngFor="let pet of filteredPets()">
+                <tr *ngFor="let pet of filteredPets()" class="liPetName">
                     <td>{{pet.status}}</td>
                     <td>{{pet.id}}</td>
                     <td>{{pet.nombre}}</td>
