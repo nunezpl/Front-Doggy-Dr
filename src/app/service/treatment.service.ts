@@ -53,14 +53,12 @@ export class TreatmentService {
         }
   
         // Asociar las mascotas
-        if (treatment.pets && treatment.pets.length > 0) {
-          treatment.pets.forEach((pet) => {
-            const petAssociation$ = this.http.put<Treatment>(
-              `http://localhost:8090/treatment/${createdTreatment.id}/associate/pet/${pet.id}`,
-              {}
-            );
-            observables.push(petAssociation$);
-          });
+        if (treatment.pet && treatment.pet.id ) {
+          const petAssociation$ = this.http.put<Treatment>(
+            `http://localhost:8090/treatment/${createdTreatment.id}/associate/pet/${treatment.pet.id}`,
+            {}
+          );
+          observables.push(petAssociation$);
         }
   
         // Asociar los medicamentos

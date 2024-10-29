@@ -8,7 +8,7 @@ export interface Treatment {
     medicines: Medicine[];
     description: string;
     vet: Vet;
-    pets: Pet[];
+    pet: Pet;
     startDate: Date;
     endDate: Date;
 }
