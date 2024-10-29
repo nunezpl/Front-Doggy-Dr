@@ -1,0 +1,45 @@
+/* Estilos para el body y html */
+body, html {
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  background-color: white; /* Fondo blanco */
+}
+
+* {
+  font-family: 'Lexend', sans-serif;
+}
+
+
+.main{
+  margin-top: 140px;
+  margin-bottom: 60px;
+  display: block;
+}
+
+ /* Estilos para el botón */
+ .button {
+  background-color: #7044bf; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Padding interno */
+  cursor: pointer; /* Cursor de mano */
+  transition: 0.3s; /* Transición suave para transformaciones */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilo hover para el botón */
+.button:hover {
+  color: white; /* Color del texto en hover */
+  transform: translateY(-5px); /* Desplaza hacia arriba en hover */
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

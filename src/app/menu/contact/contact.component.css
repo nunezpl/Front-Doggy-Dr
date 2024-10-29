@@ -1,0 +1,129 @@
+main {
+    padding: 0px 40px;
+}
+
+p{
+    text-align: justify;
+    font-size: 22px;
+    font-weight: 250;
+}
+
+
+.contact{
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    color: #7044bf;
+    text-shadow: 0px 0px 20px rgba(41, 60, 226, 0.3);
+    padding: 30px;
+}
+
+h2{
+    text-align:left;
+    color: #62B2D7;
+}
+
+
+#containerContact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+#containerContact h2{
+    font-family: cursive;
+    font-style: italic;
+    color: #e1acf5;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 5;
+}
+
+#containerContact img {
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+}
+
+
+#containerInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 25px 300px; /* Margen superior e inferior de 25px, y margen izquierdo y derecho de 300px */
+    padding: 20px;
+}
+
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Asegura que el formulario no exceda el ancho del contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre columnas */
+}
+
+.form-group {
+    flex: 1;
+    min-width: calc(50% - 20px); /* Ajuste para el espacio entre columnas */
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    color: #7044bf;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #7044bf;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="submit"] {
+    background-color: #7044bf;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #7044bf;
+}
+
+#button {
+    display: flex;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+#button:hover {
+    color: white;
+    transform: translateY(-5px);
+}

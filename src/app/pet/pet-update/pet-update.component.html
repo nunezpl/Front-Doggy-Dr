@@ -1,0 +1,100 @@
+<main class="main">
+    <section id="booking-section">
+      <div class="form-container container">   
+        <h2>Actualizar Mascota</h2>     
+        <!-- Formulario Angular #petForm="ngForm"-->
+        <form >
+
+          <h3>Información de la Mascota</h3>
+  
+          <div class="form-group">
+            <label for="ide">Id:</label>
+            <input type="number" id="ide" class="form-control" required [(ngModel)]="formPet.id" name="ide" #id="ngModel" readonly>
+            
+          </div>
+
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" required [(ngModel)]="formPet.nombre" name="nombre" #nombre="ngModel">
+            <div *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+              El nombre es requerido.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="raza">Raza:</label>
+            <input type="text" id="raza" class="form-control" required [(ngModel)]="formPet.raza" name="raza" #raza="ngModel">
+            <div *ngIf="raza.invalid && raza.touched" class="text-danger">
+              La raza es requerida.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" class="form-control" required [(ngModel)]="formPet.edad" name="edad" #edad="ngModel">
+            <div *ngIf="edad.invalid && edad.touched" class="text-danger">
+              La edad es requerida.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="enfermedad">Enfermedad:</label>
+            <input type="text" id="enfermedad" class="form-control" required [(ngModel)]="formPet.enfermedad" name="enfermedad" #enfermedad="ngModel">
+            <div *ngIf="enfermedad.invalid && enfermedad.touched" class="text-danger">
+              La enfermedad es requerida.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="treatment">Tratamientos:</label>
+            <select id="treatment" class="form-control" [(ngModel)]="formPet.treatments" name="treatments" multiple>
+              <option *ngFor="let treatment of treatments" [ngValue]="treatment">{{ treatment.name }}</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="peso">Peso:</label>
+            <input type="number" id="peso" class="form-control" required [(ngModel)]="formPet.peso" name="peso" #peso="ngModel">
+            <div *ngIf="peso.invalid && peso.touched" class="text-danger">
+              El peso es requerido.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="urlImage">Foto URL de la Mascota:</label>
+            <input type="text" id="urlImage" class="form-control" required [(ngModel)]="formPet.urlImage" name="urlImage" #urlImage="ngModel">
+            <div *ngIf="urlImage.invalid && urlImage.touched" class="text-danger">
+              La URL de la imagen es requerida.
+            </div>
+          </div>
+
+          
+          <div class="form-group">
+            <label for="status">Estado:</label>
+            <select id="status" class="form-control" required [(ngModel)]="formPet.status" name="status" #status="ngModel">
+              <option [ngValue]="true">Activo</option>
+              <option [ngValue]="false">Inactivo</option>
+            </select>
+            <div *ngIf="status.invalid && status.touched" class="text-danger">
+              El estado es requerido.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="owner">Dueño:</label>
+            <select id="owner" class="form-control" required [(ngModel)]="formPet.owner" name="owner" #owner="ngModel">
+              <option *ngFor="let owner of owners" [ngValue]="owner">{{ owner.name }}</option>
+            </select>
+            <div *ngIf="owner.invalid && owner.touched" class="text-danger">
+              Seleccionar un dueño es requerido.
+            </div>
+          </div>
+  
+          <div class="form-group" id="button">
+            <button type="button" (click)="updatePet()" class="btn btn-primary">Actualizar mascota</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  
