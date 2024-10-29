@@ -53,6 +53,7 @@ export class TreatmentService {
         }
   
         // Asociar las mascotas
+<<<<<<< HEAD
         if (treatment.pets && treatment.pets.length > 0) {
           treatment.pets.forEach((pet) => {
             const petAssociation$ = this.http.put<Treatment>(
@@ -61,6 +62,14 @@ export class TreatmentService {
             );
             observables.push(petAssociation$);
           });
+=======
+        if (treatment.pet && treatment.pet.id ) {
+          const petAssociation$ = this.http.put<Treatment>(
+            `http://localhost:8090/treatment/${createdTreatment.id}/associate/pet/${treatment.pet.id}`,
+            {}
+          );
+          observables.push(petAssociation$);
+>>>>>>> b6d8eb92179e9b2493b5c0ec3b584d3671de3d8e
         }
   
         // Asociar los medicamentos

@@ -22,7 +22,13 @@ export class TreatmentFormComponent {
     description: '',
     medicines: [],
     vet: { id: 0, name: '', specialty: '', urlImage: '', userName: '', password: '', document: 0, phone: 0, mail: '',  status: true, treatments: [] },
+<<<<<<< HEAD
     pets: [],
+=======
+    pet: { id: 2000, nombre: "", raza: "", edad: 0, enfermedad: "", peso: 0, urlImage: "",
+            owner: { id: 1, name:"", document: 0, mail:"", username: "", phone: 0 },
+            treatments: [], status: true },
+>>>>>>> b6d8eb92179e9b2493b5c0ec3b584d3671de3d8e
     startDate: new Date(),
     endDate: new Date()
   };

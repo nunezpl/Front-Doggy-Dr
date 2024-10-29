@@ -70,6 +70,7 @@
     background-color: #5c3f9d; /* Un tono más oscuro para el hover */
 }
 
+<<<<<<< HEAD
 .form-group select[multiple] {
     height: auto;
     max-height: 150px; /* Controla la altura máxima */
@@ -77,6 +78,8 @@
 }
 
 
+=======
+>>>>>>> b6d8eb92179e9b2493b5c0ec3b584d3671de3d8e
 /* Estilos para el contenedor del botón */
 #button {
     display: flex;

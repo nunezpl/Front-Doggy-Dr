@@ -5,9 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, Observable } from 'rxjs';
 import { Owner } from 'src/app/owner/owner';
 import { OwnerService } from 'src/app/service/owner.service';
+
 import { Treatment } from 'src/app/treatment/treatment';  // Importar la interfaz Treatment
 import { TreatmentService } from 'src/app/service/treatment.service'; // Importar el servicio de tratamientos
-
 
 @Component({
   selector: 'app-pet-update',
@@ -21,6 +21,7 @@ export class PetUpdateComponent {
   @Output() addPetEvent = new EventEmitter<Pet>();
   
   sendPet!: Pet;
+
   selectedTreatment?: Treatment;
 
   formPet: Pet = {
@@ -50,7 +51,7 @@ export class PetUpdateComponent {
   ngOnInit(): void {
     this.loadOwners();  // Cargar los dueños al iniciar
     this.loadTreatments();
-    
+
     // Obtener el parámetro 'id' de la URL
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
@@ -85,6 +86,7 @@ export class PetUpdateComponent {
   loadTreatments(): void {
     this.treatmentService.getTreatments().subscribe(treatments => this.treatments = treatments);  // Cargar tratamientos
   }
+
 /*
   resetForm() {
     this.formPet = {
@@ -121,6 +123,7 @@ export class PetUpdateComponent {
   }
 */
   // Método para actualizar la mascota
+
   // Método actualizado en PetUpdateComponent
   updatePet(): void {
     console.log('Mascota a actualizar:', this.sendPet); // Verificar el valor de sendPet
@@ -159,6 +162,5 @@ export class PetUpdateComponent {
         }
     );
   }
-
 
 }
