@@ -1,0 +1,15 @@
+<main style="background-image: url('../../assets/images/login/background.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
+    <div class="login-container">
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+        <h2>Iniciar Sesión</h2>
+        <div>
+          <label for="document">Documento:</label>
+          <input type="number" id="document" name="document" ngModel required>
+        </div>
+        <button class="button" type="submit" [disabled]="loginForm.invalid" id="clientLoginBtn">Iniciar Sesión</button>
+      </form>
+      <p>¿No tienes una cuenta? <a routerLink="/owner/adds">Regístrate aquí</a></p>
+      <p>Eres veterinario? <a routerLink="/loginVet">Ingresa al portal</a></p>
+    </div>
+  </main>
+  
