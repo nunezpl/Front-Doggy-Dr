@@ -23,10 +23,23 @@ export class TreatmentUpdateComponent {
     description: '',
     medicines: [],
     vet: { id: 0, name: '', specialty: '', urlImage: '', userName: '', password: '', document: 0, phone: 0, mail: '', status: true, treatments: [] },
-    pets: [],
+    pet: { 
+      id: 0, 
+      nombre: '', 
+      raza: '', 
+      edad: 0, 
+      enfermedad: '', 
+      peso: 0, 
+      urlImage: '', 
+      owner: { id: 0, name: '', document: 0, mail: '', username: '', phone: 0 }, // Propiedad owner inicializada
+      treatments: [], 
+      status: true 
+    }, 
     startDate: new Date(),
     endDate: new Date()
   };
+  
+  
 
   vets: Vet[] = [];
   pets: Pet[] = [];
@@ -41,17 +54,15 @@ export class TreatmentUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    
     const id = Number(this.route.snapshot.paramMap.get('id')); // Obtener el ID de la ruta
-
-    console.log(" ID: " + id);
+    console.log("ID del tratamiento: " + id);
 
     if (id) {
       this.treatmentService.findById(id).subscribe(
         (treatment: Treatment) => {
           this.formTreatment = treatment; // Asigna el tratamiento recuperado
           this.loadVets();
-          this.loadPets();
+          this.loadPet(); // Cargar la mascota específica en lugar de múltiples
           this.loadMedicines();
         },
         (error) => {
@@ -59,25 +70,23 @@ export class TreatmentUpdateComponent {
         }
       );
     }
-    
-   
   }
 
   loadVets(): void {
     this.vetService.findAll().subscribe(vets => {
-        this.vets = vets; // Asignar todos los veterinarios a la variable
+      this.vets = vets; // Asignar todos los veterinarios a la variable
 
-        // Preseleccionar el veterinario asociado al tratamiento
-        this.treatmentService.findTreatmentVet(this.formTreatment.id).subscribe(vet => {
-            this.formTreatment.vet = vet;
-        });
+      // Preseleccionar el veterinario asociado al tratamiento
+      this.treatmentService.findTreatmentVet(this.formTreatment.id).subscribe(vet => {
+        this.formTreatment.vet = vet;
+      });
     });
   }
 
-
-  loadPets(): void {
-    this.treatmentService.findTreatmentPets(this.formTreatment.id).subscribe(pets => {
-      this.pets = pets;
+  loadPet(): void {
+    // Cambiado a `findTreatmentPet` para obtener una sola mascota
+    this.treatmentService.findTreatmentPet(this.formTreatment.id).subscribe(pet => {
+      this.formTreatment.pet = pet; // Asigna la mascota única al tratamiento
     });
   }
 
@@ -97,22 +106,21 @@ export class TreatmentUpdateComponent {
   onMedicineChange(medicine: Medicine): void {
     const index = this.formTreatment.medicines.findIndex(med => med.id === medicine.id);
     if (index > -1) {
-        this.formTreatment.medicines.splice(index, 1); // Quitar el medicamento si ya está
+      this.formTreatment.medicines.splice(index, 1); // Quitar el medicamento si ya está
     } else {
-        this.formTreatment.medicines.push(medicine); // Añadir el medicamento si no está
+      this.formTreatment.medicines.push(medicine); // Añadir el medicamento si no está
     }
   }
-
 
   updateTreatment(): void {
     console.log('Tratamiento a actualizar:', this.formTreatment);
     this.treatmentService.addTreatment(this.formTreatment).subscribe(
       (response) => {
-        console.log('Tratamiento actualizado: ', response);
+        console.log('Tratamiento actualizado:', response);
         this.router.navigate(['/treatment/all']);
       },
       (error) => {
-        console.error('Error al actualizar el tratamiento: ', error);
+        console.error('Error al actualizar el tratamiento:', error);
       }
     );
   }
@@ -120,5 +128,4 @@ export class TreatmentUpdateComponent {
   isMedicineSelected(medicine: Medicine): boolean {
     return this.formTreatment.medicines.some(m => m.id === medicine.id);
   }
-
 }

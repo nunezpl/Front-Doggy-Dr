@@ -145,7 +145,7 @@ export class PetUpdateComponent {
   
             // Actualizar la relación en la tabla treatments_pet llamando a `addTreatment`
             this.formPet.treatments.forEach((treatment) => {
-                this.treatmentService.addTreatment({ ...treatment, pets: [this.formPet] }).subscribe(
+              this.treatmentService.addTreatment({ ...treatment, pet: this.formPet }).subscribe(
                     (treatmentResponse) => {
                         console.log('Tratamiento asociado a la mascota:', treatmentResponse);
                     },

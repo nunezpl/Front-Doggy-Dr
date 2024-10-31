@@ -11,12 +11,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./treatment-all.component.css']
 })
 export class TreatmentAllComponent {
-  treatments: Treatment[] = []; // Array para almacenar los tratamientos
-
+  treatments: Treatment[] = []; 
   searchQuery: string = ''; 
-
   selectedTreatment!: Treatment;
-  
 
   constructor(
     private treatmentService: TreatmentService,
@@ -27,9 +24,9 @@ export class TreatmentAllComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const vetId = Number(params.get('id'));
-      if(vetId){
+      if (vetId) {
         this.loadVetTreatments(vetId);
-      }else{
+      } else {
         this.loadTreatments();
       }
     });
@@ -39,65 +36,18 @@ export class TreatmentAllComponent {
     this.treatmentService.getTreatments().pipe(
       mergeMap((treatments) => {
         this.treatments = treatments;
-        console.log('Treatments List:', this.treatments);
-    
-        // Aquí devuelve un observable que emite un array de observables
         return forkJoin(
           treatments.map(treatment => 
             forkJoin({
-              pets: this.treatmentService.findTreatmentPets(treatment.id).pipe(
-                map(pets => {
-                  treatment.pets = pets; // Asigna las mascotas al tratamiento
-                  return pets;
+              pet: this.treatmentService.findTreatmentPet(treatment.id).pipe(
+                map(pet => {
+                  treatment.pet = pet; // Asigna la mascota única al tratamiento
+                  return pet;
                 })
               ),
               medicines: this.treatmentService.findTreatmentMedicines(treatment.id).pipe(
                 map(medicines => {
-                  treatment.medicines = medicines; // Asigna los medicamentos al tratamiento
-                  return medicines;
-                })
-              ),
-              vet: this.treatmentService.findTreatmentVet(treatment.id).pipe(
-                map(vet => {
-                  treatment.vet = vet;
-                  return vet;
-                })
-              )
-            })
-          )
-        );
-      })
-    ).subscribe(
-      (results) => {
-        // Aquí tienes los resultados de cada llamada al servicio para cada owner
-        console.log('Results for each owner:', results);
-        // Puedes almacenar estos resultados en un array o procesarlos como necesites
-      },
-      (error) => {
-        console.error('Error fetching owners or their data:', error);
-      }
-    );
-  }
-
-  
-  loadVetTreatments(vetId: number) {
-    this.vetService.findVetTreatments(vetId).pipe(
-      mergeMap((treatments) => {
-        this.treatments = treatments;
-        console.log('Treatments List for Vet:', this.treatments);
-
-        return forkJoin(
-          treatments.map(treatment => 
-            forkJoin({
-              pets: this.treatmentService.findTreatmentPets(treatment.id).pipe(
-                map(pets => {
-                  treatment.pets = pets; // Asigna las mascotas al tratamiento
-                  return pets;
-                })
-              ),
-              medicines: this.treatmentService.findTreatmentMedicines(treatment.id).pipe(
-                map(medicines => {
-                  treatment.medicines = medicines; // Asigna los medicamentos al tratamiento
+                  treatment.medicines = medicines; 
                   return medicines;
                 })
               ),
@@ -116,12 +66,50 @@ export class TreatmentAllComponent {
         console.log('Results for each treatment:', results);
       },
       (error) => {
-        console.error('Error fetching treatments:', error);
+        console.error('Error fetching treatments or related data:', error);
       }
     );
   }
 
-  // Método para filtrar veterinarios según el término de búsqueda
+  loadVetTreatments(vetId: number) {
+    this.vetService.findVetTreatments(vetId).pipe(
+      mergeMap((treatments) => {
+        this.treatments = treatments;
+        return forkJoin(
+          treatments.map(treatment => 
+            forkJoin({
+              pet: this.treatmentService.findTreatmentPet(treatment.id).pipe(
+                map(pet => {
+                  treatment.pet = pet;
+                  return pet;
+                })
+              ),
+              medicines: this.treatmentService.findTreatmentMedicines(treatment.id).pipe(
+                map(medicines => {
+                  treatment.medicines = medicines; 
+                  return medicines;
+                })
+              ),
+              vet: this.treatmentService.findTreatmentVet(treatment.id).pipe(
+                map(vet => {
+                  treatment.vet = vet;
+                  return vet;
+                })
+              )
+            })
+          )
+        );
+      })
+    ).subscribe(
+      (results) => {
+        console.log('Results for each treatment:', results);
+      },
+      (error) => {
+        console.error('Error fetching treatments for vet:', error);
+      }
+    );
+  }
+
   filteredTreatments() {
     if (!this.searchQuery) {
       return this.treatments;
@@ -130,21 +118,21 @@ export class TreatmentAllComponent {
       treatment.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
-  showVet(treatment: Treatment){
+
+  showVet(treatment: Treatment) {
     this.selectedTreatment = treatment;
   }
 
   editTreatment(treatment: Treatment) {
-    //this.petList.push(pet);
-    console.log('Edit treatments', treatment );
+    console.log('Edit treatment:', treatment);
     this.selectedTreatment = { ...treatment };
   }
 
   deleteTreatment(treatment: Treatment) {
-    console.log('Delete treatments', treatment);
-    var index = this.treatments.indexOf(treatment);
+    console.log('Delete treatment:', treatment);
+    const index = this.treatments.indexOf(treatment);
     if (index !== -1) {
-      this.treatments.splice(index, 1);  // Elimina el elemento de la lista
+      this.treatments.splice(index, 1);
       this.treatmentService.deleteById(treatment.id);
     }
   }

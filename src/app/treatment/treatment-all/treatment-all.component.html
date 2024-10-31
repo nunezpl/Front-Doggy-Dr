@@ -31,10 +31,9 @@
                     <p class="card-text"><strong>Veterinario:</strong> {{ treatment.vet.name }}</p>
 
                     <p class="card-text"><strong>Mascotas en tratamiento:</strong>
-                        <span *ngFor="let pet of treatment.pets; let j = index">
-                            {{ pet.nombre }}<span *ngIf="j < treatment.pets.length - 1">, </span>
-                        </span>
+                        <span *ngIf="treatment.pet">{{ treatment.pet.nombre }}</span>
                     </p>
+                    
                     
                     <a [routerLink]="['/treatment/update', treatment.id]" class="btn btn-info">Editar</a>
                     <button class="btn btn-danger" (click)="deleteTreatment(treatment)">Borrar</button>

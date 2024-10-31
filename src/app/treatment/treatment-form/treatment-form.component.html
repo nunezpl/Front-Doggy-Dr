@@ -23,15 +23,15 @@
 
         <!-- Selección de Mascotas -->
         <div class="form-group">
-          <label for="pets">Mascotas:</label>
-          <select id="pets" class="form-control" multiple required [(ngModel)]="formTreatment.pets" name="pets"
-            #pets="ngModel">
+          <label for="pet">Mascota:</label>
+          <select id="pet" class="form-control" required [(ngModel)]="formTreatment.pet" name="pet">
             <option *ngFor="let pet of petsList" [ngValue]="pet">{{ pet.nombre }}</option>
           </select>
-          <div *ngIf="pets.invalid && pets.touched" class="text-danger">
-            Seleccionar al menos una mascota es requerido.
+          <div *ngIf="treatmentForm.controls['pet']?.invalid && treatmentForm.controls['pet']?.touched" class="text-danger">
+            Seleccionar una mascota es requerido.
           </div>
         </div>
+        
 
         <!-- Selección de Medicamentos -->
         <div class="form-group">
@@ -58,7 +58,7 @@
           <div *ngIf="vet.invalid && vet.touched" class="text-danger">
             Seleccionar un veterinario es requerido.
           </div>
-        </div>  
+        </div>
 
         <div class="form-group" id="button">
           <button type="submit" class="btn btn-primary">Agregar Tratamiento</button>
