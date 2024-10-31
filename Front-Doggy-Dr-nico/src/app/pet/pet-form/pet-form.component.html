@@ -1,0 +1,63 @@
+<section id="booking-section">
+  <div class="form-container container">
+    <h2>Agregar Mascota</h2>
+    <!-- Formulario Angular #petForm="ngForm"-->
+    <form (ngSubmit)="onSubmit()" #petForm="ngForm">
+
+      <h3>Información de la Mascota</h3>
+
+      <!-- <div class="form-group">
+        <label for="ide">Id:</label>
+        <input type="number" id="ide" class="form-control" required [(ngModel)]="formPet.id" name="id">
+      </div>-->
+      <div class="form-group">
+        <label for="status">Estado:</label>
+        <input type="boolean" id="boolean" class="form-control" required [(ngModel)]="formPet.status" name="status">
+      </div>
+
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" class="form-control" required [(ngModel)]="formPet.nombre" name="nombre">
+      </div>
+
+      <div class="form-group">
+        <label for="raza">Raza:</label>
+        <input type="text" id="raza" class="form-control" required [(ngModel)]="formPet.raza" name="raza">
+      </div>
+
+      <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" class="form-control" required [(ngModel)]="formPet.edad" name="edad">
+      </div>
+
+      <div class="form-group">
+        <label for="enfermedad">Enfermedad:</label>
+        <input type="text" id="enfermedad" class="form-control" required [(ngModel)]="formPet.enfermedad" name="enfermedad">
+      </div>
+
+      <div class="form-group">
+        <label for="peso">Peso:</label>
+        <input type="number" id="peso" class="form-control" required [(ngModel)]="formPet.peso" name="peso">
+      </div>
+
+      <div class="form-group">
+        <label for="urlImage">Foto URL de la Mascota:</label>
+        <input type="text" id="urlImage" class="form-control" required [(ngModel)]="formPet.urlImage" name="urlImage">
+      </div>
+
+      <div class="form-group">
+        <label for="owner">Dueño:</label>
+        <select id="owner" class="form-control" required [(ngModel)]="formPet.owner" name="owner" #owner="ngModel">
+          <option *ngFor="let owner of owners" [ngValue]="owner">{{ owner.name }}</option>
+        </select>
+        <div *ngIf="owner.invalid && owner.touched" class="text-danger">
+          Seleccionar un dueño es requerido.
+        </div>
+      </div>   
+      
+      <div class="form-group" id="button">
+        <button type="submit" class="btn btn-primary" id="enviarMascotaBtn">Agregar mascota</button>
+      </div>
+    </form>
+  </div>
+</section>

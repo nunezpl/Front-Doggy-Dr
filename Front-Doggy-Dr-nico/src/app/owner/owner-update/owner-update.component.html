@@ -1,0 +1,61 @@
+<main class="main">
+    <section id="booking-section">
+      <div class="form-container container">   
+        <h2>Actualizar Cliente</h2>     
+        <!-- Formulario Angular #formOwner="ngForm"-->
+        <form>
+          <h3>Información del Propietario</h3>
+    
+          <div class="form-group">
+            <label for="id">Id:</label>
+            <input type="number" id="id" class="form-control" required [(ngModel)]="formOwner.id" name="id" #id="ngModel" readonly>
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" class="form-control" required [(ngModel)]="formOwner.name" name="name" #name="ngModel">
+            <div *ngIf="name.invalid && name.touched" class="text-danger">
+              El nombre es requerido.
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" class="form-control" required [(ngModel)]="formOwner.username" name="username" #username="ngModel">
+            <div *ngIf="username.invalid && username.touched" class="text-danger">
+              El usuario es requerido.
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="document">Documento:</label>
+            <input type="number" id="document" class="form-control" required [(ngModel)]="formOwner.document" name="document" #document="ngModel">
+            <div *ngIf="document.invalid && document.touched" class="text-danger">
+              El documento es requerido.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="phone">Teléfono:</label>
+            <input type="number" id="phone" class="form-control" required [(ngModel)]="formOwner.phone" name="phone" #phone="ngModel">
+            <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+              El teléfono es requerido.
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="mail">Correo Electrónico:</label>
+            <input type="email" id="mail" class="form-control" required [(ngModel)]="formOwner.mail" name="mail" #mail="ngModel">
+            <div *ngIf="mail.invalid && mail.touched" class="text-danger">
+              El correo electrónico es requerido.
+            </div>
+          </div>
+  
+          <div class="form-group" id="button">
+            <button type="button" (click)="updateOwner()" class="btn btn-primary">Actualizar propietario</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  

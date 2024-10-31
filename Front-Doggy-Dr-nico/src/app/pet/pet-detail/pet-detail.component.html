@@ -1,0 +1,33 @@
+<main class="main">
+
+    <div class="container">
+        <ng-container *ngIf="pet">
+            <h1><strong><span id="liNombre">{{pet.nombre}}</span></strong></h1>
+            <div class="pet-image">
+                <img [src]="pet.urlImage" alt="Imagen de la mascota">
+            </div>
+            <div class="pet-info">
+                <p><strong>Raza:</strong> {{pet.raza}}</p>
+                <p><strong>Dueño:</strong> {{pet.owner.name}}</p><!-- {{pet.owner.name}} -->
+                <p><strong>ID:</strong> {{pet.id}}</p>
+                <p><strong>Peso:</strong> {{pet.peso}} kg</p>
+                <p><strong>Edad:</strong> {{pet.edad}} años</p>
+                <p><strong>Enfermedad:</strong> {{pet.enfermedad}}</p>
+                <p><strong>Medicinas Suministradas:</strong> Desparasitante Canino</p>
+                <p><strong>Costo Total:</strong> $99,000</p>
+                <p><strong>Estado:</strong> {{pet.status}}</p>
+
+                <div *ngIf="pet.treatments?.length">
+                    <p><strong>Tratamientos:</strong></p>
+                    <ul>
+                        <li *ngFor="let treatment of pet.treatments">
+                            {{ treatment.name }} - {{ treatment.description }}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </ng-container>
+    </div>
+
+</main>

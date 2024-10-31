@@ -1,0 +1,66 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 50px 0px 0px 0px;
+}
+
+.container {
+    width: 600px; /* Aumenté el ancho para acomodar mejor la imagen y el texto */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Cambié a left para que el texto se alinee adecuadamente al lado derecho de la imagen */
+    border: solid 3px #cd93e3 ;
+}
+
+.container h1,
+#title1 {
+    text-align: center;
+    color: #7044BF;
+    margin-bottom: 20px;
+    font-size: 38px;
+}
+
+.pet-info {
+    text-align: left;
+}
+
+.pet-info p strong {
+    color: #cd93e3;
+    font-size: 25px;
+}
+
+.pet-info p  {
+    font-size: 25px;
+}
+
+
+.highlight {
+    color: #01070d;
+    font-weight: bold;
+}
+
+.pet-image {
+    float: left; /* Flota la imagen a la izquierda */
+    margin-right: 20px; /* Deja espacio entre la imagen y el texto */
+}
+
+.pet-image img {
+    max-width: 250px; /* Tamaño máximo de la imagen */
+    max-height: 150px; /* Limita la altura máxima */
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Para tablas con encabezados centrados */
+th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}

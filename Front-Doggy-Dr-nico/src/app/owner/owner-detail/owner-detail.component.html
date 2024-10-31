@@ -1,0 +1,30 @@
+<main *ngIf="owner" class="main">
+    <h1>Mascotas de <span>{{ owner.name }}</span></h1> <!-- Nombre del cliente -->
+    
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Enfermedad</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <tr *ngFor="let pet of owner.pets" class="clientPetName">
+                    <td>
+                        <a [routerLink]="['/pet/find', pet.id]">{{ pet.nombre }}</a>
+                    </td>
+                    <td>{{ pet.raza }}</td>
+                    <td>{{ pet.edad }}</td>
+                    <td>{{ pet.enfermedad }}</td>
+                    <td class="pet-image">
+                        <img [src]="pet.urlImage" alt="Imagen de la mascota">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>

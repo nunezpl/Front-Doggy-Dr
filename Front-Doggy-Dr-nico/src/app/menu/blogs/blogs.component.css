@@ -1,0 +1,67 @@
+#title,
+#titleArt{
+    text-align:left;
+    color: #7044bf;
+    padding: 0px 40px;
+}
+
+#containerBlog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 0px 40px;
+}
+#containerBlog p{
+    text-align: justify;
+    font-size: 22px;
+    font-weight: 250;
+}
+
+h3 {
+    color: #7044bf;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+  .info-section {
+    margin-top: 20px;
+    display: flex; /* Activa Flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    gap: 20px; /* Espacio entre los elementos */
+  }
+
+  #Articulo1,
+  #Articulo2,
+  #Articulo3,
+  #Articulo4{
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #f0f9ff; /* Fondo degradado */
+    padding: 20px; /* Espaciado interno */
+    flex: 1; /* Hacer que todas las cajas crezcan de manera uniforme */
+    height: 150px; /* Altura mínima para todas las cajas */
+    min-width: 125px;
+    margin: 0px 40px 0px 0px;
+  }
+  #Articulo1 p,
+  #Articulo2 p,
+  #Articulo3 p,
+  #Articulo4 p{
+    font-size: 20px;
+  }
+
+  .img-container img {
+    height: 200px; /* Tamaño uniforme de las imágenes */
+  }
+
+#PerritoArt1,
+#PerritoArt2,
+#PerritoArt3,
+#PerritoArt4{
+  margin: 0px 0px 0px 40px;
+}
+
+
+  
+
+  
