@@ -1,0 +1,140 @@
+ 
+  /* Estilos para el header */
+  .header {
+    display: flex; /* Usa flexbox para el diseño */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    background-color: white; /* Color de fondo */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto */
+    z-index: 1000; /* Coloca el encabezado en el frente */
+    top: 0; /* Alinea al borde superior */
+    left: 0; /* Alinea al borde izquierdo */
+    width: 100%; /* Ancho completo */
+    position: fixed; /* Añade posición fixed */
+    padding: 10px;
+  }
+  
+  /* Estilos para la parte izquierda del header */
+  .header-left {
+    display: flex; /* Usa flexbox para el diseño */
+    align-items: center; /* Centra verticalmente */
+    gap: 10px; /* Espacio entre el logo y el título */
+  }
+  
+  .header-left img {
+    height: 50px; /* Ajusta la altura del logo */
+    width: auto; /* Mantiene la proporción del logo */
+  }
+  
+  .header-left h1 {
+    margin: 0; /* Elimina el margen por defecto */
+    font-size: 24px; /* Tamaño de fuente */
+    color: #7044bf; /* Color del texto */
+  }
+  
+  /* Estilos para la parte central del header */
+  .header-center {
+    flex-grow: 1; /* Toma el espacio disponible en el centro */
+    display: flex; /* Usa flexbox para el diseño */
+    justify-content: center; /* Centra el menú horizontalmente */
+  }
+  
+  .index-menu {
+    display: flex; /* Usa flexbox para el diseño */
+    flex-direction: row; /* Elementos en una fila */
+    margin: 0; /* Sin margen */
+    padding: 0; /* Sin padding */
+    list-style: none; /* Sin viñetas */
+  }
+  
+  .menu-elem {
+    margin: 0 70px; /* Margen horizontal */
+    padding: 0; /* Sin padding */
+    transition: 0.5s; /* Transición suave para transformaciones */
+    font-size: 20px;
+  }
+  
+  a {
+    color: #7044bf; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+  }
+  
+  /* Estilos iniciales para los elementos del menú */
+  .menu-elem {
+    position: relative; /* Necesario para que el pseudo-elemento se posicione relativamente a .menu-elem */
+    display: inline-block; /* Opcional, según tu diseño */
+    transition: transform 0.3s; /* Transición suave para el desplazamiento */
+  }
+  
+  /* Estilos iniciales del pseudo-elemento ::after */
+  .menu-elem::after {
+    content: ''; /* Necesario para crear el pseudo-elemento */
+    position: absolute; /* Posiciona el pseudo-elemento en relación al .menu-elem */
+    left: -10px;
+    right: -10px;
+    bottom: -5px;
+    top: -5px; /* Ocupa todo el espacio del elemento */
+    background-color: rgba(45, 135, 224, 0.2); /* Color de fondo para el rectángulo con transparencia */
+    border-radius: 8px; /* Bordes redondeados opcionales */
+    z-index: -1; /* Coloca el pseudo-elemento detrás del texto */
+    transition: opacity 0.3s; /* Transición suave para la opacidad */
+    opacity: 0; /* Oculta el rectángulo inicialmente */
+  }
+  
+  /* Efecto hover para los elementos del menú */
+  .menu-elem:hover {
+    transform: translateY(-5px); /* Desplaza hacia arriba */
+  }
+  /* Efecto hover para mostrar el rectángulo detrás del texto */
+  .menu-elem:hover::after {
+    opacity: 1; /* Muestra el rectángulo al pasar el mouse */
+  }
+  
+  /* Estilos para la parte derecha del header */
+  .header-right {
+    display: flex; /* Usa flexbox para el diseño */
+    align-items: center; /* Centra verticalmente */
+    gap: 15px; /* Espacio entre el botón y el icono */
+  }
+  
+  /* Estilos para el botón */
+  .button {
+    background-color: #7044bf; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Padding interno */
+    cursor: pointer; /* Cursor de mano */
+    transition: 0.3s; /* Transición suave para transformaciones */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  /* Estilo hover para el botón */
+  .button:hover {
+    color: white; /* Color del texto en hover */
+    transform: translateY(-5px); /* Desplaza hacia arriba en hover */
+  }
+  
+  /* Estilo para el icono de perfil */
+  .header-right a {
+    display: flex; /* Usa flexbox para el diseño */
+    align-items: center; /* Centra verticalmente */
+  }
+  
+  .header-right ion-icon {
+    font-size: 35px; /* Tamaño del icono */
+    color: #7044bf; /* Color del icono */
+  }
+  
+  /* Estilo para la raya debajo del header */
+  .header::after {
+    content: "";
+    position: absolute;
+    bottom: -50px; /* Ajusta la posición para que la raya se vea debajo del header */
+    left: 0;
+    width: 100%;
+    height: 50px; /* Grosor de la raya */
+    background-color: #7044bf; /* Color de la raya */
+    z-index: -1; /* Envía la raya detrás del contenido */
+    border-radius: 0 0 50px 50px; /* Bordes redondeados en la parte inferior de la raya */
+  }
+  

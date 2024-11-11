@@ -1,0 +1,172 @@
+/* Contenedor principal */
+.main{
+    margin-top: 140px;
+    margin-bottom: 60px;
+    display: block;
+  }
+  
+
+.outer-container {
+    display: flex;
+    justify-content: center; /* Centra el contenedor horizontalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.title-button-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el botón con el título */
+    gap: 15px; /* Espacio horizontal entre el título y el botón */
+}
+
+/* Título principal */
+.main h1 {
+    color: #7044bf; 
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Contenedor de la tabla */
+.main table {
+    width: 80%; /* Ancho de la tabla ligeramente mayor */
+    margin: 0 auto; /* Centra la tabla */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden; /* Para asegurar que las esquinas estén redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de las celdas de la tabla */
+.main th, .main td {
+    padding: 12px; /* Ajuste del padding */
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 1.3em; /* Tamaño de la fuente */
+}
+
+/* Estilo de las celdas de encabezado */
+.main th {
+    background-color: #7044bf;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Estilo de las filas en hover */
+.main tr:hover {
+    background-color: #f0f8ff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Estilo para los enlaces en las celdas */
+.main td a {
+    color: #7044bf;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    font-size: 1em; /* Tamaño de la fuente */
+}
+
+.main td a:hover {
+    color: #8948eb;
+}
+
+/* Botones de acciones (Editar, Eliminar, Agregar) */
+.main .btn {
+    padding: 8px 14px; /* Aumentar ligeramente el padding */
+    border-radius: 5px;
+    font-size: 1em; /* Tamaño de la fuente */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.main .btn-info {
+    background-color: #62B2D7;
+    color: white;
+}
+
+.main .btn-info:hover {
+    background-color: #62B2D7;
+}
+
+.main .btn-edit {
+    background-color: #62B2D7;
+    color: white;
+}
+
+.main .btn-edit:hover {
+    background-color: #62B2D7;
+}
+.main .btn-danger {
+    background-color: #ef594e;
+    color: white;
+}
+
+.main .btn-danger:hover {
+    background-color: #ef594e;
+}
+
+.main .btn-primary {
+    background-color: #6544bf;
+    color: white;
+}
+
+.main .btn-primary:hover {
+    background-color: white;
+}
+
+/* Contenedor del botón de agregar mascota */
+.button-container {
+    text-align: center;
+}
+
+.button-container .btn {
+    background-color: #7044bf;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container .btn:hover {
+    background-color: #8948eb;
+}
+
+/* Estilo de la imagen de la mascota */
+.pet-image {
+    height: 100px;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    border-radius: 20%; /* Hace la imagen circular */
+    border: 1px solid #7044bf; /* Borde alrededor de la imagen */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+  
+.search-input {
+    padding: 8px 100px;
+    width: 600px;
+    border: 1px solid #189ae0;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;  
+    color: #189ae0;
+}
+
+.search-input::placeholder {
+    color: #189ae0; /* Cambia el color del texto del placeholder (morado) */
+    opacity: 1; /* Asegura que el placeholder sea completamente opaco (sin transparencia) */
+}

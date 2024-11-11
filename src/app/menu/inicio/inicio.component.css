@@ -1,0 +1,259 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+    min-height: 100vh; /* Para que cubra toda la altura del viewport */
+    /*padding: 0px 0px 100px 0px;*/
+    background-image: url(../../../assets/images/index/backGround3.jpg);
+    background-size: cover; /* Ajusta el tamaño del fondo para cubrir toda la sección */
+    background-position: center; /* Centra el fondo */
+    background-repeat: no-repeat; /* Evita que el fondo se repita */
+}
+
+.containerCompartido {
+    flex: 1;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center; /* Distribuye el espacio entre las cajas y el contenido */
+    align-items: flex-start; /* Alinea el contenido en la parte superior */
+    width: calc(100% - 80px); /* Restando un valor para evitar desbordamientos */
+    /*max-width: 100vh;*/
+    gap: 40px; /* Espacio entre las cajas y el contenido textual */
+    padding: 50px 0px 100px 0px;
+}
+
+.container3 {
+    display: flex;
+    position: relative; /* Para posicionar los pseudo-elementos respecto a este contenedor */
+}
+
+#infoIndex {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center; /* Centra el texto */
+    gap: 20px; /* Espacio entre los elementos, ajusta según necesidad */
+}
+
+
+#imgLogo {
+    display: block; /* Remueve el display: flex; ya que no es necesario */
+}
+
+#TextIndex, #buttonContainer {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center; /* Centra el texto */
+}
+
+
+h2 {
+    color: white;
+    font-size: 28px;
+    align-items: center;
+    justify-content: left;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#boxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px; /* Espacio entre las cajas */
+    width: 40%; /* Ajusta el ancho de las cajas para ocupar la mitad del contenedor */
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc; /* Borde de las cajas */
+}
+
+.imgBox img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Asegura que la imagen cubra bien el espacio */
+}
+
+.textBox {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+#textBox1 {
+    background-color: #7044bf;
+    color: #e7daf6;
+    font-size: 20px;
+}
+
+#textBox2 {
+    background-color: #92dcf9;
+    color: #7044bf;
+    font-size: 20px;
+}
+
+.info-content {
+    width: 40%; /* Ajusta el ancho del contenido textual */
+}
+
+.info-content h2 {
+    color: #7044bf;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.info-content p {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* Reduce el ancho máximo del contenedor */
+    margin: 30px auto; /* Ajusta el margen para centrar el carrusel */
+    overflow: hidden;
+    border-radius: 10px; /* Ajusta el radio del borde */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
+    display: flex;
+    width: 300%; /* Ajuste para que cada item ocupe 100% del contenedor */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    width: 33.333%;
+    display: flex;
+}
+
+.review {
+    background-color: white;
+    padding: 20px; /* Ajusta el relleno */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 0 0 10px; /* Ajusta el radio del borde */
+}
+
+.review h3 {
+    color: #7044bf;
+    margin-bottom: 10px; /* Ajusta el margen inferior */
+    font-size: 20px; /* Reduce el tamaño de fuente */
+}
+
+.review p {
+    font-size: 16px; /* Reduce el tamaño de fuente */
+    color: #555;
+    line-height: 1.5; /* Ajusta el interlineado */
+    margin-bottom: 15px; /* Ajusta el margen inferior */
+}
+
+.reviewer {
+    display: flex;
+    align-items: center;
+    margin-top: auto; /* Empuja el contenido hacia arriba */
+}
+
+.reviewer img {
+    border-radius: 50%;
+    width: 50px; /* Reduce el tamaño de la imagen */
+    height: 50px; /* Reduce el tamaño de la imagen */
+    margin-right: 10px; /* Ajusta el margen derecho */
+    border: 2px solid #7044bf;
+}
+
+.reviewer .name {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px; /* Reduce el tamaño de fuente */
+}
+
+.reviewer .rating {
+    color: #f5a623;
+    font-size: 16px; /* Reduce el tamaño de fuente */
+}
+
+.image {
+    width: 50%;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 10px 10px 0; /* Ajusta el radio del borde */
+}
+
+/* Estilos para las etiquetas de control */
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px; /* Ajusta el margen superior */
+}
+
+.control {
+    cursor: pointer;
+    width: 12px; /* Reduce el tamaño del control */
+    height: 12px; /* Reduce el tamaño del control */
+    background-color: #7044bf;
+    border-radius: 50%;
+    margin: 10px 4px; /* Ajusta el margen */
+    transition: background-color 0.3s ease;
+}
+
+.control:hover {
+    background-color: #512a93;
+}
+
+/* Ocultar los inputs */
+input[type="radio"] {
+    display: none;
+}
+
+/* Transiciones del carrusel */
+#item-1:checked ~ .carousel {
+    transform: translateX(0);
+}
+
+#item-2:checked ~ .carousel {
+    transform: translateX(-33.333%);
+}
+
+#item-3:checked ~ .carousel {
+    transform: translateX(-66.666%);
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    bottom: -50px; /* Ajusta la posición para que la raya se vea debajo del header */
+    left: 0;
+    width: 100%;
+    height: 50px; /* Grosor de la raya */
+    background-color: #7044bf; /* Color de la raya */
+    z-index: -1; /* Envía la raya detrás del contenido */
+    border-radius: 0 0 50px 50px; /* Bordes redondeados en la parte inferior de la raya */
+  }
+
+ 

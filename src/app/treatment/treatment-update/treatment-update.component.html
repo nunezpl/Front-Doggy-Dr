@@ -1,0 +1,99 @@
+<main class="main">
+    <section id="treatment-section">
+        <div class="form-container container">
+            <h2>Actualizar Tratamiento</h2>
+            <form #treatmentForm="ngForm">
+
+                <h3>Información del Tratamiento</h3>
+
+                <div class="form-group">
+                    <label for="ide">Id:</label>
+                    <input type="number" id="ide" class="form-control" required [(ngModel)]="formTreatment.id"
+                        name="ide" #id="ngModel" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre del Tratamiento:</label>
+                    <input type="text" id="nombre" class="form-control" required [(ngModel)]="formTreatment.name"
+                        name="nombre" #nombre="ngModel">
+                    <div *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+                        El nombre es requerido.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" class="form-control" required
+                        [(ngModel)]="formTreatment.description" name="descripcion" #descripcion="ngModel">
+                    <div *ngIf="descripcion.invalid && descripcion.touched" class="text-danger">
+                        La descripción es requerida.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="veterinario">Veterinario:</label>
+                    <select id="veterinario" class="form-control" required [(ngModel)]="formTreatment.vet.id"
+                        name="veterinario" #veterinario="ngModel">
+                        <option *ngFor="let vet of vets" [value]="vet.id">{{ vet.name }}</option>
+                    </select>
+                    <div *ngIf="veterinario.invalid && veterinario.touched" class="text-danger">
+                        El veterinario es requerido.
+                    </div>
+                </div>
+
+                <!-- Selección de Mascotas -->
+                <div class="form-group">
+                    <label for="pet">Mascota:</label>
+                    <select id="pet" class="form-control" required [(ngModel)]="formTreatment.pet.id" name="pet"
+                        #pet="ngModel">
+                        <option *ngFor="let pet of pets" [ngValue]="pet.id">{{ pet.nombre }}</option>
+                    </select>
+                    <div *ngIf="pet.invalid && pet.touched" class="text-danger">
+                        Seleccionar al menos una mascota es requerido.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="fechaInicio">Fecha de Inicio:</label>
+                    <input type="date" id="fechaInicio" class="form-control" required
+                        [(ngModel)]="formTreatment.startDate" name="fechaInicio" #fechaInicio="ngModel">
+                    <div *ngIf="fechaInicio.invalid && fechaInicio.touched" class="text-danger">
+                        La fecha de inicio es requerida.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechaFin">Fecha de Fin:</label>
+                    <input type="date" id="fechaFin" class="form-control" required [(ngModel)]="formTreatment.endDate"
+                        name="fechaFin" #fechaFin="ngModel">
+                    <div *ngIf="fechaFin.invalid && fechaFin.touched" class="text-danger">
+                        La fecha de fin es requerida.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Medicamentos:</label>
+                    <div class="medicines-scroll-container">
+                        <div class="medicines-container">
+                            <div class="medicine-item" *ngFor="let med of medicines">
+                                <input type="checkbox" [checked]="isMedicineSelected(med)"
+                                    (change)="onMedicineChange(med)" />
+                                {{ med.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="formTreatment.medicines.length === 0" class="text-danger">
+                        Seleccionar al menos un medicamento es requerido.
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="button">
+                    <button type="button" (click)="updateTreatment()" class="btn btn-primary">Actualizar
+                        tratamiento</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
