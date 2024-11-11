@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Vet } from '../vet';
 import { VetService } from 'src/app/service/vet.service';
 import { Router } from '@angular/router';
+import { Treatment } from 'src/app/treatment/treatment';
+import { TreatmentService } from 'src/app/service/treatment.service';
 
 @Component({
   selector: 'app-vet-form',
@@ -12,6 +14,7 @@ export class VetFormComponent {
 
   constructor(
     private vetService: VetService, 
+    private treatmentService: TreatmentService,
     private router: Router
   ) {
     
@@ -23,9 +26,10 @@ export class VetFormComponent {
   @Output() addPetEvent = new EventEmitter<Vet>();
 
   sendVet!: Vet;
+  treatmentsList: Treatment[] = []; // Lista de tratamientos disponibles
 
   formVet: Vet = {
-    id: 0,
+    id: 300,
     name: '',
     specialty: '',
     urlImage: '',
@@ -37,6 +41,10 @@ export class VetFormComponent {
     status: false,
     treatments: []
   };
+
+  ngOnInit(): void {
+    this.loadTreatments(); // Cargar tratamientos al inicializar el componente
+  }
 
   ngOnChanges() {
     if (this.selectedVet) {
@@ -69,6 +77,7 @@ export class VetFormComponent {
   }
   
   onSubmit() {
+    this.formVet.id = 300; // id de prueba
     console.log('Formulario enviado con los siguientes datos:', this.formVet);
     this.vetService.addVet(this.formVet).subscribe(response => {
       console.log('Respuesta del servidor:', response);
@@ -77,4 +86,23 @@ export class VetFormComponent {
     this.resetForm();  // Opcional: Restablece el formulario
   }
   
+  loadTreatments(): void {
+    this.treatmentService.getTreatments().subscribe(treatments => {
+      this.treatmentsList = treatments;
+    });
+  }
+
+  // Método para manejar el cambio de selección de tratamientos
+  onTreatmentSelect(event: Event): void {
+    const selectedOptions = (event.target as HTMLSelectElement).selectedOptions;
+    this.formVet.treatments = Array.from(selectedOptions).map(option => {
+      const treatmentId = Number(option.value);
+      return this.treatmentsList.find(treatment => treatment.id === treatmentId) as Treatment;
+    });
+  }
+
+  isTreatmentSelected(treatment: Treatment): boolean {
+    return this.formVet.treatments.some(t => t.id === treatment.id);
+  }
+
 }

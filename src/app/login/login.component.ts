@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginService } from '../service/login.service';
-import { MatSnackBar } from '@angular/material/snack-bar'; // Importar MatSnackBar
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent {
-  constructor(private loginService: LoginService, private router: Router, private snackBar: MatSnackBar) {} // Inyectar MatSnackBar
+  successMessage: string | null = null;  // Variable para el mensaje de éxito
+  errorMessage: string | null = null;    // Variable para el mensaje de error
+
+  constructor(private loginService: LoginService, private router: Router) {}
 
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
@@ -26,22 +27,17 @@ export class LoginComponent {
           const urlProfile = `/owner/${document}/pets`;
           this.router.navigate([urlProfile]);  // Redirigir a la URL construida
 
-          // Mostrar un toast de éxito
-          this.openSnackBar('Inicio de sesión exitoso!', 'Cerrar');
+          // Establecer el mensaje de éxito
+          this.successMessage = 'Inicio de sesión exitoso!';
+          this.errorMessage = null;  // Limpiar el mensaje de error
         },
         error: (error) => {
           console.error('Error al iniciar sesión', error);
-          // Mostrar un toast de error si las credenciales son incorrectas
-          this.openSnackBar('Credenciales incorrectas. Intenta nuevamente.', 'Cerrar');
+          // Establecer el mensaje de error
+          this.errorMessage = 'Credenciales incorrectas. Intenta nuevamente.';
+          this.successMessage = null;  // Limpiar el mensaje de éxito
         }
       });
     }
-  }
-
-  // Método para abrir el snackbar
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 3000, // Duración en milisegundos
-    });
   }
 }

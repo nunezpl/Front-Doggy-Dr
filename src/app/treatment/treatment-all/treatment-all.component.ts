@@ -45,10 +45,10 @@ export class TreatmentAllComponent {
         return forkJoin(
           treatments.map(treatment => 
             forkJoin({
-              pets: this.treatmentService.findTreatmentPets(treatment.id).pipe(
-                map(pets => {
-                  treatment.pets = pets; // Asigna las mascotas al tratamiento
-                  return pets;
+              pets: this.treatmentService.findTreatmentPet(treatment.id).pipe(
+                map(pet => {
+                  treatment.pet = pet; // Asigna la mascota al tratamiento
+                  return pet;
                 })
               ),
               medicines: this.treatmentService.findTreatmentMedicines(treatment.id).pipe(
@@ -89,10 +89,10 @@ export class TreatmentAllComponent {
         return forkJoin(
           treatments.map(treatment => 
             forkJoin({
-              pets: this.treatmentService.findTreatmentPets(treatment.id).pipe(
-                map(pets => {
-                  treatment.pets = pets; // Asigna las mascotas al tratamiento
-                  return pets;
+              pets: this.treatmentService.findTreatmentPet(treatment.id).pipe(
+                map(pet => {
+                  treatment.pet = pet; // Asigna la mascota al tratamiento
+                  return pet;
                 })
               ),
               medicines: this.treatmentService.findTreatmentMedicines(treatment.id).pipe(

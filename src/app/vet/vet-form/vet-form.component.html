@@ -7,11 +7,6 @@
         <h3>Información del Veterinario</h3>
   
         <div class="form-group">
-          <label for="id">Id:</label>
-          <input type="number" id="id" class="form-control" required [(ngModel)]="formVet.id" name="id">
-        </div>
-  
-        <div class="form-group">
           <label for="name">Nombre:</label>
           <input type="text" id="name" class="form-control" required [(ngModel)]="formVet.name" name="name">
         </div>
@@ -62,7 +57,11 @@
   
         <div class="form-group">
           <label for="treatments">Tratamientos:</label>
-          <input type="text" id="treatments" class="form-control" placeholder="Lista de tratamientos separados por coma" [(ngModel)]="formVet.treatments" name="treatments">
+          <select id="treatments" class="form-control" multiple (change)="onTreatmentSelect($event)">
+            <option *ngFor="let treatment of treatmentsList" [ngValue]="treatment" [selected]="isTreatmentSelected(treatment)">
+              {{ treatment.name }}
+            </option>
+          </select>
         </div>
   
         <div class="form-group" id="button">

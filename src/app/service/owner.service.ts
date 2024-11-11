@@ -54,4 +54,8 @@ export class OwnerService {
   findOwnerPets(id:number):Observable<Pet[]>{
     return this.http.get<Pet[]>('http://localhost:8090/owner/'+id+ '/pets');
   }
+
+  ownerHome():Observable<Owner>{
+    return this.http.get<Owner>('http://localhost:8090/owner/details');
+  }
 }

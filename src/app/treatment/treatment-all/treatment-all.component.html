@@ -19,8 +19,8 @@
         <div class="col-md-4" *ngFor="let treatment of treatments">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ treatment.name }}</h5>
-                    <p class="card-text"><strong>Descripción:</strong> {{ treatment.description }}</p>
+                    <h5 class="card-title">{{ treatment?.name }}</h5>
+                    <p class="card-text"><strong>Descripción:</strong> {{ treatment?.description }}</p>
 
                     <p class="card-text"><strong>Médicinas:</strong>
                         <span *ngFor="let medicine of treatment.medicines; let i = index">
@@ -28,12 +28,10 @@
                         </span>
                     </p>
                     
-                    <p class="card-text"><strong>Veterinario:</strong> {{ treatment.vet.name }}</p>
+                    <p class="card-text"><strong>Veterinario:</strong> {{ treatment?.vet?.name }}</p>
 
                     <p class="card-text"><strong>Mascotas en tratamiento:</strong>
-                        <span *ngFor="let pet of treatment.pets; let j = index">
-                            {{ pet.nombre }}<span *ngIf="j < treatment.pets.length - 1">, </span>
-                        </span>
+                        <span>{{ treatment?.pet?.nombre }}</span>
                     </p>
                     
                     <a [routerLink]="['/treatment/update', treatment.id]" class="btn btn-info">Editar</a>

@@ -70,13 +70,29 @@
     background-color: #5c3f9d; /* Un tono más oscuro para el hover */
 }
 
-.form-group select[multiple] {
+/*.form-group select[multiple] {
     height: auto;
-    max-height: 150px; /* Controla la altura máxima */
+    max-height: 150px; // Controla la altura máxima 
     overflow-y: auto;
+}*/
+
+.medicines-scroll-container {
+    overflow-x: auto; /* Habilitar desplazamiento horizontal */
+    white-space: nowrap; /* Evitar que los elementos se rompan en la línea */
+    max-height: 150px; /* Altura máxima para mostrar 10 registros (ajusta según el tamaño de los elementos) */
+    border: 1px solid #ccc; /* Opcional: agregar un borde para mejor visualización */
+    border-radius: 5px; /* Opcional: bordes redondeados */
 }
 
+.medicines-container {
+    display: flex; /* Usar flexbox para alinear horizontalmente */
+}
 
+.medicine-item {
+    display: inline-flex; /* Alinear checkbox y texto */
+    align-items: center; /* Centrar verticalmente */
+    padding: 0.5rem; /* Espaciado interno para cada item */
+}
 /* Estilos para el contenedor del botón */
 #button {
     display: flex;

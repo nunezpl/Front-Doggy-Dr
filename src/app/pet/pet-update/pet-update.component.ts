@@ -2,12 +2,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Pet } from '../pet';
 import { PetService } from 'src/app/service/pet.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { mergeMap, Observable } from 'rxjs';
+import { mergeMap } from 'rxjs';
 import { Owner } from 'src/app/owner/owner';
 import { OwnerService } from 'src/app/service/owner.service';
-import { Treatment } from 'src/app/treatment/treatment';  // Importar la interfaz Treatment
-import { TreatmentService } from 'src/app/service/treatment.service'; // Importar el servicio de tratamientos
-
+import { Treatment } from 'src/app/treatment/treatment';
+import { TreatmentService } from 'src/app/service/treatment.service';
+import { Medicine } from 'src/app/medicine/medicine';
+import { MedicineService } from 'src/app/service/medicine.service';
+import { VetService } from 'src/app/service/vet.service';
+import { Vet } from 'src/app/vet/vet';
 
 @Component({
   selector: 'app-pet-update',
@@ -17,7 +20,6 @@ import { TreatmentService } from 'src/app/service/treatment.service'; // Importa
 export class PetUpdateComponent {
 
   @Input() petSelected!: Pet;
-
   @Output() addPetEvent = new EventEmitter<Pet>();
   
   sendPet!: Pet;
@@ -35,20 +37,48 @@ export class PetUpdateComponent {
     status: true
   };
 
-  owners: Owner[] = [];  // Lista para almacenar los dueño
+  formTreatment: Treatment = {
+    id: 0,
+    name: '',
+    description: '',
+    medicines: [],
+    vet: { id: 0, name: '', specialty: '', urlImage: '', userName: '', password: '', document: 0, phone: 0, mail: '', status: true, treatments: [] },
+    pet: {
+      id: 0,
+      nombre: '',
+      raza: '',
+      edad: 0,
+      enfermedad: '',
+      peso: 0,
+      urlImage: '',
+      owner: { id: 0, name: '', username: '', document: 0, mail: '' },
+      treatments: [],
+      status: false
+    }, 
+    startDate: new Date(),
+    endDate: new Date()
+  };
+
+  owners: Owner[] = [];  // Lista para almacenar los dueños
   treatments: Treatment[] = [];
+  medicinesList: Medicine[] = [];
+  vetsList: Vet[] = [];
+
 
   constructor(
     private petService: PetService,
     private ownerService: OwnerService,
     private treatmentService: TreatmentService,
+    private medicineService: MedicineService,
+    private vetService: VetService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadOwners();  // Cargar los dueños al iniciar
-    this.loadTreatments();
+    this.loadMedicines();
+    this.loadVets();
     
     // Obtener el parámetro 'id' de la URL
     this.route.paramMap.subscribe(params => {
@@ -70,8 +100,7 @@ export class PetUpdateComponent {
           this.formPet.owner = foundOwner ? foundOwner : { id: 0, name: '', document: 0, mail: '', username: '', phone: 0 }; // Valor por defecto si no se encuentra
           console.log("Dueño asociado en formPet: ", this.formPet.owner);
         }
-      )
-    
+      );
     });
   }
 
@@ -81,83 +110,78 @@ export class PetUpdateComponent {
     });
   }
 
-  loadTreatments(): void {
-    this.treatmentService.getTreatments().subscribe(treatments => this.treatments = treatments);  // Cargar tratamientos
+  loadMedicines(): void {
+    this.medicineService.getMedicines().subscribe(medicines => {
+      this.medicinesList = medicines;
+    });
   }
-/*
-  resetForm() {
-    this.formPet = {
-      id: 0,
-      nombre: "",
-      raza: "",
-      edad: 0,
-      enfermedad: "",
-      peso: 0,
-      urlImage: ""
-    };
+
+  loadVets(): void {
+    this.vetService.findAll().subscribe(vets => {
+      this.vetsList = vets;
+    });
   }
-  selectedPet!: Pet;
-  ngOnChanges() {
-    if (this.selectedPet) {
-      this.formPet = { ...this.selectedPet }; // Llena el formulario con los datos de la mascota
+
+  onMedicineChange(medicine: Medicine): void {
+    const index = this.formTreatment.medicines.findIndex(med => med.id === medicine.id);
+    if (index > -1) {
+        this.formTreatment.medicines.splice(index, 1); // Quitar el medicamento si ya está
     } else {
-      this.resetForm(); // Resetea el formulario si no hay mascota seleccionada
+        this.formTreatment.medicines.push(medicine); // Añadir el medicamento si no está
     }
   }
-
-  addPetForm() {
-    console.log(this.formPet);
-    this.sendPet = Object.assign({}, this.formPet);
-    this.petService.updatePet(this.sendPet);
-    this.resetForm(); 
-    window.scrollTo(0, 0);
-  }
   
-  addPet(form: any) {
-    console.log(this.formPet);
-    this.sendPet = Object.assign({}, this.formPet);
-    this.addPetEvent.emit(this.sendPet);
+  isMedicineSelected(medicine: Medicine): boolean {
+    return this.formTreatment.medicines.some(m => m.id === medicine.id);
   }
-*/
+
   // Método para actualizar la mascota
-  // Método actualizado en PetUpdateComponent
-updatePet(): void {
-  console.log('Mascota a actualizar:', this.sendPet); // Verificar el valor de sendPet
-  if (!this.sendPet) {
-      console.error("La mascota a actualizar no está definida.");
-      return;
+  updatePet(): void {
+    console.log('Mascota a actualizar:', this.sendPet); // Verificar el valor de sendPet
+    if (!this.sendPet) {
+        console.error("La mascota a actualizar no está definida.");
+        return;
+    }
+
+    // Asignar la mascota actual al `pet` del tratamiento
+    this.formTreatment.pet = this.formPet;
+
+    // Asignar el veterinario si no se ha asignado ya
+  if (!this.formTreatment.vet || this.formTreatment.vet.id === 0) {
+    this.formTreatment.vet = {
+      ...this.formTreatment.vet,
+      // Aquí deberías asignar el `id` del veterinario en sesión
+      id: this.formTreatment.vet.id // Reemplazar con el `id` correcto si es necesario
+    };
   }
+    
+    // Imprimir el objeto antes de hacer la solicitud
+    console.log('Objeto `Pet` antes de actualizar:', this.formPet);
+    
+    // Agregar un log para verificar los tratamientos seleccionados
+    console.log('Tratamiento a agregar:', this.formTreatment);
 
-  // Imprimir el objeto antes de hacer la solicitud
-  console.log('Objeto `Pet` antes de actualizar:', this.formPet);
-  
-  // Agregar un log para verificar los tratamientos seleccionados
-  console.log('Tratamientos seleccionados:', this.formPet.treatments);
-
-  // Llamar al servicio de actualización de la mascota
-  this.petService.updatePet(this.formPet).subscribe(
+    // Llamar al servicio de actualización de la mascota
+    this.petService.updatePet(this.formPet).subscribe(
       (response) => {
-          console.log('Mascota actualizada con tratamientos:', response);
+        console.log('Mascota actualizada con tratamientos:', response);
 
-          // Actualizar la relación en la tabla treatments_pet llamando a `addTreatment`
-          this.formPet.treatments.forEach((treatment) => {
-              this.treatmentService.addTreatment({ ...treatment, pets: [this.formPet] }).subscribe(
-                  (treatmentResponse) => {
-                      console.log('Tratamiento asociado a la mascota:', treatmentResponse);
-                  },
-                  (error) => {
-                      console.error('Error al asociar el tratamiento a la mascota:', error);
-                  }
-              );
-          });
-
-          this.router.navigate(['/pet/all']);
+        // Crear el tratamiento asociado a la mascota
+        this.treatmentService.addTreatment(this.formTreatment).subscribe(
+          (treatmentResponse) => {
+            console.log('Tratamiento asociado a la mascota:', treatmentResponse);
+            this.router.navigate(['/pet/all']);
+          },
+          (error) => {
+            console.error('Error al asociar el tratamiento a la mascota:', error);
+          }
+        );
       },
       (error) => {
-          console.error('Error al actualizar la mascota:', error);
+        console.error('Error al actualizar la mascota:', error);
       }
-  );
-}
+    );
+  }
 
-
 }
+  

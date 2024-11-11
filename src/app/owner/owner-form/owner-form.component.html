@@ -1,5 +1,5 @@
 <main>
-<section id="booking-section">
+  <section id="booking-section">
     <div class="form-container container">
       <h2>Agregar Cliente</h2>
       <!-- Formulario Angular #ownerForm="ngForm"-->
@@ -34,14 +34,21 @@
     
         <div class="form-group">
           <label for="mail">Correo Electrónico:</label>
-          <input type="email" id="mail" class="form-control" required [(ngModel)]="formOwner.mail" name="mail">
+          <input type="email" id="mail" class="form-control" required 
+                 [(ngModel)]="formOwner.mail" name="mail"
+                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+          <!-- Mostrar mensaje de error si el correo no es válido -->
+          <div *ngIf="ownerForm.controls['mail']?.invalid && ownerForm.controls['mail']?.touched"
+               class="text-danger" id="emailError">
+            Ingresa un correo electrónico válido (contiene @, un punto, y sin caracteres especiales)
+          </div>
         </div>
     
         <div class="form-group" id="button">
-          <button type="submit" class="btn btn-primary" id="enviarClienteBtn">Agregar Cliente</button>
+          <!-- Botón deshabilitado hasta que el formulario sea válido -->
+          <button type="submit" class="btn btn-primary" id="enviarClienteBtn" [disabled]="!ownerForm.valid">Agregar Cliente</button>
         </div>
       </form>
     </div>
   </section>
-  
 </main>

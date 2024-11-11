@@ -52,4 +52,8 @@ export class VetService {
   findVetPets(id:number):Observable<Pet[]>{
     return this.http.get<Pet[]>('http://localhost:8090/vet/'+id+ '/pets');
   }
+
+  vetHome():Observable<Vet>{
+    return this.http.get<Vet>('http://localhost:8090/vet/details');
+  }
 }

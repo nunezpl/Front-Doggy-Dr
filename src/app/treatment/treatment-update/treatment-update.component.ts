@@ -7,6 +7,7 @@ import { Vet } from 'src/app/vet/vet';
 import { Pet } from 'src/app/pet/pet';
 import { VetService } from 'src/app/service/vet.service';
 import { MedicineService } from 'src/app/service/medicine.service';
+import { PetService } from 'src/app/service/pet.service';
 
 @Component({
   selector: 'app-treatment-update',
@@ -23,7 +24,24 @@ export class TreatmentUpdateComponent {
     description: '',
     medicines: [],
     vet: { id: 0, name: '', specialty: '', urlImage: '', userName: '', password: '', document: 0, phone: 0, mail: '', status: true, treatments: [] },
-    pets: [],
+    pet: {
+      id: 0,
+      nombre: '',
+      raza: '',
+      edad: 0,
+      enfermedad: '',
+      peso: 0,
+      urlImage: '',
+      owner: {
+        id: 0,
+        name: '',
+        username: '',
+        document: 0,
+        mail: ''
+      },
+      treatments: [],
+      status: false
+    },
     startDate: new Date(),
     endDate: new Date()
   };
@@ -35,13 +53,14 @@ export class TreatmentUpdateComponent {
   constructor(
     private treatmentService: TreatmentService,
     private medicineService: MedicineService,
+    private petService: PetService,
     private vetService: VetService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    
+
     const id = Number(this.route.snapshot.paramMap.get('id')); // Obtener el ID de la ruta
 
     console.log(" ID: " + id);
@@ -59,25 +78,28 @@ export class TreatmentUpdateComponent {
         }
       );
     }
-    
-   
   }
 
   loadVets(): void {
     this.vetService.findAll().subscribe(vets => {
-        this.vets = vets; // Asignar todos los veterinarios a la variable
+      this.vets = vets; // Asignar todos los veterinarios a la variable
 
-        // Preseleccionar el veterinario asociado al tratamiento
-        this.treatmentService.findTreatmentVet(this.formTreatment.id).subscribe(vet => {
-            this.formTreatment.vet = vet;
-        });
+      // Preseleccionar el veterinario asociado al tratamiento
+      this.treatmentService.findTreatmentVet(this.formTreatment.id).subscribe(vet => {
+        this.formTreatment.vet = vet;
+      });
     });
   }
 
 
   loadPets(): void {
-    this.treatmentService.findTreatmentPets(this.formTreatment.id).subscribe(pets => {
+    this.petService.findAll().subscribe(pets => {
       this.pets = pets;
+
+      // Preseleccionar el veterinario asociado al tratamiento
+      this.treatmentService.findTreatmentPet(this.formTreatment.id).subscribe(pet => {
+        this.formTreatment.pet = pet;
+      });
     });
   }
 
@@ -85,21 +107,21 @@ export class TreatmentUpdateComponent {
     // Primero, cargar todos los medicamentos
     this.medicineService.getMedicines().subscribe(medicines => {
       this.medicines = medicines; // Asignar todos los medicamentos a la variable
-  
+
       // Luego, cargar los medicamentos específicos del tratamiento
       this.treatmentService.findTreatmentMedicines(this.formTreatment.id).subscribe(treatmentMedicines => {
         // Asignar los medicamentos del tratamiento a formTreatment
-        this.formTreatment.medicines = treatmentMedicines; 
+        this.formTreatment.medicines = treatmentMedicines;
       });
     });
   }
-  
+
   onMedicineChange(medicine: Medicine): void {
     const index = this.formTreatment.medicines.findIndex(med => med.id === medicine.id);
     if (index > -1) {
-        this.formTreatment.medicines.splice(index, 1); // Quitar el medicamento si ya está
+      this.formTreatment.medicines.splice(index, 1); // Quitar el medicamento si ya está
     } else {
-        this.formTreatment.medicines.push(medicine); // Añadir el medicamento si no está
+      this.formTreatment.medicines.push(medicine); // Añadir el medicamento si no está
     }
   }
 

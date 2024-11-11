@@ -11,8 +11,11 @@ export class LoginService {
     private http: HttpClient
   ) {}
 
-  login(document: number): Observable<any> {
-    return this.http.post('http://localhost:8090/login/client', document);
+  login(document: number): Observable<String> {
+    const body = { username: document, password: "" };
+    return this.http.post('http://localhost:8090/login/client', body,
+      { responseType: 'text' }
+    );
   } 
   Adminlogin(username: String, password: String): Observable<any> {
     const body = { username: username, password: password };

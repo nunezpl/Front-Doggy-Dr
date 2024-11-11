@@ -24,7 +24,7 @@
         <!-- Selección de Mascotas -->
         <div class="form-group">
           <label for="pets">Mascotas:</label>
-          <select id="pets" class="form-control" multiple required [(ngModel)]="formTreatment.pets" name="pets"
+          <select id="pets" class="form-control" required [(ngModel)]="formTreatment.pet" name="pets"
             #pets="ngModel">
             <option *ngFor="let pet of petsList" [ngValue]="pet">{{ pet.nombre }}</option>
           </select>
@@ -58,7 +58,26 @@
           <div *ngIf="vet.invalid && vet.touched" class="text-danger">
             Seleccionar un veterinario es requerido.
           </div>
-        </div>  
+        </div>
+
+        <!-- Fechas del tratamiento-->
+        <div class="form-group">
+          <label for="fechaInicio">Fecha de Inicio:</label>
+          <input type="date" id="fechaInicio" class="form-control" required [(ngModel)]="formTreatment.startDate"
+            name="fechaInicio" #fechaInicio="ngModel">
+          <div *ngIf="fechaInicio.invalid && fechaInicio.touched" class="text-danger">
+            La fecha de inicio es requerida.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fechaFin">Fecha de Fin:</label>
+          <input type="date" id="fechaFin" class="form-control" required [(ngModel)]="formTreatment.endDate"
+            name="fechaFin" #fechaFin="ngModel">
+          <div *ngIf="fechaFin.invalid && fechaFin.touched" class="text-danger">
+            La fecha de fin es requerida.
+          </div>
+        </div>
 
         <div class="form-group" id="button">
           <button type="submit" class="btn btn-primary">Agregar Tratamiento</button>

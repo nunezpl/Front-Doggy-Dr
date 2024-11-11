@@ -39,7 +39,7 @@
                     <td>{{pet.enfermedad}}</td>
                     <td><img [src]="pet.urlImage" alt="{{pet.nombre}}" class="pet-image"></td>
                     <td>
-                        <a [routerLink]="['/pet/find', pet.id]" class="btn btn-info">Ver</a>
+                        <a [routerLink]="['/pet/find', pet.id]" id="seePetButton" class="btn btn-info">Ver</a>
                         <a [routerLink]="['/pet/update', pet.id]" class="btn btn-info">Editar</a>
                         <button class="btn btn-danger" (click)="deletePet(pet)">Borrar</button>
                     </td>

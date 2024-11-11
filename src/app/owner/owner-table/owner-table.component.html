@@ -39,7 +39,7 @@
                     <td>{{owner.phone}}</td>
                     <td>{{ owner.pets?.length || 0 }}</td>
                     <td>
-                        <a [routerLink]="['/owner/update', owner.id]" class="btn btn-info">Editar</a>
+                        <a [routerLink]="['/owner/update', owner.id]" id="editOwnerButton" class="btn btn-info">Editar</a>
                         <button class="btn btn-danger" (click)="deleteOwner(owner)">Borrar</button>
                     </td>                      
                 </tr>

@@ -74,7 +74,10 @@ const routes: Routes = [
 
     // Medicine
     { path: 'medicine/all', component: MedicineAllComponent},
-    { path: 'medicine/update/:id', component: MedicineUpdateComponent}
+    { path: 'medicine/update/:id', component: MedicineUpdateComponent},
+
+    //seguridad
+    { path: 'owner/home', component: OwnerDetailComponent}
 
 ];
 
