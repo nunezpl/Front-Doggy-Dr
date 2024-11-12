@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginService } from '../service/login.service';
+import { User } from '../user/user';
 
 @Component({
   selector: 'app-login',
@@ -9,33 +10,34 @@ import { LoginService } from '../service/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  successMessage: string | null = null;  // Variable para el mensaje de éxito
-  errorMessage: string | null = null;    // Variable para el mensaje de error
+  successMessage: string | null = null;  
+  errorMessage: string | null = null;
 
   constructor(private loginService: LoginService, private router: Router) {}
 
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
-      const document = loginForm.value.document;  // Obtener el documento del formulario
-  
-      console.log("Login: " + document);
-  
-      this.loginService.login(document).subscribe({
-        next: (response) => {
-          console.log('Inicio de sesión exitoso', response);
-          // Redirigir a la página de perfil del propietario (owner) después de un inicio de sesión exitoso
-          const urlProfile = `/owner/${document}/pets`;
-          this.router.navigate([urlProfile]);  // Redirigir a la URL construida
+      const user: User = {
+        username: loginForm.value.username,
+        password: loginForm.value.password,
+        document: loginForm.value.document,
+      };
 
-          // Establecer el mensaje de éxito
+      this.loginService.login(user).subscribe({
+        next: (token: string) => {
+          localStorage.setItem('token', token); // Guardar el token
+          console.log('Inicio de sesión exitoso, token guardado:', token);
+          
+          const urlProfile = `/owner/${user.document}/pets`;
+          this.router.navigate([urlProfile]);
+
           this.successMessage = 'Inicio de sesión exitoso!';
-          this.errorMessage = null;  // Limpiar el mensaje de error
+          this.errorMessage = null;  
         },
         error: (error) => {
           console.error('Error al iniciar sesión', error);
-          // Establecer el mensaje de error
           this.errorMessage = 'Credenciales incorrectas. Intenta nuevamente.';
-          this.successMessage = null;  // Limpiar el mensaje de éxito
+          this.successMessage = null; 
         }
       });
     }

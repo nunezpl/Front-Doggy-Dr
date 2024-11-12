@@ -17,7 +17,7 @@ import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetFormComponent } from './pet/pet-form/pet-form.component';
 import { FormsModule } from '@angular/forms';
 import { PetUpdateComponent } from './pet/pet-update/pet-update.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OwnerDetailComponent } from './owner/owner-detail/owner-detail.component';
 import { OwnerTableComponent } from './owner/owner-table/owner-table.component';
 import { VetTableComponent } from './vet/vet-table/vet-table.component';
@@ -38,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment-update.component';
 import { MedicineUpdateComponent } from './medicine/medicine-update/medicine-update.component';
 import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.component';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,11 @@ import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.compo
     BrowserAnimationsModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
