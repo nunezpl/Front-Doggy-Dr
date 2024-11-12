@@ -112,4 +112,29 @@
     margin-bottom: 60px;
     display: block;
   }
+
+  /* nombre-componente.component.css o .scss */
+.elemento {
+  transition: transform 0.3s ease;
+}
+
+.elemento:hover {
+  transform: scale(1.1);
+}
+
+/* src/styles.css o .scss */
+.boton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.boton:hover {
+  background-color: #45a049;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
   
