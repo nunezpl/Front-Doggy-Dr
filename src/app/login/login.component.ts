@@ -18,14 +18,15 @@ export class LoginComponent {
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
       const user: User = {
-        username: loginForm.value.username,
-        password: loginForm.value.password,
+        username: loginForm.value.document,
+        password: loginForm.value.document,
         document: loginForm.value.document,
       };
 
       this.loginService.login(user).subscribe({
         next: (token: string) => {
           localStorage.setItem('token', token); // Guardar el token
+          
           console.log('Inicio de sesión exitoso, token guardado:', token);
           
           const urlProfile = `/owner/${user.document}/pets`;
