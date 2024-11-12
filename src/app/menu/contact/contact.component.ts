@@ -18,6 +18,12 @@ export class ContactComponent {
 
   constructor(private emailService: EmailService) {}
 
+  ngOnInit(): void {
+    // Establece la fecha actual al iniciar el componente
+    const today = new Date();
+    this.formData.date = today.toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
+  }
+  
   onSubmit() {
     if (this.formData.nombre && this.formData.correo && this.formData.celular && this.formData.mensaje && this.formData.date) {
       this.emailService.sendEmail(
