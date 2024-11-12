@@ -1,4 +1,5 @@
-<main style="background-image: url('../../assets/images/login/background.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
+<main
+  style="background-image: url('../../assets/images/login/background.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
   <div class="login-container">
     <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
       <h2>Iniciar Sesión</h2>
@@ -29,7 +30,8 @@
       {{ errorMessage }}
     </div>
 
-    <p>¿No tienes una cuenta? <a routerLink="/owner/adds">Regístrate aquí</a></p>
-    <p>Eres veterinario? <a routerLink="/loginVet">Ingresa al portal</a></p>
+    <p></p>
+    <p>¿No tienes una cuenta? <a routerLink="/contact">Contactanos</a></p>
+    <p>¿Eres cliente? <a routerLink="/login">Ingresa al portal</a></p>
   </div>
 </main>
