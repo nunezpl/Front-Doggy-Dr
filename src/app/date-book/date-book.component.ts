@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { EmailService } from '../../service/email.service';
+import { EmailService } from '../service/email.service';
+
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  selector: 'app-date-book',
+  templateUrl: './date-book.component.html',
+  styleUrls: ['./date-book.component.css']
 })
-export class ContactComponent {
+export class DateBookComponent {
   formData = {
     nombre: '',
     correo: '',
