@@ -21,3 +21,27 @@ p{
     align-items: center;
     gap: 25px; /* Ajusta el espacio entre las fotos */
 }
+
+/* Contenedor para centrar el botón */
+#containerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    margin-top: 40px; /* Espacio opcional arriba del botón */
+    margin-bottom: 40px;
+}
+
+.maps-button {
+    padding: 10px 40px;
+    background-color: #7044bf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    /* No necesitas display: flex; aquí ya que el botón se centrará dentro de #containerButton */
+}
+.maps-button:hover {
+    background-color: #805cc4;
+}

@@ -40,6 +40,7 @@ import { MedicineUpdateComponent } from './medicine/medicine-update/medicine-upd
 import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { DateBookComponent } from './date-book/date-book.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
     TreatmentUpdateComponent,
     MedicineUpdateComponent,
     MedicineAllComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    DateBookComponent
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@ export class OwnerFormComponent {
   sendOwner!: Owner;
 
   formOwner: Owner = {
-    id: 0,
+    id: 2000,
     name: '' ,
     username: '' ,
     document: 0 ,
@@ -43,7 +43,7 @@ export class OwnerFormComponent {
   }
   resetForm() {
     this.formOwner = {
-      id: 0,
+      id: 2000,
       name: '' ,
       username: '' ,
       document: 0 ,
