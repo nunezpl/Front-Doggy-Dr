@@ -1,0 +1,40 @@
+<main class="main"> 
+    <h1 class="contact">Contáctanos</h1>
+    <section id="containerInfo">
+        <h2 class="formsub">Formulario de Contacto</h2>
+        <p>¿Tienes alguna pregunta o necesitas más información?
+        Llena el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+
+        <div class="form-container">
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" [(ngModel)]="formData.nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo:</label>
+                        <input type="email" id="correo" name="correo" [(ngModel)]="formData.correo" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="celular">Celular:</label>
+                        <input type="number" id="celular" name="celular" [(ngModel)]="formData.celular" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <input type="text" id="mensaje" name="mensaje" [(ngModel)]="formData.mensaje" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha:</label>
+                        <input type="date" id="date" name="date" [(ngModel)]="formData.date" required>
+                    </div>
+                </div>
+                <div class="form-group" id="button">
+                    <input type="submit" value="Registrar">
+                </div>
+            </form>
+        </div>        
+    </section>
+    </main>

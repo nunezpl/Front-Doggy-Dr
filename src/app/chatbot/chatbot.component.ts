@@ -35,6 +35,7 @@ export class ChatbotComponent {
     adminPets: 'Puedes administrar las mascotas en nuestra página de mascotas.',
     adminOwners: 'Puedes administrar los propietarios en nuestra página de propietarios.',
     adminTreatments: 'Puedes administrar los tratamientos en nuestra página de tratamientos.',
+    date: 'Para agendar una cita, por favor selecciona una fecha y escriba sus datos.',
     redirecting: 'Redirigiendo...',
   };
 
@@ -116,7 +117,11 @@ export class ChatbotComponent {
         responseText = this.botResponses.loginClient;
         redirectUrl = '/login';
         break;
-      case '6':
+        case '6':
+          responseText = this.botResponses.date;
+          redirectUrl = '/date';
+          break;
+      case '7':
         this.changeRole();
         return;   
       default:

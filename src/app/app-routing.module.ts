@@ -29,6 +29,7 @@ import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment
 import { MedicineUpdateComponent } from './medicine/medicine-update/medicine-update.component';
 import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { DateBookComponent } from './date-book/date-book.component';
 
 const routes: Routes = [
 
@@ -39,6 +40,7 @@ const routes: Routes = [
     { path: 'blogs', component: BlogsComponent},
     { path: 'sedes', component: SedesComponent},
     { path: 'contact', component: ContactComponent},
+    { path: 'date', component: DateBookComponent},
 
     // Pet routes
     { path: 'pet/find/:id', component: PetDetailComponent },
