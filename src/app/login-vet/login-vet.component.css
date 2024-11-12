@@ -1,83 +1,124 @@
-
 * {
     font-family: 'Lexend', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    /* Ocupa toda la altura de la ventana */
+    min-height: 100vh;
+    background-image: url('../../assets/images/login/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.login-container,
-.register-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    /* Fondo blanco con 50% de transparencia */
-    border-radius: 10px;
-    /* Bordes redondeados */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Sombra para dar profundidad */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con más opacidad para mejor contraste */
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
 }
 
-.login-form,
-.register-form {
+h2 {
+    color: #7044bf;
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+form {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-.login-form h2,
-.register-form h2 {
-    margin-top: 0;
-    color: #7044bf;
-}
-
-.login-form label,
-.register-form label {
-    margin-bottom: 5px;
-    color: #7044bf;
+label {
     font-weight: bold;
+    color: #7044bf;
+    font-size: 16px;
 }
 
-.login-form input,
-.register-form input {
-    padding: 10px;
+input[type="number"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
-.login-form button,
-.register-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+button[type="submit"] {
     background-color: #7044bf;
     color: white;
-    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-.login-form button:hover,
-.register-form button:hover {
-    background-color: #7044bf;
+button[type="submit"]:hover {
+    background-color: #5a36a8;
+    transform: translateY(-5px);
 }
 
-/* Estilos para el botón */
+.alert {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #7044bf;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .button {
-    background-color: #7044bf; /* Color de fondo */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Padding interno */
-    cursor: pointer; /* Cursor de mano */
-    transition: 0.3s; /* Transición suave para transformaciones */
-    border-radius: 10px; /* Bordes redondeados */
-  }
-  
-  /* Estilo hover para el botón */
-  .button:hover {
-    color: white; /* Color del texto en hover */
-    transform: translateY(-5px); /* Desplaza hacia arriba en hover */
-  }
+    background-color: #7044bf;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.button:hover {
+    color: white;
+    transform: translateY(-5px);
+}
