@@ -28,7 +28,7 @@
         </ul>
     </div>
     <div class="header-right">
-        <button class="button" (click)="toggleChatbot()">Chatea con nosotros</button>
+        <button class="button" (click)="toggleChatbot()">¿Necesitas ayuda? usa <strong>VetBot</strong></button>
 
         <!-- Aquí se usa el selector correcto -->
         <app-chatbot *ngIf="isChatbotVisible" class="chatbot-panel" (close)="toggleChatbot()"></app-chatbot>

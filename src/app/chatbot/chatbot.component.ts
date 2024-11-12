@@ -15,6 +15,7 @@ export class ChatbotComponent {
   role: string = '';
   clientOptionSelected: boolean = false;
   adminOptionSelected: boolean = false;
+  vetOptionSelected: boolean = false;
   showConfirmation: boolean = false;
   confirmationText: string = '';
   redirectUrl: string = '';
@@ -25,6 +26,7 @@ export class ChatbotComponent {
     invalidRole: 'No te entendí. Por favor selecciona "Cliente", "Veterinario" o "Administrador".',
     clientOptions: '¿Qué te gustaría hacer? Elige una opción:',
     adminOptions: '¿Qué te gustaría hacer? Elige una opcion:',
+    vetOptions: '¿Qué te gustaría hacer? Elige una opcion:',
     services: 'Nuestros servicios incluyen: consultas veterinarias, chequeos generales, vacunación, cirugías, y más. Para más detalles, puedes visitar nuestra página de servicios.',
     sede: 'Nos encontramos en la Universidad Javeriana, Edificio de Ingeniería, Piso 10, Consultorio 352. Para ver todas las sedes, visita nuestra página.',
     blogs: 'Puedes leer nuestros blogs más recientes sobre salud animal y cuidados en nuestra página de blogs.',
@@ -60,11 +62,10 @@ export class ChatbotComponent {
     } else if (role === 'veterinario'  && this.isVetRoute()) {
       this.messages.push({ text: '¡Hola Veterinario '+ this .vetID +'! ¿Qué necesitas hacer hoy?', sender: 'bot' });
       this.botStep = 1;
+      this.showVetOptions();
     }else if (role === 'veterinario') {
       this.messages.push({ text: 'No tienes permisos para acceder como Veterinario.', sender: 'bot' });
-      this.botStep = 1;
     }
-    
     else if (role === 'administrador' && this.isAdminRoute()) {
       this.messages.push({ text: '¡Hola Administrador! ¿Cómo puedo asistirte hoy?', sender: 'bot' });
       this.botStep = 1;
@@ -80,6 +81,12 @@ export class ChatbotComponent {
   private showClientOptions() {
     if (!this.clientOptionSelected) {
       this.messages.push({ text: this.botResponses.clientOptions, sender: 'bot' });
+    }
+  }
+
+  private showVetOptions() {
+    if (!this.vetOptionSelected) {
+      this.messages.push({ text: this.botResponses.vetOptions, sender: 'bot' });
     }
   }
 
