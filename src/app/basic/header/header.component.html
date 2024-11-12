@@ -28,10 +28,9 @@
         </ul>
     </div>
     <div class="header-right">
-        <button class="button">Chatea con nosotros</button>
-        <!--<a [routerLinj]="['/login/client']">
-            <i class="bi bi-person-circle"></i>  Bootstrap icon class 
-        </a>
-    -->
+        <button class="button" (click)="toggleChatbot()">Chatea con nosotros</button>
+
+        <!-- Aquí se usa el selector correcto -->
+        <app-chatbot *ngIf="isChatbotVisible" class="chatbot-panel" (close)="toggleChatbot()"></app-chatbot>
     </div>
 </header>

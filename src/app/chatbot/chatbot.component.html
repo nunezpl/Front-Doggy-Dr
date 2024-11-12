@@ -1,0 +1,56 @@
+<div class="chatbot-panel">
+  <div class="messages">
+    <div *ngFor="let message of messages">
+      <p [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+        {{ message.text }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Botones para elegir el rol -->
+  <div *ngIf="botStep === 0">
+    <button (click)="selectRole('cliente')">Cliente</button>
+    <button (click)="selectRole('veterinario')">Veterinario</button>
+    <button (click)="selectRole('administrador')">Administrador</button>
+  </div>
+
+  <!-- Opciones para el cliente -->
+  <div *ngIf="botStep === 1 && role === 'cliente'">
+    <button (click)="handleClientOption('1')">Ver los servicios de la veterinaria</button>
+    <button (click)="handleClientOption('2')">Encontrar la sede de la veterinaria</button>
+    <button (click)="handleClientOption('3')">Revisar los blogs o la información relevante</button>
+    <button (click)="handleClientOption('4')">Ver el contacto completo de la veterinaria</button>
+    <button (click)="handleClientOption('5')">Hacer login en la web</button>
+    <button (click)="handleClientOption('6')">No, volver a los roles</button>
+  </div>
+
+    <!-- Opciones para el Administrador -->
+    <div *ngIf="botStep === 1 && role === 'administrador'">
+      <button (click)="handleAdminOption('1')">Administra los veterinarios</button>
+      <button (click)="handleAdminOption('2')">Consulta las estadisticas de la veterinaria</button>
+      <button (click)="handleAdminOption('3')">Administra las mascotas</button>
+      <button (click)="handleAdminOption('4')">Administra los clientes</button>
+      <button (click)="handleAdminOption('5')">Administra los tratamientos</button>
+      <button (click)="handleAdminOption('6')">No, volver a los roles</button>
+    </div>
+
+    <div *ngIf="botStep === 1 && role === 'veterinario'">
+      <button (click)="handleVetOption('1')">Administra las mascotas</button>
+      <button (click)="handleVetOption('2')">Administra los clientes</button>
+      <button (click)="handleVetOption('3')">Administra los tratamientos</button>
+      <button (click)="handleVetOption('4')">No, volver a los roles</button>
+    </div>
+
+  
+
+  <!-- Mostrar mensaje y botón de redirección después de seleccionar una opción -->
+  <div *ngIf="showConfirmation && botStep === 2">
+    <p>{{ confirmationText }}</p>
+    <div class="button-container">
+      <button (click)="handleButtonClick({ action: 'continue', redirectUrl: redirectUrl })">Sí, ir a la página</button>
+      <button (click)="handleButtonClick({ action: 'back' })">No, volver a las opciones</button>
+    </div>
+  </div>
+
+  <button class="close-button" (click)="closeChatbot()">Cerrar</button>
+</div>

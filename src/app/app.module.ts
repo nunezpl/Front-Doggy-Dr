@@ -39,6 +39,7 @@ import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment
 import { MedicineUpdateComponent } from './medicine/medicine-update/medicine-update.component';
 import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     LoginVetComponent,
     TreatmentUpdateComponent,
     MedicineUpdateComponent,
-    MedicineAllComponent
+    MedicineAllComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

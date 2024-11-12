@@ -137,4 +137,46 @@
     z-index: -1; /* Envía la raya detrás del contenido */
     border-radius: 0 0 50px 50px; /* Bordes redondeados en la parte inferior de la raya */
   }
+
+  .chatbot-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chatbot-panel .header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .chatbot-panel .header .close-btn {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .chatbot-panel .messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .chatbot-panel input[type="text"] {
+    width: calc(100% - 20px);
+    margin: 10px;
+    padding: 5px;
+  }
   

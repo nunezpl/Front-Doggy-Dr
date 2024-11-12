@@ -28,6 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TreatmentUpdateComponent } from './treatment/treatment-update/treatment-update.component';
 import { MedicineUpdateComponent } from './medicine/medicine-update/medicine-update.component';
 import { MedicineAllComponent } from './medicine/medicine-all/medicine-all.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 const routes: Routes = [
 
@@ -77,8 +78,10 @@ const routes: Routes = [
     { path: 'medicine/update/:id', component: MedicineUpdateComponent},
 
     //seguridad
-    { path: 'owner/home', component: OwnerDetailComponent}
+    { path: 'owner/home', component: OwnerDetailComponent},
 
+    //chatbot
+    { path: 'chatbot', component: ChatbotComponent}
 ];
 
 @NgModule({
