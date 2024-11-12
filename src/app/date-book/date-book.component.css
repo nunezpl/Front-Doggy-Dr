@@ -127,34 +127,3 @@ h2{
     color: white;
     transform: translateY(-5px);
 }
-
-
-label {
-    display: block;
-    font-weight: bold;
-    color: #7044bf; /* Mismo color que otros labels */
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-input[type="date"] {
-    width: 60%; /* Reduce el ancho al 60% del contenedor */
-    max-width: 300px; /* Ancho máximo para limitarlo aún más */
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    text-align: center;
-    box-sizing: border-box;
-    color: #333;
-    transition: 0.3s;
-    margin: 0 auto; /* Centra el elemento dentro de su contenedor */
-    display: block; /* Asegura que tome su propio espacio */
-}
-
-input[type="date"]:focus {
-    border-color: #7044bf;
-    background-color: #7044bf;
-    outline: none;
-    box-shadow: 0 0 5px rgba(112, 68, 191, 0.5);
-}

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { EmailService } from '../../service/email.service';
+import { EmailService } from '../service/email.service';
+
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  selector: 'app-date-book',
+  templateUrl: './date-book.component.html',
+  styleUrls: ['./date-book.component.css']
 })
-export class ContactComponent {
+export class DateBookComponent {
   formData = {
     nombre: '',
     correo: '',
@@ -18,12 +18,6 @@ export class ContactComponent {
 
   constructor(private emailService: EmailService) {}
 
-  ngOnInit(): void {
-    // Establece la fecha actual al iniciar el componente
-    const today = new Date();
-    this.formData.date = today.toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
-  }
-  
   onSubmit() {
     if (this.formData.nombre && this.formData.correo && this.formData.celular && this.formData.mensaje && this.formData.date) {
       this.emailService.sendEmail(
