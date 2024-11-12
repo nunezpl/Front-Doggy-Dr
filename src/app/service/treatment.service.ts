@@ -5,6 +5,7 @@ import { Treatment } from '../treatment/treatment';
 import { Pet } from '../pet/pet';
 import { Medicine } from '../medicine/medicine';
 import { Vet } from '../vet/vet';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,29 +17,29 @@ export class TreatmentService {
   ) { }
 
   getTreatments(): Observable<Treatment[]> {
-    return this.http.get<Treatment[]>('http://localhost:8090/treatment/all');
+    return this.http.get<Treatment[]>(`${environment.backendURL}/treatment/all`);
   }
 
   findById(id: number): Observable<Treatment> {
-    return this.http.get<Treatment>('http://localhost:8090/treatment/' + id);
+    return this.http.get<Treatment>(`${environment.backendURL}/treatment/` + id);
   }
 
   findTreatmentPet(id: number): Observable<Pet> {
-    return this.http.get<Pet>('http://localhost:8090/treatment/' + id + '/pet');
+    return this.http.get<Pet>(`${environment.backendURL}/treatment/` + id + '/pet');
   }
 
   findTreatmentVet(id: number): Observable<Vet> {
-    return this.http.get<Vet>('http://localhost:8090/treatment/' + id + '/vet');
+    return this.http.get<Vet>(`${environment.backendURL}/treatment/` + id + '/vet');
   }
 
   findTreatmentMedicines(id: number): Observable<Medicine[]> {
-    return this.http.get<Medicine[]>('http://localhost:8090/treatment/' + id + '/medicines');
+    return this.http.get<Medicine[]>(`${environment.backendURL}/treatment/` + id + '/medicines');
   }
 
   addTreatment(treatment: Treatment): Observable<Treatment> {
     console.log('Tratamiento a agregar:', treatment);
     console.log('Veterinario asignado:', treatment.vet); // Verificar el contenido de `vet` antes de la solicitud
-    return this.http.post<Treatment>('http://localhost:8090/treatment/add', treatment).pipe(
+    return this.http.post<Treatment>(`${environment.backendURL}/treatment/add`, treatment).pipe(
       switchMap((createdTreatment) => {
         console.log('Tratamiento creado:', createdTreatment);
 
@@ -47,7 +48,7 @@ export class TreatmentService {
         // Asociar el veterinario
         if (treatment.vet && treatment.vet.id) {
           const vetAssociation$ = this.http.put<Treatment>(
-            `http://localhost:8090/treatment/${createdTreatment.id}/associate/vet/${treatment.vet.id}`,
+            `${environment.backendURL}/treatment/${createdTreatment.id}/associate/vet/${treatment.vet.id}`,
             {}
           );
           observables.push(vetAssociation$);
@@ -56,7 +57,7 @@ export class TreatmentService {
         // Asociar las mascotas
         if (treatment.pet && treatment.pet.id) {
           const petAssociation$ = this.http.put<Treatment>(
-            `http://localhost:8090/treatment/${createdTreatment.id}/associate/pet/${treatment.pet.id}`,
+            `${environment.backendURL}/treatment/${createdTreatment.id}/associate/pet/${treatment.pet.id}`,
             {}
           );
           observables.push(petAssociation$);
@@ -66,7 +67,7 @@ export class TreatmentService {
         if (treatment.medicines && treatment.medicines.length > 0) {
           treatment.medicines.forEach((medicine) => {
             const medicineAssociation$ = this.http.put<Treatment>(
-              `http://localhost:8090/treatment/${createdTreatment.id}/associate/medicine/${medicine.id}`,
+              `${environment.backendURL}/treatment/${createdTreatment.id}/associate/medicine/${medicine.id}`,
               {}
             );
             observables.push(medicineAssociation$);
@@ -88,7 +89,7 @@ export class TreatmentService {
 
   deleteById(id: Number) {
     console.log(id);
-    return this.http.delete('http://localhost:8090/treatment/delete/' + id).subscribe();
+    return this.http.delete(`${environment.backendURL}/treatment/delete/` + id).subscribe();
   }
 
 }

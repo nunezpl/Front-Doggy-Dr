@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Medicine } from '../medicine/medicine';
 import { Observable, switchMap } from 'rxjs';
 import { Treatment } from '../treatment/treatment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,15 @@ export class MedicineService {
   constructor(private http: HttpClient) {}
 
   getMedicines(): Observable<Medicine[]> {
-    return this.http.get<Medicine[]>('http://localhost:8090/medicine/all');
+    return this.http.get<Medicine[]>(`${environment.backendURL}/medicine/all`);
   }
 
   addMedicine(medicine: Medicine): Observable<Medicine> {
-    return this.http.post<Medicine>('http://localhost:8090/medicine/add', medicine);
+    return this.http.post<Medicine>(`${environment.backendURL}/medicine/add`, medicine);
   }
 
   findById(id: number): Observable<Medicine> {
-    return this.http.get<Medicine>('http://localhost:8090/medicine/' + id);
+    return this.http.get<Medicine>(`${environment.backendURL}/medicine/` + id);
   }
 
   updateMedicine(medicine: Medicine): Observable<Medicine> {
@@ -31,11 +32,11 @@ export class MedicineService {
     }
     console.log(" Update medicine: ", medicine);
 
-    return this.http.put<Medicine>('http://localhost:8090/medicine/update/' + medicine.id, medicine);
+    return this.http.put<Medicine>(`${environment.backendURL}/medicine/update/` + medicine.id, medicine);
   }
 
   findTreatmentsById(id: number): Observable<Treatment[]> {
-    return this.http.get<Treatment[]>('http://localhost:8090/medicine/' + id/ + '/treatments');
+    return this.http.get<Treatment[]>(`${environment.backendURL}/medicine/` + id/ + `/treatments`);
   }
 
   /*updateMedicine(medicine: Medicine): Observable<Medicine> {

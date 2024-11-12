@@ -3,6 +3,7 @@ import { Owner } from '../owner/owner';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pet } from '../pet/pet';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,24 @@ export class OwnerService {
   ) { }
 
   findAll(): Observable<Owner[]>{
-    return this.http.get<Owner[]>('http://localhost:8090/owner/all');
+    return this.http.get<Owner[]>(`${environment.backendURL}/owner/all`);
   }
 
   findById(id:number):Observable<Owner>{
     /*const pet:Pet = this.petList.find(o => o.id === id)!;
     return pet;*/
     console.log("Fing by id:", id);
-    return this.http.get<Owner>('http://localhost:8090/owner/'+id);
+    return this.http.get<Owner>(`${environment.backendURL}/owner/`+id);
   }
 
   findByDocument(document:number):Observable<Owner>{
     console.log("Fing by document:", document);
-    return this.http.get<Owner>('http://localhost:8090/owner/document/'+document);
+    return this.http.get<Owner>(`${environment.backendURL}/owner/document/`+document);
   }
 
   deleteById(id:Number){
     console.log(id);
-    return this.http.delete('http://localhost:8090/owner/delete/'+id).subscribe();
+    return this.http.delete(`${environment.backendURL}/owner/delete/`+id).subscribe();
   }
 
   updateOwner(owner:Owner): Observable<Owner>{
@@ -43,19 +44,19 @@ export class OwnerService {
     }
     console.log(" UpdateOwner: ", owner);
     
-    return this.http.put<Owner>('http://localhost:8090/owner/update/'+ owner.id, owner);
+    return this.http.put<Owner>(`${environment.backendURL}/owner/update/`+ owner.id, owner);
   }
 
   addOwner(owner: Owner): Observable<Owner> {
     console.log('Cliente a agregar:', owner); 
-    return this.http.post<Owner>('http://localhost:8090/owner/register', owner);
+    return this.http.post<Owner>(`${environment.backendURL}/register`, owner);
   }
 
   findOwnerPets(id:number):Observable<Pet[]>{
-    return this.http.get<Pet[]>('http://localhost:8090/owner/'+id+ '/pets');
+    return this.http.get<Pet[]>(`${environment.backendURL}/owner/`+id+ `/pets`);
   }
 
   ownerHome():Observable<Owner>{
-    return this.http.get<Owner>('http://localhost:8090/owner/details');
+    return this.http.get<Owner>(`${environment.backendURL}/owner/details`);
   }
 }

@@ -4,6 +4,7 @@ import { Observable, map, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Owner } from '../owner/owner';
 import { Treatment } from '../treatment/treatment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +16,19 @@ export class PetService {
   ) { }
 
   findAll(): Observable<Pet[]> {
-    return this.http.get<Pet[]>('http://localhost:8090/pet/all');
+    return this.http.get<Pet[]>(`${environment.backendURL}/pet/all`);
   }
 
   findById(id: number): Observable<Pet> {
     /*const pet:Pet = this.petList.find(o => o.id === id)!;
     return pet;*/
-    return this.http.get<Pet>('http://localhost:8090/pet/find/' + id);
+    return this.http.get<Pet>(`${environment.backendURL}/pet/find/` + id);
   }
 
 
   deleteById(id: Number) {
     console.log(id);
-    return this.http.delete('http://localhost:8090/pet/delete/' + id).subscribe();
+    return this.http.delete(`${environment.backendURL}/pet/delete/` + id).subscribe();
   }
 
   updatePet(pet: Pet): Observable<Pet> {
@@ -39,10 +40,10 @@ export class PetService {
     }
     console.log(" UpdatePet: ", pet);
 
-    return this.http.put<Pet>('http://localhost:8090/pet/update/' + pet.id, pet).pipe(
+    return this.http.put<Pet>(`${environment.backendURL}/pet/update/` + pet.id, pet).pipe(
       switchMap((updatedPet) => {
         // Una vez que la mascota ha sido actualizada, asóciala con el dueño
-        return this.http.put<Pet>(`http://localhost:8090/pet/${updatedPet.id}/associate/${pet.owner.id}`, {});
+        return this.http.put<Pet>(`${environment.backendURL}/pet/${updatedPet.id}/associate/${pet.owner.id}`, {});
       })
     );
   }
@@ -50,16 +51,16 @@ export class PetService {
   addPet(pet: Pet): Observable<Pet> {
     console.log('Mascota a agregar:', pet);
     //return this.http.post<Pet>('http://localhost:8090/pet/add', pet);
-    return this.http.post<Pet>('http://localhost:8090/pet/add', pet).pipe(
+    return this.http.post<Pet>(`${environment.backendURL}/pet/add`, pet).pipe(
       switchMap((createdPet) => {
         // Una vez que la mascota ha sido creada, asóciala con el dueño
-        return this.http.put<Pet>(`http://localhost:8090/pet/${createdPet.id}/associate/${pet.owner.id}`, {});
+        return this.http.put<Pet>(`${environment.backendURL}/pet/${createdPet.id}/associate/${pet.owner.id}`, {});
       })
     );
   }
 
   findOwnerPet(id: number): Observable<Owner> {
-    return this.http.get<Owner>('http://localhost:8090/pet/' + id + '/owner');
+    return this.http.get<Owner>(`${environment.backendURL}/pet/` + id + `/owner`);
   }
 
   getTotalPets(): Observable<number> {
@@ -69,7 +70,7 @@ export class PetService {
   }
 
   findPetTreatments(petId: number): Observable<Treatment[]> {
-    return this.http.get<Treatment[]>('http://localhost:8090/pet/' + petId + '/treatments');
+    return this.http.get<Treatment[]>(`${environment.backendURL}/pet/` + petId + `/treatments`);
   }
   
 }

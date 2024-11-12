@@ -4,6 +4,7 @@ import { Treatment } from '../treatment/treatment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pet } from '../pet/pet';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,18 @@ export class VetService {
   ) { }
 
   findAll(): Observable<Vet[]>{
-    return this.http.get<Vet[]>('http://localhost:8090/vet/all');
+    return this.http.get<Vet[]>(`${environment.backendURL}/vet/all`);
   }
 
   findById(id:number):Observable<Vet>{
     /*const pet:Pet = this.petList.find(o => o.id === id)!;
     return pet;*/
-    return this.http.get<Vet>('http://localhost:8090/vet/find/'+id);
+    return this.http.get<Vet>(`${environment.backendURL}/vet/find/`+id);
   }
 
   deleteById(id:Number){
     console.log(id);
-    return this.http.delete('http://localhost:8090/vet/delete/'+id).subscribe();
+    return this.http.delete(`${environment.backendURL}/vet/delete/`+id).subscribe();
   }
   updateVet(vet:Vet): Observable<Vet>{
     /*const index = this.petList.findIndex(o => o.id === pet.id);
@@ -37,23 +38,23 @@ export class VetService {
     }
     console.log(" UpdateVet: ", vet);
     
-    return this.http.put<Vet>('http://localhost:8090/vet/update/'+ vet.id, vet);
+    return this.http.put<Vet>(`${environment.backendURL}/vet/update/`+ vet.id, vet);
   }
 
   addVet(pet: Vet): Observable<Vet> {
     console.log('Veterinario a agregar:', pet); 
-    return this.http.post<Vet>('http://localhost:8090/vet/add', pet);
+    return this.http.post<Vet>(`${environment.backendURL}/vet/add`, pet);
   }
 
   findVetTreatments(id:number):Observable<Treatment[]>{
-    return this.http.get<Treatment[]>('http://localhost:8090/vet/'+id+ '/treatments');
+    return this.http.get<Treatment[]>(`${environment.backendURL}/vet/`+id+ '/treatments');
   }
 
   findVetPets(id:number):Observable<Pet[]>{
-    return this.http.get<Pet[]>('http://localhost:8090/vet/'+id+ '/pets');
+    return this.http.get<Pet[]>(`${environment.backendURL}/vet/`+id+ '/pets');
   }
 
   vetHome():Observable<Vet>{
-    return this.http.get<Vet>('http://localhost:8090/vet/details');
+    return this.http.get<Vet>(`${environment.backendURL}/vet/details`);
   }
 }
