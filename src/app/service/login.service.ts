@@ -20,8 +20,13 @@ export class LoginService {
     return this.http.post(`${environment.backendURL}/login/admin`, body, { responseType: 'text' });
   }
 
-  Vetlogin(username: string, password: string): Observable<any> {
+  /*Vetlogin(username: string, password: string): Observable<any> {
     const body = { username: username, password: password };
     return this.http.post(`${environment.backendURL}/login/vet`, body, { responseType: 'text' });
+  }*/
+
+  Vetlogin(username: String, password: String): Observable<any> {
+    const body = { username: username, password: password };
+    return this.http.post('http://localhost:8090/login/vet', body);
   }
 }

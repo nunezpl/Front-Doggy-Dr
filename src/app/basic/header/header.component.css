@@ -180,37 +180,3 @@
     padding: 5px;
   }
   
-  /* nombre-componente.component.css o .scss */
-.header-right {
-  transition: transform 0.3s ease;
-}
-
-.header-right:hover {
-  transform: scale(1.1);
-}
-
-  /* nombre-componente.component.css o .scss */
-  .header-center {
-    transition: transform 0.3s ease;
-  }
-  
-  .header-center:hover {
-    transform: scale(1.1);
-  }
-
-/* src/styles.css o .scss */
-.button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.button:hover {
-  background-color: #45a049;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-  

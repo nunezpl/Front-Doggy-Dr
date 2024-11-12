@@ -49,7 +49,7 @@ export class OwnerService {
 
   addOwner(owner: Owner): Observable<Owner> {
     console.log('Cliente a agregar:', owner); 
-    return this.http.post<Owner>(`${environment.backendURL}/register`, owner);
+    return this.http.post<Owner>(`${environment.backendURL}/owner/register`, owner);
   }
 
   findOwnerPets(id:number):Observable<Pet[]>{

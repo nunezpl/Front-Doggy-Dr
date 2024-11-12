@@ -64,3 +64,23 @@ th {
     vertical-align: middle;
     padding: 10px;
 }
+
+
+.pet-info ul {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el padding por defecto */
+}
+
+.pet-info ul li {
+    font-size: 20px; /* Tamaño de texto adecuado para lectura */
+    color: #000000; /* Color oscuro para contraste */
+    margin-bottom: 10px; /* Espacio entre los items */
+    padding: 10px; /* Relleno alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s ease; /* Transición para el hover */
+}
+
+.pet-info ul li:hover {
+    background-color: #e1acf5; /* Cambio de color de fondo cuando el item es hoverizado */
+}

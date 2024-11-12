@@ -23,7 +23,7 @@ export class ContactComponent {
     const today = new Date();
     this.formData.date = today.toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
   }
-  
+
   onSubmit() {
     if (this.formData.nombre && this.formData.correo && this.formData.celular && this.formData.mensaje && this.formData.date) {
       this.emailService.sendEmail(
@@ -40,7 +40,6 @@ export class ContactComponent {
         },
         error => {
           console.error('Error al enviar el correo:', error);
-          alert('Error al enviar el correo');
         }
       );
     } else {

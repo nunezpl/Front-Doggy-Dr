@@ -28,9 +28,9 @@ export class LoginVetComponent {
           
           // Obtener vetId de la respuesta si existe
           this.vetId = response.id || ''; // Ajusta según tu estructura de respuesta
-          
+          console.log('Inicio de sesión vetId', response);
           // Redirigir a la página de perfil del veterinario después de un inicio de sesión exitoso
-          const urlProfile = `/vet/${this.vetId}`;
+          const urlProfile = `/vet/find/${this.vetId}`;
           this.router.navigate([urlProfile]);  // Redirigir a la URL construida
           
           // Establecer el mensaje de éxito
