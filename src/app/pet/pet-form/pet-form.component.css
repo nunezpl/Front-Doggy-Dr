@@ -1,9 +1,9 @@
-.main{
+.main {
     margin-top: 140px;
     margin-bottom: 60px;
     display: block;
-  }
-  
+}
+
 /* Estilos para el contenedor del formulario */
 .form-container {
     background-color: #fff;
@@ -15,11 +15,11 @@
 }
 
 /* Estilos para los encabezados dentro del formulario */
-.form-container h2{
+.form-container h2 {
     margin-bottom: 20px;
     color: #7044bf;
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .form-container h3 {
@@ -67,7 +67,8 @@
 
 /* Efecto hover para el botón de envío */
 .form-group input[type="submit"]:hover {
-    background-color: #5c3f9d; /* Un tono más oscuro para el hover */
+    background-color: #5c3f9d;
+    /* Un tono más oscuro para el hover */
 }
 
 /* Estilos para el contenedor del botón */
@@ -81,4 +82,48 @@
 #button:hover {
     color: white;
     transform: translateY(-5px);
+}
+
+.custom-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-control-input {
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #ccc;
+    border-radius: 50px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.custom-control-input:checked {
+    background-color: #7044bf;
+    /* Color morado cuando está activo */
+}
+
+.custom-control-input:checked::before {
+    transform: translateX(20px);
+}
+
+.custom-control-input::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.custom-control-label {
+    font-weight: bold;
+    color: #7044bf;
+    font-size: 16px;
 }
