@@ -10,6 +10,7 @@ import { LoginService } from '../service/login.service';
 })
 export class LoginVetComponent {
   vetId: string = '';                     // ID del veterinario
+  vetName: String = '';
   successMessage: string | null = null;   // Mensaje de éxito
   errorMessage: string | null = null;     // Mensaje de error
 
@@ -17,33 +18,36 @@ export class LoginVetComponent {
 
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
-      const username = loginForm.value.user;    // Obtener el usuario del formulario
-      const password = loginForm.value.password; // Obtener la contraseña del formulario
+      const username = loginForm.value.user;
+      const password = loginForm.value.password;
   
       console.log("Login: " + username + " - " + password);
   
       this.loginService.Vetlogin(username, password).subscribe({
-        next: (response) => {
+        next: (response: any) => {
           console.log('Inicio de sesión exitoso', response);
           
-          // Obtener vetId de la respuesta si existe
+          // Obtener vetId y name de la respuesta
           this.vetId = response.id || ''; // Ajusta según tu estructura de respuesta
-          console.log('Inicio de sesión vetId', response);
-          // Redirigir a la página de perfil del veterinario después de un inicio de sesión exitoso
-          const urlProfile = `/vet/find/${this.vetId}`;
-          this.router.navigate([urlProfile]);  // Redirigir a la URL construida
-          
+          this.vetName = response.name || ''; // Añadir el nombre del veterinario
+          console.log('Inicio de sesión vetId:', this.vetId);
+          console.log('Inicio de sesión vetName', this.vetName);
+  
+          // Redirigir a la página de perfil del veterinario
+          const urlProfile = `/vet/${this.vetId}`;
+          this.router.navigate([urlProfile]);
+  
           // Establecer el mensaje de éxito
           this.successMessage = 'Inicio de sesión exitoso!';
           this.errorMessage = null; // Limpiar el mensaje de error
         },
         error: (error) => {
           console.error('Error al iniciar sesión', error);
-          // Establecer el mensaje de error
           this.errorMessage = 'Credenciales incorrectas. Intenta nuevamente.';
           this.successMessage = null; // Limpiar el mensaje de éxito
         }
       });
     }
   }
+  
 }
