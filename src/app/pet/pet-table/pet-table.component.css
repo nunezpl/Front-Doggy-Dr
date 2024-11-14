@@ -170,3 +170,72 @@
     color: #189ae0; /* Cambia el color del texto del placeholder (morado) */
     opacity: 1; /* Asegura que el placeholder sea completamente opaco (sin transparencia) */
 }
+
+
+/* Contenedor de las cartas */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Espacio entre tarjetas */
+    justify-content: center;
+    padding: 16px;
+}
+
+/* Estilo de cada tarjeta */
+.card {
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    overflow: hidden; /* Ocultar contenido que sobresalga */
+    width: 300px; /* Ancho fijo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Animaciones */
+}
+
+/* Hover en tarjeta */
+.card:hover {
+    transform: translateY(-5px); /* Elevar tarjeta */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+/* Imagen de la tarjeta */
+.card-image {
+    width: 100%; /* Imagen ocupa todo el ancho */
+    height: 200px; /* Altura fija */
+    object-fit: cover; /* Recorta la imagen para encajar */
+    border-bottom: 1px solid #ddd; /* Borde entre imagen y contenido */
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    padding: 16px; /* Espaciado interno */
+}
+
+/* Título de la tarjeta */
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Detalles de la tarjeta */
+.card-status, .card-raza, .card-edad, .card-enfermedad {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0;
+}
+
+/* Acciones de la tarjeta */
+.card-actions {
+    display: flex;
+    gap: 8px; /* Espaciado entre botones */
+    margin-top: 16px;
+}
+
+.card-actions .btn {
+    flex: 1; /* Botones ocupan el mismo ancho */
+}
